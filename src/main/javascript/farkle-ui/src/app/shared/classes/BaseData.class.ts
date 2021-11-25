@@ -2,8 +2,8 @@ import { BehaviorSubject } from 'rxjs';
 
 export abstract class BaseDataServiceClass< T > {
 
-  protected dataStore: { data: T } = { data: null };
-  protected _data = new BehaviorSubject< T >( null );
+  protected dataStore: { data: Array< T > } = { data: [] };
+  protected _data = new BehaviorSubject< Array< T > >( null );
   readonly data = this._data.asObservable();
 
   constructor() { }
@@ -26,7 +26,9 @@ export abstract class BaseDataServiceClass< T > {
    * this.svc.register( data: T );
    */
   register = ( op: T ): void => {
-    this.dataStore.data = op;
+    
+    this.dataStore.data.push( op )
+
     this._data.next( this.dataStore.data );
   }
 }
