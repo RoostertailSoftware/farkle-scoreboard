@@ -9,11 +9,15 @@ import { PlayerClass } from '@classes';
 })
 export class PlayerScoreboardComponent implements OnInit {
 
+  playerDataSource:any;
+  displayedColumns: Array< string >;
   constructor( private playerSvc: PlayersService) {
     let x = playerSvc.getObservableData();
     x.subscribe( result =>{
-      let foo = result;
-    })
+      this.playerDataSource = result;
+    });
+
+    this.displayedColumns = [ 'place', 'player', 'score'];
    }
 
   ngOnInit(): void {
