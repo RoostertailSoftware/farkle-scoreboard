@@ -1,0 +1,102 @@
+<div class="rules-config-dialog-card">
+    <mat-card class="rules-config-card">
+        <mat-card-header class="rules-config-header">
+            <mat-card-title>{{title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="rules-config-content">
+            <form
+                [formGroup]=configurationForm
+                autocomplete="off"
+                novalidate
+                fxLayout="column wrap"
+                fxLayoutGap="10px">
+
+                <mat-form-field
+                    class="rules-config-field">
+                    <mat-label>score to win game</mat-label>
+                    <input
+                        class="rules-config-data"
+                        matInput
+                        type="number"
+                        formControlName="winScore"
+                        id="winScore">
+                </mat-form-field>
+
+                <mat-form-field
+                    class="rules-config-field">
+                    <mat-label>minimum score to start</mat-label>
+                    <input
+                        class="rules-config-data"
+                        matInput
+                        type="number"
+                        formControlName="minScoreToStart"
+                        id="minScoreToStart">
+                </mat-form-field>
+
+                <div class="toggle-wrapper">
+                    <mat-slide-toggle formControlName="maxFarklesApplies">set maximum Farkles with penality</mat-slide-toggle>
+                    <div *ngIf="configurationForm.get('maxFarklesApplies').value" class="inset-farkle-penalty-wrapper"> 
+
+                        <mat-form-field
+                            class="rules-config-field-inset">
+                            <mat-label>max Farkles before penality</mat-label>
+                            <input
+                                class="rules-config-data-inset"
+                                matInput
+                                type="number"
+                                formControlName="maxFarkleCount"
+                                id="maxFarkleCount">
+                        </mat-form-field>
+
+                        <mat-form-field
+                            class="rules-config-field-inset">
+                            <mat-label>max Farkles penality</mat-label>
+                                <input
+                                    class="rules-config-data-inset"
+                                    matInput
+                                    type="number"
+                                    formControlName="maxFarklePenality"
+                                    id="maxFarklePenality">
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+                <mat-form-field
+                    class="rules-config-field">
+                    <mat-label>points for tripple doubles</mat-label>
+                    <input
+                        class="rules-config-data"
+                        matInput
+                        type="number"
+                        formControlName="trippleDoublePoints"
+                        id="trippleDoublePoints">
+                </mat-form-field>
+
+                <mat-form-field
+                    class="rules-config-field">
+                    <mat-label>points for full straight</mat-label>
+                    <input
+                        class="rules-config-data"
+                        matInput
+                        type="number"
+                        formControlName="straightPoints"
+                        id="straightPoints">
+                </mat-form-field>
+
+                <div class="toggle-wrapper">
+                    <mat-slide-toggle formControlName="nextPlayerContinuesPreviousRoll">roll points and dice continue to next player</mat-slide-toggle>
+                </div>
+                <div class="toggle-wrapper">
+                    <mat-slide-toggle formControlName="doublingScoresOnTripples">"doulbling" scoring on multiples</mat-slide-toggle>
+                </div>
+
+            </form>
+        </mat-card-content>
+        <mat-card-actions class="rules-config-actions">
+            <button mat-button color="accent" matDialogClose>cancel</button>
+            <button mat-button  (click)="default()">defaults</button>
+            <button mat-button color="primary" (click)="close()">ok</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

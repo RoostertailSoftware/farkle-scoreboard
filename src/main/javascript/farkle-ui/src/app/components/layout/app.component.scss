@@ -1,0 +1,26 @@
+@import "src/variables";
+
+.title-tile {
+    background-color: $primary-background;
+}
+
+::ng-deep .help-info-buttons-tile {
+    background-color: $primary-background;
+}
+.help-info-buttons{
+    position: fixed;
+    right: 50px;
+}
+.action-buttons-tile{
+    background-color: $accent;
+}
+
+.players-scoreboard-tile{
+    background-color: $primary;
+}
+.roll-scoreboard-tile{
+    background-color: $warn;
+}
+.player-stats-tile{
+    background-color: $accent;
+}

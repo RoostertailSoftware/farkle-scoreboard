@@ -1,0 +1,14 @@
+@import "./variables";
+
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
+@import "../node_modules/material-design-icons-iconfont/src/material-design-icons";
+
+html, body {
+    height: 95%;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow: hidden;
+    background-color: $app-background-color;
+}

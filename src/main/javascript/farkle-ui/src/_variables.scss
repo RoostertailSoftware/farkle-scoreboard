@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+
+$font-stack:    Helvetica, sans-serif;
+
+
+$app-primary:   mat-palette( $mat-deep-purple );
+$app-accent:    mat-palette( $mat-amber );
+$app-warn:      mat-palette( $mat-red );
+
+$primary:       mat-color( $app-primary );
+$accent:        mat-color( $app-accent );
+$warn:          mat-color( $app-warn );
+
+$app-background-color: rgb(231, 226, 226);
+$primary-background: white;

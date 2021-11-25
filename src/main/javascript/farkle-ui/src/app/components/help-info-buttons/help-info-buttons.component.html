@@ -1,0 +1,28 @@
+<div class="help-info-buttons-container">
+    
+    <button 
+        mat-mini-fab 
+        (click)="about()" 
+        class="help-button flip-icon-180 about-button"
+        [matTooltip]="tooltip.about.tip">
+        <mat-icon>error_outline</mat-icon>
+    </button>
+
+    <button 
+        mat-mini-fab 
+        (click)="rules()" 
+        class="help-button rule-button"
+        [matTooltip]="tooltip.rules.tip">
+        <mat-icon>rule</mat-icon>
+    </button>
+
+    <button 
+        mat-mini-fab 
+        (click)="config()" 
+        class="help-button config-button"
+        [matTooltip]="tooltip.config.tip">
+        <mat-icon>settings</mat-icon>
+    </button>
+
+
+</div>

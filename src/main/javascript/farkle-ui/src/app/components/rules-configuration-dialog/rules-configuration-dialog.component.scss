@@ -1,0 +1,39 @@
+@import "../../../variables";
+
+.rules-config-dialog-card {
+    margin: 5px;
+
+}
+.rules-config-card{
+    // background-color: $primary;
+    padding: 5px;
+}
+.rules-config-header{
+
+}
+.rules-config-content{
+
+}
+.rules-config-field {
+    width: 100%;
+}
+.rules-config-data{
+    color: $primary;
+}
+.rules-config-actions{
+    text-align: center;
+    margin: 5px;
+}
+.toggle-wrapper{
+    margin-bottom: 10px;
+}
+
+
+.rules-config-field-inset{
+    width:75%;
+    margin-left: 25px;
+    margin-top: 10px;
+}
+.rules-config-data-inset{
+    color: $primary;
+}

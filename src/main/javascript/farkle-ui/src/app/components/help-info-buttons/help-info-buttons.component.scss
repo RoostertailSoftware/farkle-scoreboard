@@ -1,0 +1,26 @@
+@import "../../../variables";
+
+.help-info-buttons-container{
+    width: 100%;
+}
+
+.help-button {
+    margin-left: 5px;
+}
+
+.rule-button{
+    color: $primary;
+    background-color: $primary-background;
+}
+.about-button{
+    // margin-right: 30px;
+    color: $primary;
+    background-color: $primary-background;
+}
+.config-button{
+    color: $primary;
+    background-color: $primary-background;
+}
+.flip-icon-180 {
+    transform: rotate(180deg)
+}
