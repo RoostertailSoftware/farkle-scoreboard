@@ -1,14 +1,16 @@
 <mat-grid-list cols="8" rowHeight="50px">
 
+    <!-- Title  -->
     <mat-grid-tile colspan="4" rowspan="1" class="title-tile">
         <app-title [workingTitle]="title"></app-title>
     </mat-grid-tile>
 
+    <!-- Help / Rules / Configuration buttons -->
     <mat-grid-tile colspan="4" rowspan="1"  class="help-info-buttons-tile">
-        <div class="help-info-buttons">
-            <app-help-info-buttons></app-help-info-buttons>
-        </div>
+        <app-help-info-buttons class="help-info-buttons"></app-help-info-buttons>
     </mat-grid-tile>
+
+    <!-- Action buttons, for gameplay, setup -->
     <mat-grid-tile colspan="4" rowspan="3" class="action-buttons-tile">
         <span *ngIf="!gameStart">
             <app-start-setup-buttons></app-start-setup-buttons>
@@ -17,13 +19,20 @@
             <app-roll-action-buttons></app-roll-action-buttons>
         </span>
     </mat-grid-tile>
+    
+    <!-- Player's scoreboard -->
     <mat-grid-tile colspan="4" rowspan="6" class="players-scoreboard-tile">
-        <app-player-scoreboard></app-player-scoreboard>
+        <app-player-scoreboard class="player-scoreboard"></app-player-scoreboard>
     </mat-grid-tile>
+    
+    <!-- Roll Scoreboard -->
     <mat-grid-tile colspan="4" rowspan="9" class="roll-scoreboard-tile">
         <app-roll-scoreboard></app-roll-scoreboard>
     </mat-grid-tile>
+    
+    <!-- Player / Game Statistics  -->
     <mat-grid-tile colspan="4" rowspan="6" class="player-stats-tile">
         <app-player-statistics></app-player-statistics>
     </mat-grid-tile>
+
   </mat-grid-list>

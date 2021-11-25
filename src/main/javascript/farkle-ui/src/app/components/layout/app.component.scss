@@ -8,19 +8,23 @@
     background-color: $primary-background;
 }
 .help-info-buttons{
-    position: fixed;
-    right: 50px;
+    width: 95%;
+    height: 95%;
 }
 .action-buttons-tile{
     background-color: $accent;
 }
 
 .players-scoreboard-tile{
-    background-color: $primary;
+    background-color: $primary-background;
+}
+.player-scoreboard {
+    width: 95%;
+    height: 95%;
 }
 .roll-scoreboard-tile{
     background-color: $warn;
 }
 .player-stats-tile{
-    background-color: $accent;
+    background-color: $primary;
 }
