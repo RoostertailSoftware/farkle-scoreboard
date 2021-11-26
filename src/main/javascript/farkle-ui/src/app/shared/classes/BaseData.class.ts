@@ -25,9 +25,13 @@ export abstract class BaseDataServiceClass< T > {
    * @example
    * this.svc.register( data: T );
    */
-  register = ( op: T ): void => {
+  register = ( op: T, singular?: boolean ): void => {
     
-    this.dataStore.data.push( op )
+    if( singular ){
+      this.dataStore.data = [ op ];
+    } else {
+      this.dataStore.data.push( op )
+    }
 
     this._data.next( this.dataStore.data );
   }
