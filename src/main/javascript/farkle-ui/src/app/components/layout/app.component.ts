@@ -10,5 +10,9 @@ import { AppSettingsClass } from '@classes';
 
 export class AppComponent {
   title: string = AppSettingsClass.APP_NAME;
-  gameStart: boolean = true;
+  gameStart: boolean = false;
+
+  beginGame( event ){
+    this.gameStart = event; 
+  }
 }

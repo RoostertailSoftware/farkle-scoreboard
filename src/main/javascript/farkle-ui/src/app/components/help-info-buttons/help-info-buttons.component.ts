@@ -21,15 +21,9 @@ export class HelpInfoButtonsComponent {
       private aboutDialog: MatDialog ) {
 
     this.tooltip = {
-      rules:{
-        tip: "Farkel rules"
-      },
-      about: {
-        tip: "about Farkle scoreboard app"
-      },
-      config: {
-        tip: "configure Farkel rules"
-      }
+      rules: { tip: "basic Farkel rules" },
+      about: { tip: "about Farkle scoreboard" },
+      config: { tip: "configure Farkel game rules" }
     };
 
     let x = this.configSvc.getObservableData();

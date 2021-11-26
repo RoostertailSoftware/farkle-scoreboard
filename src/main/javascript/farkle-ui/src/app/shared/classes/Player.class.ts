@@ -2,7 +2,7 @@ import { GameClass, BasePlayerClass } from "@classes";
 
 export class PlayerClass extends BasePlayerClass {
 
-    constructor( name: string, order: number ){
+    constructor( name?: string, order?: number ){
         super();
         this.name = name;
         this.order = order;

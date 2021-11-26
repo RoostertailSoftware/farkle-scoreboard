@@ -24,14 +24,15 @@ let _schemas: any[] =[ ]
 
 import { AppComponent,
   AboutDialogComponent,
+  AddPersonDialogComponent,
   HelpInfoButtonsComponent,
   PlayerScoreboardComponent,
   PlayerStatisticsComponent,
+  PregameActionButtonsComponent,
   RollActionButtonsComponent,
   RollScoreboardComponent,
   RulesConfigurationDialogComponent,
   RulesDialogComponent,
-  StartSetupButtonsComponent,
   TitleComponent } from './components' ;
 
   import { safeHtml } from "@pipes";
@@ -39,14 +40,15 @@ import { AppComponent,
 let _declarations: any[] = [
   AppComponent,
   AboutDialogComponent,
+  AddPersonDialogComponent,
   HelpInfoButtonsComponent,
   PlayerScoreboardComponent,
   PlayerStatisticsComponent,
+  PregameActionButtonsComponent,
   RollActionButtonsComponent,
   RollScoreboardComponent,
   RulesConfigurationDialogComponent,
   RulesDialogComponent,
-  StartSetupButtonsComponent,
   TitleComponent,
   safeHtml
 ]

@@ -1,3 +1,22 @@
+.player-table-container{
+  overflow: auto;
+  width: 100%;
+  max-height:99%;
+}
 table {
     width: 100%;
+  }
+  .row-name {
+    font-weight: bold;
+  }
+
+  //    [ 'order', 'place', 'player', 'score'];
+  .mat-column-order{
+    width: 15% !important;
+  }
+  .mat-column-place{
+    width: 5% !important;
+  }
+  .mat-column-score{
+    width: 20% !important;
   }

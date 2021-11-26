@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 export abstract class BaseDataServiceClass< T > {
 
   protected dataStore: { data: Array< T > } = { data: [] };
-  protected _data = new BehaviorSubject< Array< T > >( null );
+  protected _data = new BehaviorSubject< Array< T > >( [] );
   readonly data = this._data.asObservable();
 
   constructor() { }

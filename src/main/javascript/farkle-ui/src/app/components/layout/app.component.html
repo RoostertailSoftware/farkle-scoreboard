@@ -13,7 +13,7 @@
     <!-- Action buttons, for gameplay, setup -->
     <mat-grid-tile colspan="4" rowspan="3" class="action-buttons-tile">
         <span *ngIf="!gameStart">
-            <app-start-setup-buttons></app-start-setup-buttons>
+            <app-pregame-action-buttons (playHasBegun)="beginGame( $event )"></app-pregame-action-buttons>
         </span>
         <span *ngIf="gameStart">
             <app-roll-action-buttons></app-roll-action-buttons>

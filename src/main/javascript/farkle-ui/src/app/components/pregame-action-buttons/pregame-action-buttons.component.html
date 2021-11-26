@@ -1,0 +1,11 @@
+<div class="action-button-container">
+
+    <button [disabled]="playerData.length < 1" mat-flat-button (click)="beginPlay()" [matTooltip]="tooltip.beginPlay.tip" class="all-buttons begin-play-button">begin game
+        <mat-icon color="">flag</mat-icon>
+    </button>
+
+    <button mat-flat-button (click)="addPlayer()" [matTooltip]="tooltip.addPlayer.tip" class="all-buttons add-player-button">add Player
+        <mat-icon >person_add</mat-icon>
+    </button>
+
+</div>
