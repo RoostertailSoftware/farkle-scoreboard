@@ -44,16 +44,14 @@ export class PregameActionButtonsComponent implements OnInit {
   addPlayer = ( keepGoing?: boolean ):void => {
     let addAnother:boolean = _.isUndefined( keepGoing ) ? false : keepGoing;
     let dialogRef: MatDialogRef< AddPlayerDialogComponent > = this.openDialog( addAnother );
-    dialogRef.afterClosed().subscribe( ( result: any ) => {
-      if( !_.isUndefined( result.name ) ) {
+    // this is how to subscribe the the Dialog's @Output()
+    // squeeee!
+    dialogRef.componentInstance.player.subscribe( result =>{
         let player: PlayerClass = new PlayerClass( result.name, this.playerData.length+1 );
         this.playerSvc.register( player );
-        if( result.addAnother ){
-          this.addPlayer(  result.addAnother );
-        };
-      }
     });
   }
+
 
   // Helper method to create a MatDialogRef for the dialog.
   openDialog = ( inData: any  ): MatDialogRef< AddPlayerDialogComponent  >  => {

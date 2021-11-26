@@ -30,7 +30,7 @@
         </mat-card-content>
         <mat-card-actions class="add-person-actions">
             <button mat-button color="warn" matDialogClose>cancel</button>
-            <button mat-button color="primary" (click)="close()">ok</button>
+            <button mat-button color="primary" [disabled]="newPersonForm.invalid" (click)="close()">ok</button>
         </mat-card-actions>
     </mat-card>
 </div>
