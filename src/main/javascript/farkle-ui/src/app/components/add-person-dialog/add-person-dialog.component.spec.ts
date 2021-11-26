@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StartSetupButtonsComponent } from './start-setup-buttons.component';
+import { AddPersonDialogComponent } from './add-person-dialog.component';
 
-describe('StartSetupButtonsComponent', () => {
-  let component: StartSetupButtonsComponent;
-  let fixture: ComponentFixture<StartSetupButtonsComponent>;
+describe('AddPersonDialogComponent', () => {
+  let component: AddPersonDialogComponent;
+  let fixture: ComponentFixture<AddPersonDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StartSetupButtonsComponent ]
+      declarations: [ AddPersonDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StartSetupButtonsComponent);
+    fixture = TestBed.createComponent(AddPersonDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
