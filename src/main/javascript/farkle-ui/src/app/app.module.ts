@@ -24,7 +24,7 @@ let _schemas: any[] =[ ]
 
 import { AppComponent,
   AboutDialogComponent,
-  AddPersonDialogComponent,
+  AddPlayerDialogComponent,
   HelpInfoButtonsComponent,
   PlayerScoreboardComponent,
   PlayerStatisticsComponent,
@@ -40,7 +40,7 @@ import { AppComponent,
 let _declarations: any[] = [
   AppComponent,
   AboutDialogComponent,
-  AddPersonDialogComponent,
+  AddPlayerDialogComponent,
   HelpInfoButtonsComponent,
   PlayerScoreboardComponent,
   PlayerStatisticsComponent,

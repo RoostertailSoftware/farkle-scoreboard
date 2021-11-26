@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddPersonDialogComponent } from './add-person-dialog.component';
+import { AddPlayerDialogComponent } from './add-player-dialog.component';
 
-describe('AddPersonDialogComponent', () => {
-  let component: AddPersonDialogComponent;
-  let fixture: ComponentFixture<AddPersonDialogComponent>;
+describe('AddPlayerDialogComponent', () => {
+  let component: AddPlayerDialogComponent;
+  let fixture: ComponentFixture<AddPlayerDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddPersonDialogComponent ]
+      declarations: [ AddPlayerDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddPersonDialogComponent);
+    fixture = TestBed.createComponent(AddPlayerDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,7 +2,7 @@ export { AppComponent } from "./layout/app.component";
 
 export { AboutDialogComponent } from "./about-dialog/about-dialog.component";
 
-export { AddPersonDialogComponent } from "./add-person-dialog/add-person-dialog.component";
+export { AddPlayerDialogComponent } from "./add-player-dialog/add-player-dialog.component";
 
 export { HelpInfoButtonsComponent } from "./help-info-buttons/help-info-buttons.component";
 

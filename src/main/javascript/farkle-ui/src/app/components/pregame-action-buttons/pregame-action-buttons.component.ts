@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-import { AddPersonDialogComponent } from '@components';
+import { AddPlayerDialogComponent } from '@components';
 import { PlayersService } from '@services';
 import { PlayerClass } from '@classes';
 
@@ -43,7 +43,7 @@ export class PregameActionButtonsComponent implements OnInit {
   // taking the result and adding it to the player service.
   addPlayer = ( keepGoing?: boolean ):void => {
     let addAnother:boolean = _.isUndefined( keepGoing ) ? false : keepGoing;
-    let dialogRef: MatDialogRef< AddPersonDialogComponent > = this.openDialog( addAnother );
+    let dialogRef: MatDialogRef< AddPlayerDialogComponent > = this.openDialog( addAnother );
     dialogRef.afterClosed().subscribe( ( result: any ) => {
       if( !_.isUndefined( result.name ) ) {
         let player: PlayerClass = new PlayerClass( result.name, this.playerData.length+1 );
@@ -56,8 +56,8 @@ export class PregameActionButtonsComponent implements OnInit {
   }
 
   // Helper method to create a MatDialogRef for the dialog.
-  openDialog = ( inData: any  ): MatDialogRef< AddPersonDialogComponent  >  => {
-    return this.addPersonDialog.open( AddPersonDialogComponent, {
+  openDialog = ( inData: any  ): MatDialogRef< AddPlayerDialogComponent  >  => {
+    return this.addPersonDialog.open( AddPlayerDialogComponent, {
       autoFocus: true,
       closeOnNavigation: true,
       data: inData

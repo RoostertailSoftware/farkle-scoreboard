@@ -6,16 +6,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-add-person-dialog',
-  templateUrl: './add-person-dialog.component.html',
-  styleUrls: ['./add-person-dialog.component.scss']
+  selector: 'app-add-player-dialog',
+  templateUrl: './add-player-dialog.component.html',
+  styleUrls: ['./add-player-dialog.component.scss']
 })
-export class AddPersonDialogComponent implements OnInit {
+export class AddPlayerDialogComponent implements OnInit {
 
   public newPersonForm: FormGroup;
   public title = "game configuration"
 
-  constructor( public dialogRef: MatDialogRef< AddPersonDialogComponent > , 
+  constructor( public dialogRef: MatDialogRef< AddPlayerDialogComponent > , 
     @Inject( MAT_DIALOG_DATA ) public data: any ){ }
 
   ngOnInit(): void {
