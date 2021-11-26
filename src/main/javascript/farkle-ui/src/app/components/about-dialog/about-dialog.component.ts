@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutDialogComponent implements OnInit {
 
-  constructor() { }
+  public title: string;
+  constructor() { 
+    this.title = "about Farkle scoreboard"
+  }
 
   ngOnInit(): void {
   }
