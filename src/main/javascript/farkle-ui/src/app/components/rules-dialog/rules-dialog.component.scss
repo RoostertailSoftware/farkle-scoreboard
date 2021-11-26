@@ -1,0 +1,15 @@
+@import "../../../variables";
+
+.configurable{
+    font-style: italic;
+    color: $accent;
+}
+.note{
+    font-size: .8em;
+}
+mat-icon.note-icon {
+    font-size: 13px;
+    text-align: center;
+    color: $secondary-buttons-color;
+    background-color: $primary-background;
+}

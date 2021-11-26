@@ -1,4 +1,4 @@
-export { AppComponent } from "./layout/app.component";
+export { AppComponent } from "./layout-app/app.component";
 
 export { AboutDialogComponent } from "./about-dialog/about-dialog.component";
 

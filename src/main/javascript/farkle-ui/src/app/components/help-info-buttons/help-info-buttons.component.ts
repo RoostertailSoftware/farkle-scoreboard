@@ -28,7 +28,7 @@ export class HelpInfoButtonsComponent {
 
     let x = this.configSvc.getObservableData();
     x.subscribe( result => {
-      this.configData = result;
+      this.configData = result[0];
     })
    }
 
@@ -43,7 +43,7 @@ export class HelpInfoButtonsComponent {
     let x = this.configDialog.open( RulesConfigurationDialogComponent, data );
     x.afterClosed().subscribe( result => {
       if( !_.isEmpty( result ) ) {
-        this.configSvc.register( new RulesConfigurationClass ( result ) )
+        this.configSvc.register( new RulesConfigurationClass ( result ), true )
       }
     })
   }

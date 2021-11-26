@@ -1,1 +1,54 @@
-<p>rules-dialog works!</p>
+<div class="rules-config-dialog-card">
+    <mat-card class="rules-config-card">
+        <mat-card-header class="rules-config-header">
+            <mat-card-title>{{title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="rules-config-content" >
+            <p><span class="note">note: text marked with <span class="configurable">this highlight</span> 
+                are configurable and can be modified in the game's configuration.<mat-icon class="note-icon">settings</mat-icon> </span>
+            </p>
+
+            <p>Object:</p>
+            <p>The player with the highest score above <span class="configurable">{{config.winScore}}</span> points on the final round of play wins!</p>
+
+            <hr width="75%"/>
+            <p>Setup:</p>
+            <p>Start by adding Players using the `add Player` button.</p>
+            <p>Use the configuration dialogto set different variations of the game and scoring values.</p>
+            <p>Once all the Players are set, and game values are agreed on start the game with the `begin game` button</p>
+            <hr width="75%"/>
+            <p>Game Play:</p>
+            <p>Farkle Scoreboard will promt each player in order.  Player rolls 6 dice and chooses which to keep.</p> 
+            <p>Select on the Scoreboard which dice are select to keep the points.</p>
+            <hr width="75%"/>
+            <p>Score:</p>
+            <p>Only 1's and 5's are singularly worth points.</p>
+            <ul>
+                <li>1's = 100 points</li>
+                <li>5's = 50 points</li>
+            </ul>
+            <p>triples in any number are worth 100 points except 1's.</p>
+            <ul> Triples
+                <li>1's = 1000 points</li>
+                <li>2's = 200 points</li>
+                <li>3's = 300 points</li>
+                <li>4's = 400 points</li>
+                <li>5's = 500 points</li>
+                <li>6's = 600 points</li>
+            </ul>
+            <ul> Quad
+                <li>1's = 2000 points</li>
+                <li>2's = 400 points</li>
+                <li>3's = 600 points</li>
+                <li>4's = 800 points</li>
+                <li>5's = 1000 points</li>
+                <li>6's = 1200 points</li>
+            </ul>
+
+            <p></p>
+        </mat-card-content>
+        <mat-card-actions class="rules-config-actions">
+            <button mat-button color="primary" matDialogClose>close</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
