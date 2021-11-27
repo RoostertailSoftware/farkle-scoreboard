@@ -1,1 +1,28 @@
-<p>roll-action-buttons works!</p>
+<div class="roll-action-button-container">
+
+    <div class="actions-buttons">
+
+        <button mat-flat-button (click)="roll()" class="all-buttons roll-button">roll {{diceCount }}
+            <mat-icon>refresh</mat-icon>
+        </button>
+        <button mat-flat-button (click)="farkle()" class="all-buttons farkel-button">Farkle
+            <mat-icon>cancel</mat-icon>
+        </button>
+        <button mat-flat-button (click)="finished()" class="all-buttons finished-button">finish
+            <mat-icon>person_off</mat-icon>
+        </button>
+
+    </div>
+
+    <div class="dice-icon-buttons">
+
+        <mat-icon (click)="one()" class="dice-button" >looks_one</mat-icon>
+        <mat-icon (click)="two()" class="dice-button">looks_two</mat-icon>
+        <mat-icon (click)="three()" class="dice-button">looks_3</mat-icon>
+        <mat-icon (click)="four()" class="dice-button">looks_4</mat-icon>
+        <mat-icon (click)="five()" class="dice-button">looks_5</mat-icon>
+        <mat-icon (click)="six()" class="dice-button">looks_6</mat-icon>
+
+    </div>
+
+</div>

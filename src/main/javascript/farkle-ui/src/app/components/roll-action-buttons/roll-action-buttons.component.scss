@@ -1,0 +1,42 @@
+@import "../../../variables";
+
+.roll-action-button-container{
+    text-align: center;
+
+}
+.actions-buttons{
+    width: 100%;
+
+}
+.all-buttons{
+    margin-left: 10px;
+}
+.roll-button{
+    color: $primary;
+}
+
+.farkel-button{
+    color: $warn;
+}
+
+.finished-button{
+    color: $accent;
+}
+
+.dice-buttons{
+    color: $secondary-buttons-color;
+
+    margin-left: 5px;
+    margin-right: 5px;
+
+    text-align: center;
+}
+
+.dice-button {
+    margin: 5px;
+}
+
+mat-icon:hover {
+    background-color: $light-grey-button-background;
+    border-radius: 5px;
+}
