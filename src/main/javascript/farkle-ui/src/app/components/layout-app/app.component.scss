@@ -12,9 +12,11 @@
     height: 95%;
 }
 .action-buttons-tile{
-    background-color: $accent;
+    background-color: $primary-background;
 }
-
+.roll-action-buttons{
+    width: 100%;
+}
 .players-scoreboard-tile{
     background-color: $primary-background;
 }
