@@ -1,5 +1,15 @@
 import { BasePlayerClass } from "@classes";
-
+/**
+ * DiceClass is part of a Player's Roll.
+ * The player can select up to 6 total.
+ * Player must select at least 1 dice - it must be a dice_1 or dice_5
+ * all dice_x can be selected up to 6 times for a score.
+ * only dice_1 and dice_5 can be selected with counts 1 .. 6
+ * dice_2, dice_3, dice_4, dice_6 can be selected 2 times ONLY if 2 other pair are selected 2 times also.
+ * dice_2, dice_3, dice_4, dice_6 can be selected 3 or more times
+ * all dice_x can be selected 1 time if-and-only-if all are selected (straight)
+ * 
+ */
 export class DiceClass extends BasePlayerClass {
 
     constructor( player_id: string, turn_id: string, roll_id: string ){

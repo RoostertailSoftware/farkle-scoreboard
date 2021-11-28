@@ -1,6 +1,13 @@
-import { BasePlayerClass, RollClass } from "@classes";
 
+import { BasePlayerClass, RollClass, RulesConfigurationClass } from "@classes";
+import * as _ from "lodash";
 
+/**
+ * A trun is part of a Player's game.  A Turn consists of
+ * an array of rolls. Rolls are numbered from 0 .. n.
+ * 
+ * A Player's first turn must be a minimum of RulesConfigurationClass.minScoreToStart.
+ */
 export class TurnClass extends BasePlayerClass{
 
     constructor( player_id: string, turn_number: number ){
@@ -8,7 +15,7 @@ export class TurnClass extends BasePlayerClass{
         this.player_id = player_id;
 
         this.turn = turn_number;
-        this.roll = Array< RollClass >( )
+        this.roll = Array< RollClass >( );
     }
 
     private _player_id: string;
@@ -27,14 +34,6 @@ export class TurnClass extends BasePlayerClass{
         return this._turn ;
     }
 
-    private _score: number;
-    public set score ( n: number ){
-        this._score = n;
-    }
-    public get score ( ): number {
-        return this._score ;
-    }
-
     private _roll: Array< RollClass >;
     public set roll ( n: Array< RollClass > ){
         this._roll = n;
@@ -47,7 +46,13 @@ export class TurnClass extends BasePlayerClass{
         let x = new RollClass( this.player_id, this.id );
         this._roll.push( x );
         return x;
-
     }
 
+    public getCurrentScore = (): number => {
+        let score: number = 0;
+        _.forEach( this.roll, (r: RollClass ) =>{
+            score += r.calculateScore();
+        });
+        return score;
+    }
 }

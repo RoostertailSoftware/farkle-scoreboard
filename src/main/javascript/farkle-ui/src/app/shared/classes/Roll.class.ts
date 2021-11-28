@@ -2,6 +2,14 @@ import { DiceClass } from "@classes";
 
 import { BasePlayerClass } from "@classes";
 
+/**
+ * A roll is a part of a Player's turn.
+ * Since this game does not actually roll dice, the attribute diceRoll is not going to be used
+ * at this time (maybe later)
+ * 
+ * The roll consists of the dice the player selects to keep for his score.
+ * the diceSelection is a diceClass.
+ */
 export class RollClass extends BasePlayerClass {
 
     constructor( player_id: string, turn_id: string ){
@@ -44,12 +52,8 @@ export class RollClass extends BasePlayerClass {
         return this._diceSelection ;
     }
 
-    private _score: number;
-    public set score ( n: number ){
-        this._score = n;
+    public calculateScore = (): number => {
+        let score: number = 42;
+        return score;
     }
-    public get score ( ): number {
-        return this._score ;
-    }
-
 }

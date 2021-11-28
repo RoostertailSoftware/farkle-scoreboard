@@ -1,5 +1,15 @@
-import { GameClass, BasePlayerClass } from "@classes";
+import { PlayerGameClass, BasePlayerClass } from "@classes";
 
+
+/**
+ * PlayerClass is a player in the Farkle Scoreboard app.
+ * THe payer has a name and has an order (which can be changed up to gameplay)
+ * 
+ * The players knows its score, how many points it has accumulated over its turns.
+ * 
+ * the player has a game which is this player's full game record.  The score is rolled up 
+ * from its turns, rolls.
+ */
 export class PlayerClass extends BasePlayerClass {
 
     constructor( name?: string, order?: number ){
@@ -7,7 +17,7 @@ export class PlayerClass extends BasePlayerClass {
         this.name = name;
         this.order = order;
 
-        this.game = new GameClass( this.id );
+        this.game = new PlayerGameClass( this.id );
         this.score = 0;
      }
 
@@ -34,12 +44,16 @@ export class PlayerClass extends BasePlayerClass {
     public get score(){
         return this._score;
     }
+    public getCurrentScore(){
+        this.score = this.game.getCurrentScore();
+    };
 
-    private _game: GameClass;
-    public set game( g: GameClass ){
+
+    private _game: PlayerGameClass;
+    public set game( g: PlayerGameClass ){
         this._game = g;
     }
-    public get game(): GameClass {
+    public get game(): PlayerGameClass {
         return this._game;
     }
 }
