@@ -1,15 +1,47 @@
 @import "../../../variables";
 
+.rules-config-content{
+    max-height: 600px;
+    overflow: auto;
+}
+.rules-config-header {
+    background-color: $accent;
+}
 .configurable{
     font-style: italic;
     color: $accent;
 }
+.sub-header {
+    font-weight: bolder;
+    color: $primary;
+}
+.sub-header-farkle{
+    color: $warn;
+}
 .note{
     font-size: .8em;
+    align-items: center;
 }
+.note-container {
+    text-align: center;
+}
+.rules-config-actions{
+    margin-right: 25px;
+}
+.highlighted{
+    font-style: italic;
+    font-weight: bold;
+}
+
 mat-icon.note-icon {
     font-size: 13px;
     text-align: center;
     color: $secondary-buttons-color;
     background-color: $primary-background;
+}
+.number-align{
+    text-align: right;
+}
+.die-align {
+    text-align: center;
 }
