@@ -22,3 +22,4 @@ bin/
 build/
 bin/
 src/main/resources/static/
+**/version.ts
