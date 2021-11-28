@@ -1,13 +1,20 @@
 import { TurnClass, BasePlayerClass } from "@classes";
+import * as _ from "lodash";
 
-export class GameClass extends BasePlayerClass {
+/**
+ * The gameclass is the game for this player only.
+ * the game has an id, and has a player_id.
+ * It consists of an array of turns - which are numbered
+ * from 0 .. n.
+ * 
+ */
+export class PlayerGameClass extends BasePlayerClass {
 
     constructor( player_id: string ){
         super();
         this.player_id = player_id;
         
         this.turn = Array< TurnClass >( );
-        this.nextTurnNumber = 0;
     }
 
     private _player_id: string;
@@ -25,24 +32,20 @@ export class GameClass extends BasePlayerClass {
     public get turn( ): Array< TurnClass > {
         return this._turn;
     }
-    private addTurn( t: TurnClass ): void {
+    public addTurn( t: TurnClass ): void {
         this._turn.push( t );
     };
 
-    private _nextTurnNumber: number;
-    public get nextTurnNumber(): number {
-        return ++this._nextTurnNumber;
-    }
-    private set nextTurnNumber( n: number){
-        this._nextTurnNumber = n;
-    }
+    /**
+     * calculates the current score by asking each turn what their
+     * their score is.
+     */
+    public getCurrentScore = (): number => {
+        let score: number = 0;
+        _.forEach( this.turn, (t:TurnClass ) => {
+            score += t.getCurrentScore();
+        });
+        return score;
 
-    
-
-    public getNextTurn = (): TurnClass => {
-        // First, find out what the largest turn number
-        let x = new TurnClass( this.player_id, this.nextTurnNumber );
-        this.addTurn( x );
-        return x;
-;    }
+    }
 }
