@@ -25,10 +25,18 @@
     margin: 5px;
 }
 .toggle-wrapper{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+.toggle-wrapper-group{
+    margin-left: 15px;
+}
+.mat-radio-button ~ .mat-radio-button{
+    margin-left: 16px;
 }
 
-
+.set_type{
+    margin-top: 10px;
+}
 .rules-config-field-inset{
     width:75%;
     margin-left: 25px;

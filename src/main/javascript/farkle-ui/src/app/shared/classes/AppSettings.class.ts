@@ -16,6 +16,8 @@ export class AppSettingsClass {
     public static STRAIGHT_POINTS = 1500;
 
     public static ONE_THOUSAND = 1000;
+    public static TWO_THOUSAND = 2000;
+    public static THREE_THOUSAND = 3000;
     public static FIVE_HUNDRED = 500;
 
     

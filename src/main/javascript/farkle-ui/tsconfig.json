@@ -27,7 +27,7 @@
       "@components":[ "src/app/components"],
       "@services":["src/app/shared/services"],
       "@classes":["src/app/shared/classes"],
-      "@emums":["src/app/shared/enums"],
+      "@enums":["src/app/shared/enums"],
       "@pipes":["src/app/shared/pipes"],
 
       "crypto": [

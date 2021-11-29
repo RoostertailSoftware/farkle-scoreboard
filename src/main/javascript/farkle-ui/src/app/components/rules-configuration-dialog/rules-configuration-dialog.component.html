@@ -84,11 +84,51 @@
                         id="straightPoints">
                 </mat-form-field>
 
+                <div class=" toggle-wrapper-group" >
+                    <mat-label>multiple scoring options:</mat-label><br/>
+                    <mat-radio-group aria-label="multiple scoring options"  formControlName="scoring_type">
+                        <mat-radio-button value="0" [checked]="isChecked(scoring_type_enum.MULTIPLIER)">multiplier</mat-radio-button>
+                        <mat-radio-button value="1" [checked]="isChecked(scoring_type_enum.DOUBLING)">doubling</mat-radio-button>
+                        <mat-radio-button value="2" [checked]="isChecked(scoring_type_enum.SET_VALUE)">set values</mat-radio-button>
+                    </mat-radio-group>
+                    <!-- <mat-slide-toggle formControlName="doublingScoresOnTripples">"doulbling" scoring on multiples</mat-slide-toggle> -->
+                    <div class="set_type " *ngIf="configurationForm.get('scoring_type').value == scoring_type_enum.SET_VALUE">
+                        <mat-form-field
+                        class="rules-config-field">
+                        <mat-label>points for 4 of a kind</mat-label>
+                        <input
+                            class="rules-config-data"
+                            matInput
+                            type="number"
+                            formControlName="fourOfAKind"
+                            id="fourOfAKind">
+                    </mat-form-field>
+                    <mat-form-field
+                        class="rules-config-field">
+                        <mat-label>points for 5 of a kind</mat-label>
+                        <input
+                            class="rules-config-data"
+                            matInput
+                            type="number"
+                            formControlName="fiveOfAKind"
+                            id="fiveOfAKind">
+                    </mat-form-field>
+                    <mat-form-field
+                        class="rules-config-field">
+                        <mat-label>points for 6 of a kind</mat-label>
+                        <input
+                            class="rules-config-data"
+                            matInput
+                            type="number"
+                            formControlName="sixOfAKind"
+                            id="sixOfAKind">
+                    </mat-form-field>
+
+                    </div>
+                </div>
+                <br/>
                 <div class="toggle-wrapper">
                     <mat-slide-toggle formControlName="nextPlayerContinuesPreviousRoll">roll points and dice continue to next player</mat-slide-toggle>
-                </div>
-                <div class="toggle-wrapper">
-                    <mat-slide-toggle formControlName="doublingScoresOnTripples">"doulbling" scoring on multiples</mat-slide-toggle>
                 </div>
 
             </form>

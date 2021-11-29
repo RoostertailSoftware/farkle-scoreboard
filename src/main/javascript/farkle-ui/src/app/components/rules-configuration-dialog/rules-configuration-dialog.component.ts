@@ -4,7 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { RulesConfigurationClass, AppSettingsClass } from "@classes";
-
+import { SCORING_TYPE } from "@enums";
+ 
 import * as _ from "lodash";
 @Component({
   selector: 'app-rules-configuration-dialog',
@@ -17,6 +18,7 @@ export class RulesConfigurationDialogComponent implements OnInit {
   public title = "game configuration"
   private gameStarted: boolean = false;
 
+  scoring_type_enum: any = SCORING_TYPE;
   constructor( public dialogRef: MatDialogRef< RulesConfigurationDialogComponent >, 
       @Inject( MAT_DIALOG_DATA ) public rules: RulesConfigurationClass ) {   }
 
@@ -33,8 +35,12 @@ export class RulesConfigurationDialogComponent implements OnInit {
       };
       this.configurationForm.patchValue( patch );
     });
-  }
 
+  }
+  isChecked(val: SCORING_TYPE): boolean {
+    return this.rules.scoring_type == val;
+
+  }
   resetConfigForm(): FormGroup {
 
     // Build the form from the rules data received.
@@ -49,9 +55,6 @@ export class RulesConfigurationDialogComponent implements OnInit {
       nextPlayerContinuesPreviousRoll:  
         new FormControl( { value: this.rules.nextPlayerContinuesPreviousRoll, disabled: this.gameStarted }, [ Validators.required ] ),
 
-      doublingScoresOnTripples: 
-        new FormControl( { value: this.rules.doublingScoresOnTripples,  disabled: this.gameStarted }, [ Validators.required ] ),
-
       trippleDoublePoints:  
         new FormControl( { value: this.rules.trippleDoublePoints, disabled: this.gameStarted }, [ Validators.required ] ),
 
@@ -62,10 +65,19 @@ export class RulesConfigurationDialogComponent implements OnInit {
         new FormControl( { value: this.rules.maxFarklesApplies, disabled: this.gameStarted }, [ Validators.required ] ),
 
       maxFarkleCount: 
-      new FormControl( { value: this.rules.maxFarkleCount,  disabled: this.gameStarted }, [ Validators.required ] ),
+        new FormControl( { value: this.rules.maxFarkleCount,  disabled: this.gameStarted }, [ Validators.required ] ),
 
       maxFarklePenality:  
         new FormControl( { value: this.rules.maxFarklePenality, disabled: this.gameStarted }, [ Validators.required ] ),
+
+      scoring_type: 
+        new FormControl( { value: this.rules.scoring_type,  disabled: this.gameStarted }, [ Validators.required ] ),
+      fourOfAKind:
+        new FormControl( { value: this.rules.fourOfAKind, disabled: this.gameStarted }, [ ] ),
+      fiveOfAKind:
+        new FormControl( { value: this.rules.fiveOfAKind, disabled: this.gameStarted }, [ ] ),
+      sixOfAKind:
+        new FormControl( { value: this.rules.sixOfAKind, disabled: this.gameStarted }, [ ] )
     });
 
     return form;
