@@ -87,13 +87,16 @@
                             
                         </table>
                     </dd>
-                    <dd><span *ngIf="config.scoring_type == scoring_type_enum.MULTIPLIER"> <span class="configurable"> 'Multiplier' scoring on multiples</span>  is selected in configuration and points above are adjusted accordingly.</span> </dd>
-                    <dd><span *ngIf="config.scoring_type == scoring_type_enum.DOUBLING"> <span class="configurable"> 'Doubling' scoring on multiples</span>  is selected in configuration and points above are adjusted accordingly.</span> </dd>
-                    <dd><span *ngIf="config.scoring_type == scoring_type_enum.SET_VALUE"> <span class="configurable"> 'set value' scoring on multiples</span>  is selected in configuration and points above are adjusted accordingly.</span> </dd>
+                    <dd><span *ngIf="config.scoring_type == scoring_type_enum.MULTIPLIER"> <span class="configurable"> 'Multiplier' scoring on multiples</span>  is selected in configuration and point values above are adjusted accordingly. 
+                        <br/>Each additional die will multiply by 2, 3 or 4 the value of the triple.</span> </dd>
+                    <dd><span *ngIf="config.scoring_type == scoring_type_enum.DOUBLING"> <span class="configurable"> 'Doubling' scoring on multiples</span>  is selected in configuration and point valies above are adjusted accordingly.
+                        <br/>Each additional die will double the previous points of the triple.</span> </dd>
+                    <dd><span *ngIf="config.scoring_type == scoring_type_enum.SET_VALUE"> <span class="configurable"> 'set value' scoring on multiples</span>  is selected in configuration and points above are adjusted accordingly.
+                        <br/>Each multiple combination value is set and does not change according to the triple.</span> </dd>
                     <br/>
                     <dd class="sub-header">triple-doubles:</dd>
                     <dd>rolling any combination of 3 sets of doubles on a single roll is worth <span class="configurable">{{config.trippleDoublePoints}}</span> points</dd>
-                    <dd>example: 2-2-3-3-6-6</dd>
+                    <dd>example: 2-2-3-3-6-6 (which are not normally scoring die) will gain the above point value.</dd>
                     <dd>all 6 die are then used and the player can roll again, adding to his score if a valid roll.</dd>
                     <br/>
                     <dd class="sub-header">double-triples:</dd>
