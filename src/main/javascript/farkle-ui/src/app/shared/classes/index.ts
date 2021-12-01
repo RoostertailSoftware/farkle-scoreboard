@@ -1,5 +1,7 @@
 export { AppSettingsClass } from "./AppSettings.class"
 
+export { RollActionButtonLogicClass } from "./RollActionButtonLogic"
+
 export { RulesConfigurationClass } from "./RulesConfiguration.class";
 
 export { GameObserverClass } from "./GameObserver.class";

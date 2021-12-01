@@ -2,27 +2,44 @@
 
     <div class="actions-buttons">
 
-        <button mat-flat-button (click)="roll()" class="all-buttons roll-button">roll {{diceCount }}
+        <button mat-flat-button (click)="roll()" class="all-buttons roll-button" [disabled]="disableObject.rollButtonDisabled">roll {{diceCount }}
             <mat-icon>refresh</mat-icon>
         </button>
-        <button mat-flat-button (click)="farkle()" class="all-buttons farkel-button">Farkle
-            <mat-icon>cancel</mat-icon>
-        </button>
-        <button mat-flat-button (click)="finished()" class="all-buttons finished-button">finish
-            <mat-icon>person_off</mat-icon>
-        </button>
 
+        <button mat-flat-button (click)="setRollPoints()" class="all-buttons finished-button" *ngIf="!disableObject.finishRollDisabled">finish roll
+            <mat-icon>done</mat-icon>
+        </button>
+    
+        <button mat-flat-button (click)="finished()" class="all-buttons finished-button" *ngIf="!disableObject.finishTurnDisabled">finish turn
+            <mat-icon>done_all</mat-icon>
+        </button>
+        <button mat-flat-button (click)="farkle()" class="all-buttons farkel-button" *ngIf="!disableObject.farkleDisabled">Farkle!
+            <mat-icon>thumb_down_alt</mat-icon>
+        </button>
+    
     </div>
 
     <div class="dice-icon-buttons">
-
-        <mat-icon (click)="one()" class="dice-button" >looks_one</mat-icon>
-        <mat-icon (click)="two()" class="dice-button">looks_two</mat-icon>
-        <mat-icon (click)="three()" class="dice-button">looks_3</mat-icon>
-        <mat-icon (click)="four()" class="dice-button">looks_4</mat-icon>
-        <mat-icon (click)="five()" class="dice-button">looks_5</mat-icon>
-        <mat-icon (click)="six()" class="dice-button">looks_6</mat-icon>
+        <button mat-flat-button (click)="die(rollActionButtonType.ONE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <mat-icon>looks_one</mat-icon>
+        </button>
+        <button mat-flat-button (click)="die(rollActionButtonType.TWO)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <mat-icon>looks_two</mat-icon>
+        </button>
+        <button mat-flat-button (click)="die(rollActionButtonType.THREE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <mat-icon>looks_3</mat-icon>
+        </button>
+        <button mat-flat-button (click)="die(rollActionButtonType.FOUR)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <mat-icon>looks_4</mat-icon>
+        </button>
+        <button mat-flat-button (click)="die(rollActionButtonType.FIVE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <mat-icon>looks_5</mat-icon>
+        </button>
+        <button mat-flat-button (click)="die(rollActionButtonType.SIX)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <mat-icon>looks_6</mat-icon>
+        </button>
 
     </div>
+
 
 </div>
