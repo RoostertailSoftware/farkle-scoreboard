@@ -7,7 +7,6 @@ export class GameObserverClass {
     gameConfig: RulesConfigurationClass;
 
     player: PlayerClass;
-    onDeck: PlayerClass;
 
     roll: number;
     score: number;

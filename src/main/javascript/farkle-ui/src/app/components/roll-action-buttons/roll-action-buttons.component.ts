@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { PlayersService } from '@services';
 import { PlayerClass } from "@classes";
 
+import * as _ from "lodash";
+
 @Component({
   selector: 'app-roll-action-buttons',
   templateUrl: './roll-action-buttons.component.html',
@@ -56,6 +58,7 @@ export class RollActionButtonsComponent implements OnInit {
 
   decrement(){
     this.diceCount -= 1;
+    this.diceCount = _.eq( this.diceCount, 0 ) ? 6 : this.diceCount;
   };
   reset(){
     this.diceCount = 6;
