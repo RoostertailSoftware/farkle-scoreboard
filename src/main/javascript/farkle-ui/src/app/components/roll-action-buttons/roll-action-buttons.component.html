@@ -1,41 +1,44 @@
 <div class="roll-action-button-container">
 
     <div class="actions-buttons">
-
-        <button mat-flat-button (click)="roll()" class="all-buttons roll-button" [disabled]="disableObject.rollButtonDisabled">roll {{diceCount }}
-            <mat-icon>refresh</mat-icon>
-        </button>
-
-        <button mat-flat-button (click)="setRollPoints()" class="all-buttons finished-button" *ngIf="!disableObject.finishRollDisabled">finish roll
-            <mat-icon>done</mat-icon>
-        </button>
-    
-        <button mat-flat-button (click)="finished()" class="all-buttons finished-button" *ngIf="!disableObject.finishTurnDisabled">finish turn
-            <mat-icon>done_all</mat-icon>
-        </button>
-        <button mat-flat-button (click)="farkle()" class="all-buttons farkel-button" *ngIf="!disableObject.farkleDisabled">Farkle!
-            <mat-icon>thumb_down_alt</mat-icon>
-        </button>
-    
+        <mat-grid-list cols="2" rowHeight="4:1">
+            <mat-grid-tile>
+                <button mat-stroked-button (click)="roll()" class="all-buttons roll-button" [disabled]="disableObject.rollButtonDisabled">roll {{diceCount }}
+                    <mat-icon>refresh</mat-icon>
+                </button>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <button mat-stroked-button (click)="setRollPoints()" class="all-buttons finished-button" *ngIf="!disableObject.finishRollDisabled">finish roll
+                    <mat-icon>done</mat-icon>
+                </button>
+                <button mat-stroked-button (click)="finished()" class="all-buttons finished-button" *ngIf="!disableObject.finishTurnDisabled">finish turn
+                    <mat-icon>done_all</mat-icon>
+                </button>
+                <button mat-stroked-button (click)="farkle()" class="all-buttons farkel-button" *ngIf="!disableObject.farkleDisabled">Farkle!
+                    <mat-icon>thumb_down_alt</mat-icon>
+                </button>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
 
     <div class="dice-icon-buttons">
-        <button mat-flat-button (click)="die(rollActionButtonType.ONE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+        <button mat-stroked-button (click)="die(rollActionButtonType.ONE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
             <mat-icon>looks_one</mat-icon>
         </button>
-        <button mat-flat-button (click)="die(rollActionButtonType.TWO)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+        <button mat-stroked-button (click)="die(rollActionButtonType.TWO)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
             <mat-icon>looks_two</mat-icon>
         </button>
-        <button mat-flat-button (click)="die(rollActionButtonType.THREE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+        <button mat-stroked-button (click)="die(rollActionButtonType.THREE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
             <mat-icon>looks_3</mat-icon>
         </button>
-        <button mat-flat-button (click)="die(rollActionButtonType.FOUR)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+        <button mat-stroked-button (click)="die(rollActionButtonType.FOUR)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
             <mat-icon>looks_4</mat-icon>
         </button>
-        <button mat-flat-button (click)="die(rollActionButtonType.FIVE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+        <button mat-stroked-button (click)="die(rollActionButtonType.FIVE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
             <mat-icon>looks_5</mat-icon>
         </button>
-        <button mat-flat-button (click)="die(rollActionButtonType.SIX)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+        <button mat-stroked-button (click)="die(rollActionButtonType.SIX)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
             <mat-icon>looks_6</mat-icon>
         </button>
 

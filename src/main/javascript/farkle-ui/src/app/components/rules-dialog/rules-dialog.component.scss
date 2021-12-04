@@ -1,11 +1,15 @@
 @import "../../../variables";
 
+.rules-config-dialog-card{
+    max-width: 750px !important;
+}
 .rules-config-content{
     max-height: 600px;
     overflow: auto;
 }
 .rules-config-header {
-    background-color: $accent;
+    background-color: lightgray;
+    width: 100%;
 }
 .configurable{
     font-style: italic;
@@ -37,7 +41,8 @@ mat-icon.note-icon {
     font-size: 13px;
     text-align: center;
     color: $secondary-buttons-color;
-    background-color: $primary-background;
+    background-color: lightgray;
+    vertical-align: sub;
 }
 .number-align{
     text-align: right;

@@ -2,8 +2,19 @@
     
     <mat-card class="rules-config-card">
         <mat-card-header class="rules-config-header">
+            
             <mat-card-title>{{title}}</mat-card-title>
-            <mat-card-subtitle>Farkle is also know as 1000, Zilch, 6 Dice, and Ten Thousand</mat-card-subtitle>
+            <mat-card-subtitle>
+                <p>
+                    <span class="note">note: text marked with </span> 
+                    <span class="configurable note">this highlight</span> 
+                    <span class="note">
+                        are configurable and can be modified in the game's configuration. (<mat-icon class="note-icon">settings</mat-icon>)
+                        Rules shown here are as the game is configured and may be different if you change them in the game's configuration.
+                    </span>
+                </p>
+            </mat-card-subtitle>
+            <!-- <mat-card-subtitle>Farkle is also know as 1000, Zilch, 6 Dice, and Ten Thousand</mat-card-subtitle> -->
         </mat-card-header>
         <mat-card-content class="rules-config-content" >
             <br/>
@@ -122,15 +133,15 @@
             </dl>
         </mat-card-content>
         <mat-card-actions class="rules-config-actions" align=end>
-            <button mat-button color="primary" matDialogClose>close</button>
+            <button mat-stroked-button color="primary" matDialogClose>close</button>
         </mat-card-actions>
-        <mat-card-footer class="note-container" >
+        <!-- <mat-card-footer class="note-container" >
             <p>
                 <span class="note">note: text marked with <span class="configurable">this highlight</span> 
                 are configurable and can be modified in the game's configuration. (<mat-icon class="note-icon">settings</mat-icon>)
                 <br/>Rules shown here are as configured and may be different if you change them in configuration.
             </span>
             </p>
-        </mat-card-footer>
+        </mat-card-footer> -->
     </mat-card>
 </div>
