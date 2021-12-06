@@ -70,9 +70,9 @@
                 <div class="toggle-wrapper-group" >
                     <mat-label>scoring options:</mat-label><br/>
                     <mat-radio-group aria-label="multiple scoring options"  formControlName="scoring_type">
-                        <mat-radio-button value="0" [checked]="isChecked(scoring_type_enum.MULTIPLIER)">multiplier</mat-radio-button>
-                        <mat-radio-button value="1" [checked]="isChecked(scoring_type_enum.DOUBLING)">doubling</mat-radio-button>
-                        <mat-radio-button value="2" [checked]="isChecked(scoring_type_enum.SET_VALUE)">set values</mat-radio-button>
+                        <mat-radio-button value={{scoring_type_enum.MULTIPLIER}} [checked]="isChecked(scoring_type_enum.MULTIPLIER)">multiplier</mat-radio-button>
+                        <mat-radio-button value={{scoring_type_enum.DOUBLING}} [checked]="isChecked(scoring_type_enum.DOUBLING)">doubling</mat-radio-button>
+                        <mat-radio-button value={{scoring_type_enum.SET_VALUE}} [checked]="isChecked(scoring_type_enum.SET_VALUE)">set values</mat-radio-button>
                     </mat-radio-group>
                     <!-- <mat-slide-toggle formControlName="doublingScoresOnTripples">"doulbling" scoring on multiples</mat-slide-toggle> -->
                     <div class="set_type " *ngIf="configurationForm.get('scoring_type').value == scoring_type_enum.SET_VALUE">
