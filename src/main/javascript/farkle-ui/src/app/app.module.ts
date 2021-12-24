@@ -55,10 +55,12 @@ let _declarations: any[] = [
 
 /* -- Services -- */
 import {   ConfigurationService,
-      PlayersService } from "@services";
+    GameMasterService,
+    PlayersService } from "@services";
 
 let _providers: any[ ] = [
   ConfigurationService,
+  GameMasterService,
   PlayersService,
   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "fill", floatLabel: "always" } }
 ]

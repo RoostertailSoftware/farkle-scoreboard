@@ -3,16 +3,16 @@
     <div class="actions-buttons">
         <mat-grid-list cols="2" rowHeight="4:1">
             <mat-grid-tile>
-                <button mat-stroked-button (click)="roll()" class="all-buttons roll-button" [disabled]="disableObject.rollButtonDisabled">roll {{diceCount }}
+                <button mat-stroked-button (click)="roll()" class="all-buttons roll-button" [disabled]="disableObject.rollButtonDisabled">roll {{playerRollDieCount }}
                     <mat-icon>refresh</mat-icon>
                 </button>
             </mat-grid-tile>
             
             <mat-grid-tile>
-                <button mat-stroked-button (click)="setRollPoints()" class="all-buttons finished-button" *ngIf="!disableObject.finishRollDisabled">finish roll
+                <button mat-stroked-button (click)="finishRoll()" class="all-buttons finished-button" *ngIf="!disableObject.finishRollDisabled">finish roll
                     <mat-icon>done</mat-icon>
                 </button>
-                <button mat-stroked-button (click)="finished()" class="all-buttons finished-button" *ngIf="!disableObject.finishTurnDisabled">finish turn
+                <button mat-stroked-button (click)="finishTurn()" class="all-buttons finished-button" *ngIf="!disableObject.finishTurnDisabled">finish turn
                     <mat-icon>done_all</mat-icon>
                 </button>
                 <button mat-stroked-button (click)="farkle()" class="all-buttons farkel-button" *ngIf="!disableObject.farkleDisabled">Farkle!
@@ -44,5 +44,5 @@
 
     </div>
 
-
+    {{ playerTurnScore }}
 </div>

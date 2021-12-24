@@ -18,22 +18,23 @@ export class RulesConfigurationClass {
      */
          constructor( data?: any ){
             // default values
-            this.winScore =         data && !_.isUndefined( data.winScore ) ? data.winScore : AppSettingsClass.WINNING_TOTAL;
-            this.minScoreToStart =  data && !_.isUndefined( data.minScoreToStart ) ? data.minScoreToStart : AppSettingsClass.MIN_START_ROLL;
-    
             this.nextPlayerContinuesPreviousRoll = data && !_.isUndefined( data.nextPlayerContinuesPreviousRoll ) ? data.nextPlayerContinuesPreviousRoll : true;
-    
-            this.maxFarkleCount =       data && !_.isUndefined( data.maxFarkleCount ) ? data.maxFarkleCount : AppSettingsClass.MAX_FARKLE_ROLLS;
-            this.maxFarklePenality =    data && !_.isUndefined( data.maxFarklePenality ) ? data.maxFarklePenality : AppSettingsClass.MAX_FARKLE_PENALTY;
-    
-            this.trippleDoublePoints =      data && !_.isUndefined( data.trippleDoublePoints ) ? data.trippleDoublePoints : AppSettingsClass.FIVE_HUNDRED;
-            this.straightPoints =           data && !_.isUndefined( data.straightPoints ) ? data.straightPoints : AppSettingsClass.STRAIGHT_POINTS;
 
-            this.scoring_type = data && !_.isUndefined( data.scoring_type ) ? data.scoring_type :   SCORING_TYPE.MULTIPLIER;
+            this.winScore =         data && !_.isUndefined( data.winScore ) ? +data.winScore : AppSettingsClass.WINNING_TOTAL;
+            this.minScoreToStart =  data && !_.isUndefined( data.minScoreToStart )  ? +data.minScoreToStart : AppSettingsClass.MIN_START_ROLL;
+    
+    
+            this.maxFarkleCount =       data && !_.isUndefined( data.maxFarkleCount )   ? +data.maxFarkleCount : AppSettingsClass.MAX_FARKLE_ROLLS;
+            this.maxFarklePenality =    data && !_.isUndefined( data.maxFarklePenality )    ? +data.maxFarklePenality : AppSettingsClass.MAX_FARKLE_PENALTY;
+    
+            this.trippleDoublePoints =      data && !_.isUndefined( data.trippleDoublePoints )  ? +data.trippleDoublePoints : AppSettingsClass.FIVE_HUNDRED;
+            this.straightPoints =           data && !_.isUndefined( data.straightPoints )   ? +data.straightPoints : AppSettingsClass.STRAIGHT_POINTS;
 
-            this.fourOfAKind =  data && !_.isUndefined( data.fourOfAKind )  ? data.fourOfAKind :    AppSettingsClass.ONE_THOUSAND;
-            this.fiveOfAKind =  data && !_.isUndefined( data.fiveOfAKind )  ? data.fiveOfAKind :    AppSettingsClass.TWO_THOUSAND;
-            this.sixOfAKind =   data && !_.isUndefined( data.sixOfAKind )   ? data.sixOfAKind :     AppSettingsClass.THREE_THOUSAND;
+            this.scoring_type = data && !_.isUndefined( data.scoring_type ) ? +data.scoring_type :   SCORING_TYPE.MULTIPLIER;
+
+            this.fourOfAKind =  data && !_.isUndefined( data.fourOfAKind )  ? +data.fourOfAKind :    AppSettingsClass.ONE_THOUSAND;
+            this.fiveOfAKind =  data && !_.isUndefined( data.fiveOfAKind )  ? +data.fiveOfAKind :    AppSettingsClass.TWO_THOUSAND;
+            this.sixOfAKind =   data && !_.isUndefined( data.sixOfAKind )   ? +data.sixOfAKind :     AppSettingsClass.THREE_THOUSAND;
     
 
 

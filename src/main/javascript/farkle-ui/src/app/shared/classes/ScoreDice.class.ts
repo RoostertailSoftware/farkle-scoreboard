@@ -1,5 +1,5 @@
 import { DiceClass, RulesConfigurationClass } from "@classes";
-import { SCORING_TYPE  } from "@enums";
+import { SCORING_TYPE, ROLL_ACTION_BUTTON_TYPES  } from "@enums";
 
 import * as _ from "lodash";
 
@@ -40,6 +40,30 @@ export class ScoreDiceClass {
 
             return score;
         };
+
+        public static normalizeDiceNumber = ( die: ROLL_ACTION_BUTTON_TYPES, d: DiceClass ) : DiceClass =>{
+            switch ( die ){
+                case ROLL_ACTION_BUTTON_TYPES.ONE:
+                    d.die_1 += 1;
+                    break;
+                case ROLL_ACTION_BUTTON_TYPES.TWO:
+                    d.die_2 += 1;
+                    break;
+                case ROLL_ACTION_BUTTON_TYPES.THREE:
+                    d.die_3 += 1;
+                    break;
+                case ROLL_ACTION_BUTTON_TYPES.FOUR:
+                    d.die_4 += 1;
+                    break;
+                case ROLL_ACTION_BUTTON_TYPES.FIVE:
+                    d.die_5 += 1;
+                    break;
+                case ROLL_ACTION_BUTTON_TYPES.SIX:
+                    d.die_6 += 1;
+                    break;
+            }
+            return d;
+        }
         /**
          * This is a sorting method according to the die presented to it.
          * 
@@ -61,6 +85,7 @@ export class ScoreDiceClass {
             }
             return score;
         }
+
         /**
          * This is a decision maker for die 1.  It decides according the to number of die and SCORING_TYPE what
          * helper to use to calcuate score.

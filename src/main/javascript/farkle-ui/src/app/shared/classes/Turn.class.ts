@@ -1,5 +1,6 @@
+import { BasePlayerClass, RollClass } from "@classes";
+import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
 
-import { BasePlayerClass, RollClass, RulesConfigurationClass } from "@classes";
 import * as _ from "lodash";
 
 /**
@@ -10,49 +11,47 @@ import * as _ from "lodash";
  */
 export class TurnClass extends BasePlayerClass{
 
-    constructor( player_id: string, turn_number: number ){
-        super();
-        this.player_id = player_id;
-
-        this.turn = turn_number;
+    constructor( ){
+        super()
+        this.turn = 0;
+        this.farkled = false;
         this.roll = Array< RollClass >( );
     }
 
-    private _player_id: string;
-    public set player_id ( id: string ){
-        this._player_id = id;
-    }
-    public get player_id ( ): string {
-        return this._player_id ;
-    }
-
     private _turn: number;
-    public set turn ( n: number ){
-        this._turn = n;
-    }
-    public get turn ( ): number {
-        return this._turn ;
-    }
+    public set turn ( n: number ){ this._turn = n; }
+    public get turn ( ): number {  return this._turn ; }
 
     private _roll: Array< RollClass >;
-    public set roll ( n: Array< RollClass > ){
-        this._roll = n;
+    public set roll ( n: Array< RollClass > ){ this._roll = n; }
+    public get roll ( ): Array< RollClass > {  return this._roll ;  }
+
+    private _farkled: boolean;
+    public set farkled( b: boolean ){ this._farkled = b; };
+    public get farkled() { return this._farkled; };
+
+    public newRoll = ( diceCount: number ): number => {
+        let r = new RollClass( diceCount );
+        this.roll.push( r );
+        r.roll = _.findIndex( this.roll, { id: r.id });
+        return r.roll;
     }
-    public get roll ( ): Array< RollClass > {
-        return this._roll ;
+    public diceSelected = (roll_index: number, die: ROLL_ACTION_BUTTON_TYPES ) => {
+        return this.roll[ roll_index ].selectDie( die );
     }
 
-    public getNextRoll = (): RollClass => {
-        let x = new RollClass( this.player_id, this.id );
-        this._roll.push( x );
-        return x;
-    }
-
-    public getCurrentScore = (): number => {
+    public getScore = ( config: any ): number => {
         let score: number = 0;
-        _.forEach( this.roll, (r: RollClass ) =>{
-            score += r.calculateScore();
-        });
+        if( !this.farkled ){
+            _.forEach( this.roll, r =>{
+                score += r.rollScore( config );
+            })
+        }
         return score;
+    };
+
+    public farkle = () => {
+        this.farkled = true;
     }
-}
+
+};

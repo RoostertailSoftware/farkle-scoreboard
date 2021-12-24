@@ -1,9 +1,8 @@
-import { DiceClass } from "@classes";
-
-import { BasePlayerClass } from "@classes";
+import { BasePlayerClass, DiceClass, ScoreDiceClass } from "@classes";
+import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
 
 /**
- * A roll is a part of a Player's turn.
+ * A roll is a part of a Player's roll.
  * Since this game does not actually roll dice, the attribute diceRoll is not going to be used
  * at this time (maybe later)
  * 
@@ -12,48 +11,30 @@ import { BasePlayerClass } from "@classes";
  */
 export class RollClass extends BasePlayerClass {
 
-    constructor( player_id: string, turn_id: string ){
+    constructor( rolledDiceCount: number, selectionArray?:Array< number > ){
         super();
-        this.player_id = player_id;
-        this.turn_id = turn_id;
+        this.roll = 0;
+        this.rolledDiceCount = rolledDiceCount;
+        this.diceSelection =    new DiceClass( selectionArray );
+    }
+    private _roll: number;
+    public set roll ( n: number ){ this._roll = n; }
+    public get roll ( ): number {  return this._roll ; }
 
-        this.diceRoll =         new DiceClass( this.player_id, this.turn_id, this.id )
-        this.diceSelection =    new DiceClass( this.player_id, this.turn_id, this.id );
-    }
-
-    private _player_id: string;
-    public set player_id ( id: string ){
-        this._player_id = id;
-    }
-    public get player_id ( ): string {
-        return this._player_id ;
-    }
-    private _turn_id: string;
-    public set turn_id( s: string ){
-        this._turn_id = s;
-    }
-    public get turn_id(): string {
-        return this._turn_id;
-    }
-
-    private _diceRoll: DiceClass;
-    public set diceRoll ( d: DiceClass ){
-        this._diceRoll = d;
-    }
-    public get diceRoll ( ): DiceClass {
-        return this._diceRoll ;
-    }
+    private _rolledDiceCount: number;
+    public set rolledDiceCount ( n: number ){ this._rolledDiceCount = n; }
+    public get rolledDiceCount ( ): number {  return this._rolledDiceCount ; }
 
     private _diceSelection: DiceClass;
-    public set diceSelection ( d: DiceClass ){
-        this._diceSelection = d;
-    }
-    public get diceSelection ( ): DiceClass {
-        return this._diceSelection ;
-    }
+    public set diceSelection ( d: DiceClass ){ this._diceSelection = d; }
+    public get diceSelection ( ): DiceClass { return this._diceSelection ; }
 
-    public calculateScore = (): number => {
-        let score: number = 42;
-        return score;
-    }
+    public selectDie = ( die: ROLL_ACTION_BUTTON_TYPES ) => {
+        return this.diceSelection.select( die );
+    };
+
+    public rollScore = ( config: any ): number => {
+        return ScoreDiceClass.getScore( this.diceSelection, config );
+    };
+
 }
