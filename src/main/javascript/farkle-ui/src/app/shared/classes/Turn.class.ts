@@ -14,6 +14,7 @@ export class TurnClass extends BasePlayerClass{
     constructor( ){
         super()
         this.turn = 0;
+        this.score = 0;
         this.farkled = false;
         this.roll = Array< RollClass >( );
     }
@@ -21,6 +22,10 @@ export class TurnClass extends BasePlayerClass{
     private _turn: number;
     public set turn ( n: number ){ this._turn = n; }
     public get turn ( ): number {  return this._turn ; }
+
+    private _score: number;
+    public set score( n: number ){ this._score = n; }
+    public get score ( ): number {  return this._score ; }
 
     private _roll: Array< RollClass >;
     public set roll ( n: Array< RollClass > ){ this._roll = n; }
@@ -41,17 +46,17 @@ export class TurnClass extends BasePlayerClass{
     }
 
     public getScore = ( config: any ): number => {
-        let score: number = 0;
+        this.score = 0;
         if( !this.farkled ){
             _.forEach( this.roll, r =>{
-                score += r.rollScore( config );
+                this.score += r.rollScore( config );
             })
         }
-        return score;
+        return this.score;
     };
 
-    public farkle = () => {
-        this.farkled = true;
+    public farkle = (roll_index: number ) => {
+        return this.farkled = this.roll[ roll_index ].farkle();
     }
 
 };

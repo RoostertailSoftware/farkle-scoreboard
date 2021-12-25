@@ -14,12 +14,18 @@ export class RollClass extends BasePlayerClass {
     constructor( rolledDiceCount: number, selectionArray?:Array< number > ){
         super();
         this.roll = 0;
+        this.score = 0;
+        this.farkled = false;
         this.rolledDiceCount = rolledDiceCount;
         this.diceSelection =    new DiceClass( selectionArray );
     }
     private _roll: number;
     public set roll ( n: number ){ this._roll = n; }
     public get roll ( ): number {  return this._roll ; }
+
+    private _score: number;
+    public set score ( n: number ){ this._score = n; }
+    public get score ( ): number {  return this._score ; }
 
     private _rolledDiceCount: number;
     public set rolledDiceCount ( n: number ){ this._rolledDiceCount = n; }
@@ -29,12 +35,19 @@ export class RollClass extends BasePlayerClass {
     public set diceSelection ( d: DiceClass ){ this._diceSelection = d; }
     public get diceSelection ( ): DiceClass { return this._diceSelection ; }
 
+    private _farkled: boolean;
+    public set farkled( b: boolean ){ this._farkled = b; };
+    public get farkled() { return this._farkled; };
+
     public selectDie = ( die: ROLL_ACTION_BUTTON_TYPES ) => {
         return this.diceSelection.select( die );
     };
 
     public rollScore = ( config: any ): number => {
-        return ScoreDiceClass.getScore( this.diceSelection, config );
+        return this.score = ScoreDiceClass.getScore( this.diceSelection, config );
     };
 
+    public farkle = ( ): boolean => {
+        return this.farkled = true;
+    }
 }

@@ -52,7 +52,7 @@ export class GameClass  {
     };
 
     public farkle = ( turn_index: number, roll_index: number ) => {
-        this.turn[ turn_index ].farkle();
+        this.turn[ turn_index ].farkle( roll_index );
     }
 
 };
