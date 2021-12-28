@@ -26,9 +26,17 @@ export class PlayerScoreboardComponent {
       } else {
         this.playerDataSource = new MatTableDataSource< PlayerClass> (result );
       }
-    });
 
-    this.displayedColumns = [ 'order', 'player', 'score', 'place' ];
+      if( _.gt( this.playerDataSource.data.length, 1 ) ) {
+        this.displayedColumns = [ 'order', 'player', 'score', 'place' ];
+      } else  {
+        this.displayedColumns = [ 'order', 'player', 'score' ];
+      }
+  
+    });
+    
+    this.displayedColumns = [ 'order', 'player', 'score' ];
+
    };
 
 
@@ -40,12 +48,17 @@ export class PlayerScoreboardComponent {
   }
 
   resetOrder ( ){
-    _.forEach( this.playerDataSource.data, (p: PlayerClass, index: number )=>{
+    _.forEach( this.playerDataSource.data, (p: PlayerClass, index: number ) => {
         p.order = (index+1)
     } )
   };
 
-  place( row: any ){
-    return "";
+  // returns the number 1 .. nth place the person is in currently
+  place( row: any ): number {
+    let reverseScoreSort: any = _.sortBy( this.playerDataSource.data, ( r: PlayerClass ) =>{
+      return r.score;
+    } );
+    let rowIndexed: number = _.findIndex( reverseScoreSort, { id: row.id } ) ;
+    return ( this.playerDataSource.data.length - rowIndexed ) ;
   }
 }
