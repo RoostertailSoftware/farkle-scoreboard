@@ -35,7 +35,8 @@ import { AppComponent,
   RulesDialogComponent,
   TitleComponent } from './components' ;
 
-  import { safeHtml } from "@pipes";
+  import { englishOrdinalPipe, 
+    safeHtml } from "@pipes";
 
 let _declarations: any[] = [
   AppComponent,
@@ -50,6 +51,7 @@ let _declarations: any[] = [
   RulesConfigurationDialogComponent,
   RulesDialogComponent,
   TitleComponent,
+  englishOrdinalPipe,
   safeHtml
 ]
 
