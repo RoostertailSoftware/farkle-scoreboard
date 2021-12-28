@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ConfigurationService, PlayersService } from "@services";
-import { PlayerClass, RulesConfigurationClass } from "@classes";
+import { PlayerClass, RulesConfigurationClass, BaseDataServiceClass } from "@classes";
 import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
 
 import * as _ from "lodash";
@@ -33,8 +33,7 @@ export class GameMasterService {
     public set roll( r: number ) { this.roll_index = r; };
     public get roll( ): number { return this.roll_index; };
 
-
-    constructor(  private configSvc: ConfigurationService, private playerSvc: PlayersService ) { 
+    constructor(  private configSvc: ConfigurationService, private playerSvc: PlayersService ) {
         this.playersList = new Array< PlayerClass >();
  
         this.playersObservable = this.playerSvc.getObservableData();
@@ -46,7 +45,6 @@ export class GameMasterService {
         this.configObservable.subscribe( ( result:RulesConfigurationClass) =>{
             this.configuration = result[0];
         });
-
     };
 
     // Start Game button selected.
@@ -54,6 +52,7 @@ export class GameMasterService {
     // turn.
     public startGame = ( ): boolean => {
         this.activePlayer = this.getNextPlayer( this.activePlayer );
+        this.playerSvc.update( this.activePlayer );
 
         this.turn = this.activePlayer.getNextTurn( );
         return true;
@@ -63,6 +62,7 @@ export class GameMasterService {
     // setup the roll within the turn
     public rollDice = ( diceCount?: number ): boolean => {
         this.roll = this.activePlayer.roll( this.turn, diceCount );
+        this.playerSvc.update( this.activePlayer );
         return true;
     };
 
@@ -79,12 +79,13 @@ export class GameMasterService {
     //  - there should be some score of the lowest to ?k
     public finishTurn = ( ): boolean => {
         this.activePlayer.finishTurn( this.turn, this.configuration );
+        this.playerSvc.update( this.activePlayer );
 
         this.activePlayer = this.getNextPlayer( this.activePlayer );
+        this.playerSvc.update( this.activePlayer );
+
         this.turn = this.activePlayer.getNextTurn();
-
-        console.log( JSON.stringify( this.activePlayer ))
-
+        console.log( JSON.stringify( this.activePlayer ) )
         return true;
     };
 
@@ -92,6 +93,7 @@ export class GameMasterService {
     // 6 die and 0 score.
     public farkle = ( ): boolean => {
         this.activePlayer.farkle( this.turn, this.roll );
+        this.playerSvc.update( this.activePlayer );
         this.finishTurn();
         return true;
     };
@@ -102,9 +104,27 @@ export class GameMasterService {
      */
     private getNextPlayer = ( prev: PlayerClass ): PlayerClass => {
         let p: PlayerClass = null;
-        if( this.playersList.length == 1 ){
-            p = this.playersList[0]
+        let prevOrder: number = 0;
+        let totalPlayers: number = this.playersList.length;
+
+        // set inactive the previous Player if there was one.
+        // and be ready for the next.
+        if( !_.isUndefined( prev ) ) {
+            prevOrder = prev.order;
+            prev.active = false;
         };
+        
+        // if the prev was the last on the list, reset to the first, otherwise, well
+        // go with that one.
+        prevOrder = _.gt( prevOrder += 1, totalPlayers ) ? 1 : prevOrder;
+
+        // Not sure this order is exactly indexed with the list, therefore, find this
+        // player in the list and snag the index; then use that to get it from the list. 
+        // set the player to active.
+        let index: number = _.findIndex( this.playersList, { order: prevOrder } );
+        p = this.playersList[ index ];
+        p.active = true;
+
         return p;
     };
     
