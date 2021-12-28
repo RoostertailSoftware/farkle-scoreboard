@@ -2,18 +2,18 @@
     <p >Play has not begun</p>
 </div>
 <div *ngIf="activePlayer != null">
-    <h2>Player Statistics</h2>
+    <h2>player stats</h2>
     <p >
-        Player: {{ activePlayer.name }}<br/>
+        player: {{ activePlayer.name }}<br/>
         <br/>
-        Number of Turns: {{ activePlayerStats.numberOfTurns | number: "1.0-0" }}<br/>
-        Average Rolls per Turn: {{ activePlayerStats.averageRolls | number: "1.2-2" }}<br/>
+        score from last trun: {{ activePlayerStats.lastTurnScore | number: "1.0-0" }}<br/>
         <br/>
-        Number of rolls: {{ activePlayerStats.numberOfRolls | number: "1.0-0" }}<br/>
-        Average Score per roll: {{ activePlayerStats.averageScorePerRoll | number: "1.2-2" }}<br/>
+        number of truns: {{ activePlayerStats.numberOfTurns | number: "1.0-0" }}<br/>
+        average roll per turn: {{ activePlayerStats.averageRolls | number: "1.2-2" }}<br/>
         <br/>
-        Score on Last turn: {{ activePlayerStats.lastTurnScore | number: "1.0-0" }}<br/>
+        number of rolls: {{ activePlayerStats.numberOfRolls | number: "1.0-0" }}<br/>
+        average score per roll: {{ activePlayerStats.averageScorePerRoll | number: "1.2-2" }}<br/>
         <br/>
-        Number of Farkles: {{ activePlayerStats.numberOfFarkels | number: "1.0-0" }}<br/>
+        number of farkles: {{ activePlayerStats.numberOfFarkels | number: "1.0-0" }}<br/>
     </p>
 </div>
