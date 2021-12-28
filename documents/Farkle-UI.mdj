@@ -7970,7 +7970,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF91Pee31q0rKQ="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8032,7 +8033,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF91Pee31q0rKQ="
 							},
-							"name": "Role8"
+							"name": "Role8",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8040,7 +8042,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF91Pee31q0rKQ="
 							},
-							"name": "Role9"
+							"name": "Role9",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8048,7 +8051,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF91Pee31q0rKQ="
 							},
-							"name": "Role10"
+							"name": "Role10",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8056,7 +8060,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF91Pee31q0rKQ="
 							},
-							"name": "Role11"
+							"name": "Role11",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8064,7 +8069,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF91Pee31q0rKQ="
 							},
-							"name": "Role12"
+							"name": "Role12",
+							"type": ""
 						}
 					]
 				}
@@ -12649,7 +12655,7 @@
 																	"left": 493,
 																	"top": 263,
 																	"width": 90.27001953125,
-																	"height": 26,
+																	"height": 13,
 																	"text": "roll dice button",
 																	"wordWrap": true
 																},
@@ -12688,7 +12694,7 @@
 															"left": 488,
 															"top": 256,
 															"width": 100.27001953125,
-															"height": 38,
+															"height": 25,
 															"stereotypeLabel": {
 																"$ref": "AAAAAAF9Y+9EFcG8GHY="
 															},
@@ -12748,7 +12754,7 @@
 															"fillColor": "#d6adff",
 															"font": "Arial;13;0",
 															"left": 488,
-															"top": 294,
+															"top": 281,
 															"width": 100.27001953125
 														}
 													],
@@ -12817,7 +12823,7 @@
 																	"left": 901,
 																	"top": 215,
 																	"width": 102.60986328125,
-																	"height": 26,
+																	"height": 13,
 																	"text": "select die    [1..6]",
 																	"wordWrap": true
 																},
@@ -12856,7 +12862,7 @@
 															"left": 896,
 															"top": 208,
 															"width": 112.60986328125,
-															"height": 38,
+															"height": 25,
 															"stereotypeLabel": {
 																"$ref": "AAAAAAF9ZA39WMHx7LI="
 															},
@@ -12916,7 +12922,7 @@
 															"fillColor": "#a3e0ff",
 															"font": "Arial;13;0",
 															"left": 896,
-															"top": 246,
+															"top": 233,
 															"width": 112.60986328125
 														}
 													],
@@ -13079,7 +13085,7 @@
 																	"left": 1237,
 																	"top": 303,
 																	"width": 87,
-																	"height": 26,
+																	"height": 13,
 																	"text": "Farkle   button",
 																	"wordWrap": true
 																},
@@ -13118,7 +13124,7 @@
 															"left": 1232,
 															"top": 296,
 															"width": 97,
-															"height": 38,
+															"height": 25,
 															"stereotypeLabel": {
 																"$ref": "AAAAAAF9ZA9Dl8I2ar8="
 															},
@@ -13178,7 +13184,7 @@
 															"fillColor": "#ff8282",
 															"font": "Arial;13;0",
 															"left": 1232,
-															"top": 334,
+															"top": 321,
 															"width": 97
 														}
 													],

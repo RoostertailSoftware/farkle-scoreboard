@@ -29,7 +29,7 @@ export class PlayerScoreboardComponent {
     });
 
     this.displayedColumns = [ 'order', 'player', 'score', 'place' ];
-   }
+   };
 
 
   drop( event: CdkDragDrop< any > ) {
@@ -39,10 +39,13 @@ export class PlayerScoreboardComponent {
     this.resetOrder();
   }
 
-  resetOrder = ( ) =>{
+  resetOrder ( ){
     _.forEach( this.playerDataSource.data, (p: PlayerClass, index: number )=>{
         p.order = (index+1)
     } )
+  };
 
+  place( row: any ){
+    return "";
   }
 }
