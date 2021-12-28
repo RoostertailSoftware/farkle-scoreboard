@@ -9,10 +9,11 @@ import * as _ from "lodash";
  * 
  * A Player's first turn must be a minimum of RulesConfigurationClass.minScoreToStart.
  */
-export class TurnClass extends BasePlayerClass{
+export class TurnClass extends BasePlayerClass {
 
     constructor( ){
-        super()
+        super();
+        
         this.turn = 0;
         this.score = 0;
         this.farkled = false;
