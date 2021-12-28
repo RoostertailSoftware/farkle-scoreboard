@@ -50,8 +50,7 @@ export class PregameActionButtonsComponent implements OnInit {
         let player: PlayerClass = new PlayerClass( result.name, this.playerData.length+1 );
         this.playerSvc.register( player );
     });
-  }
-
+  };
 
   // Helper method to create a MatDialogRef for the dialog.
   openDialog = ( inData: any  ): MatDialogRef< AddPlayerDialogComponent  >  => {
