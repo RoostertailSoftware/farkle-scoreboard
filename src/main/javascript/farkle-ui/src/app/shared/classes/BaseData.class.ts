@@ -1,4 +1,7 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, observeOn } from 'rxjs';
+
+import * as _ from "lodash";
+import { PlayerClass } from '.';
 
 export abstract class BaseDataServiceClass< T > {
 
@@ -18,6 +21,7 @@ export abstract class BaseDataServiceClass< T > {
   getObservableData = (): any => {
     return this.data;
   };
+
   /**
    * This will register new data into the observable
    * and send out that to all subscribers.
@@ -25,14 +29,18 @@ export abstract class BaseDataServiceClass< T > {
    * @example
    * this.svc.register( data: T );
    */
-  register = ( op: T, singular?: boolean ): void => {
-    
+  register( op: T, singular?: boolean ): void {
     if( singular ){
-      this.dataStore.data = [ op ];
+      this.dataStore.data =   [ op ] ;
     } else {
-      this.dataStore.data.push( op )
+      this.dataStore.data.push(  op )
     }
-
     this._data.next( this.dataStore.data );
-  }
+  };
+
+  update( op: T ): void {
+    this._data.next( this.dataStore.data );
+  };
+  
+
 }

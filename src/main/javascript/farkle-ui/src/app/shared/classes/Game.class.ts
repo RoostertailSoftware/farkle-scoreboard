@@ -1,4 +1,4 @@
-import { TurnClass } from "@classes";
+import { TurnClass, StatisticsClass } from "@classes";
 
 import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
 
@@ -13,6 +13,7 @@ import * as _ from "lodash";
  */
 export class GameClass  {
 
+    stats: StatisticsClass;
     constructor(  ){
         this.turn = Array< TurnClass >( );
     }
@@ -27,8 +28,7 @@ export class GameClass  {
     public addTurn = ( ): number => {
         let t: TurnClass = new TurnClass( );
         this.turn.push( t );
-        t.turn = _.findIndex( this.turn, { id: t.id });
-        return t.turn;
+        return  _.findIndex( this.turn, { id: t.id } );
     };
 
     public newRoll = ( turn_index: number, diceCount: number ): number => {

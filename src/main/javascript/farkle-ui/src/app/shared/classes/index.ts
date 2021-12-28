@@ -13,6 +13,7 @@ export { TurnClass } from "./Turn.class";
 export { RollClass } from "./Roll.class";
 export { DiceClass } from "./Dice.class";
 
+export { StatisticsClass } from "./Statistics.class"
 
 // Abstract class used by services
 export { BaseDataServiceClass } from "./BaseData.class";
