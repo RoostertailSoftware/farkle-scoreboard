@@ -17,6 +17,7 @@ export class PlayerClass extends BasePlayerClass {
         super();
         this.name = name;
         this.order = order;
+        this.active = false;
 
         this.game = new GameClass( );
         this.score = 0;
@@ -29,6 +30,10 @@ export class PlayerClass extends BasePlayerClass {
     private _order: number;
     public set order( n: number ){ this._order = n;}
     public get order(){ return this._order; }
+
+    private _active: boolean;
+    public set active( n: boolean ){ this._active = n;}
+    public get active(){ return this._active; }
 
     private _game: GameClass;
     public set game( g: GameClass ){  this._game = g; }
