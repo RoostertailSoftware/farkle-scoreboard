@@ -15,7 +15,7 @@
 
         <ng-container matColumnDef="place">
             <th mat-header-cell *matHeaderCellDef> place </th>
-            <td mat-cell *matCellDef="let element"> {{ place( element ) }} </td>
+            <td mat-cell *matCellDef="let element"> {{ place( element )  | englishOrdinal }} </td>
         </ng-container>
 
         <ng-container matColumnDef="player">
