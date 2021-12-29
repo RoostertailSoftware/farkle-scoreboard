@@ -1,19 +1,76 @@
-<div *ngIf="activePlayer == null">
-    <p >Play has not begun</p>
-</div>
-<div *ngIf="activePlayer != null">
-    <h2>player stats</h2>
-    <p >
-        player: {{ activePlayer.name }}<br/>
-        <br/>
-        score from last trun: {{ activePlayerStats.lastTurnScore | number: "1.0-0" }}<br/>
-        <br/>
-        number of truns: {{ activePlayerStats.numberOfTurns | number: "1.0-0" }}<br/>
-        average roll per turn: {{ activePlayerStats.averageRolls | number: "1.2-2" }}<br/>
-        <br/>
-        number of rolls: {{ activePlayerStats.numberOfRolls | number: "1.0-0" }}<br/>
-        average score per roll: {{ activePlayerStats.averageScorePerRoll | number: "1.2-2" }}<br/>
-        <br/>
-        number of farkles: {{ activePlayerStats.numberOfFarkels | number: "1.0-0" }}<br/>
-    </p>
-</div>
+
+<mat-grid-list cols="3" rowHeight="60px" class="player-stats-main">
+
+    <mat-grid-tile colspan="2" >
+        <mat-form-field class="example-full-width">
+            <mat-label> Name</mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data" 
+                value='{{ _.isNull( activePlayer) ? null: activePlayer.name }}'>
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile >
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" >
+            <mat-label>number of turns </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data" 
+                 value='{{ _.isNull( activePlayer) ? "": activePlayerStats.numberOfTurns | number: "1.0-0" }}'>
+          </mat-form-field>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" >
+            <mat-label>score from last turn </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data"  
+                value='{{ _.isNull( activePlayer) ? "": activePlayerStats.lastTurnScore | number: "1.0-0" }}'>
+          </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile ></mat-grid-tile>
+
+
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" >
+            <mat-label>number of rolls </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data"  
+                value='{{ _.isNull( activePlayer) ? "": activePlayerStats.numberOfRolls | number: "1.0-0"  }}'>
+          </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" >
+            <mat-label>average score per roll </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data"  
+                value='{{ _.isNull( activePlayer) ? "": activePlayerStats.averageScorePerRoll | number: "1.2-2" }}'>
+          </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" >
+            <mat-label>number of farkles </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data"  
+                value='{{ _.isNull( activePlayer) ? "": activePlayerStats.numberOfFarkels | number: "1.0-0" }}'>
+          </mat-form-field>
+    </mat-grid-tile>
+
+</mat-grid-list>

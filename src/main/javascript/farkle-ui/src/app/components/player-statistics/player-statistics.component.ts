@@ -12,13 +12,14 @@ import * as _ from "lodash";
 })
 export class PlayerStatisticsComponent  {
 
+  _: any;
   activePlayer: PlayerClass;
   activePlayerStats: StatisticsClass;
 
   playerObserver: any;
   playerObserverResult: any;
   constructor( private playerSvc: PlayersService ) { 
-
+    this._ = _;
     this.activePlayer = null;
     this.playerObserver = this.playerSvc.getObservableData();
     this.playerObserverResult = this.playerObserver.subscribe( this.getData );

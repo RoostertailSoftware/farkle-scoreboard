@@ -1,0 +1,12 @@
+@import "src/variables";
+
+.player-stats-main {
+    width: 100%;
+}
+.player-stats-title {
+    font-size: larger;
+}
+.player-stats-data {
+    color: $primary;
+    font-weight: 500;
+}
