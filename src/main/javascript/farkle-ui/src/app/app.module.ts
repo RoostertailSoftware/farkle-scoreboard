@@ -64,7 +64,7 @@ let _providers: any[ ] = [
   ConfigurationService,
   GameMasterService,
   PlayersService,
-  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "fill", floatLabel: "always" } }
+  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "fill", floatLabel: "auto" } }
 ]
 
 let _bootstrap: any[] = [
