@@ -1,8 +1,12 @@
 
 <mat-grid-list cols="3" rowHeight="60px" class="player-stats-main">
+    <mat-grid-tile colspan="3">
+        <div class="player-stats-title">player stats</div>
+    </mat-grid-tile>
 
-    <mat-grid-tile colspan="2" >
-        <mat-form-field class="example-full-width">
+    <!-- Row 1 -->
+    <mat-grid-tile colspan="1">
+        <mat-form-field class="example-full-width" floatLabel="always">
             <mat-label> Name</mat-label>
             <input matInput 
                 disabled 
@@ -11,23 +15,20 @@
                 value='{{ _.isNull( activePlayer) ? null: activePlayer.name }}'>
           </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile >
-    </mat-grid-tile>
 
     <mat-grid-tile >
-        <mat-form-field class="example-full-width" >
-            <mat-label>number of turns </mat-label>
+        <mat-form-field class="example-full-width" floatLabel="always">
+            <mat-label>score </mat-label>
             <input matInput 
                 disabled 
                 type="text" 
                 class="player-stats-data" 
-                 value='{{ _.isNull( activePlayer) ? "": activePlayerStats.numberOfTurns | number: "1.0-0" }}'>
+                 value='{{ _.isNull( activePlayer) ? "": activePlayer.score | number: "1.0-0" }}'>
           </mat-form-field>
     </mat-grid-tile>
 
-
     <mat-grid-tile >
-        <mat-form-field class="example-full-width" >
+        <mat-form-field class="example-full-width" floatLabel="always">
             <mat-label>score from last turn </mat-label>
             <input matInput 
                 disabled 
@@ -37,12 +38,21 @@
           </mat-form-field>
     </mat-grid-tile>
 
-    <mat-grid-tile ></mat-grid-tile>
-
+    <!-- Row 2  -->
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" floatLabel="always">
+            <mat-label>number of turns </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data" 
+                 value='{{ _.isNull( activePlayer) ? "": activePlayerStats.numberOfTurns | number: "1.0-0" }}'>
+          </mat-form-field>
+    </mat-grid-tile>
 
     <mat-grid-tile >
-        <mat-form-field class="example-full-width" >
-            <mat-label>number of rolls </mat-label>
+        <mat-form-field class="example-full-width" floatLabel="always">
+            <mat-label>number of scoring rolls </mat-label>
             <input matInput 
                 disabled 
                 type="text" 
@@ -52,18 +62,7 @@
     </mat-grid-tile>
 
     <mat-grid-tile >
-        <mat-form-field class="example-full-width" >
-            <mat-label>average score per roll </mat-label>
-            <input matInput 
-                disabled 
-                type="text" 
-                class="player-stats-data"  
-                value='{{ _.isNull( activePlayer) ? "": activePlayerStats.averageScorePerRoll | number: "1.2-2" }}'>
-          </mat-form-field>
-    </mat-grid-tile>
-
-    <mat-grid-tile >
-        <mat-form-field class="example-full-width" >
+        <mat-form-field class="example-full-width" floatLabel="always">
             <mat-label>number of farkles </mat-label>
             <input matInput 
                 disabled 
@@ -72,5 +71,31 @@
                 value='{{ _.isNull( activePlayer) ? "": activePlayerStats.numberOfFarkels | number: "1.0-0" }}'>
           </mat-form-field>
     </mat-grid-tile>
+
+    <!-- Row 3 -->
+
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" floatLabel="always">
+            <mat-label>average rolls per turn </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data"  
+                value='{{ _.isNull( activePlayer) ? "": activePlayerStats.averageRollsPerTurn | number: "1.2-2" }}'>
+          </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" floatLabel="always">
+            <mat-label>average score per scoring roll </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data"  
+                value='{{ _.isNull( activePlayer) ? "": activePlayerStats.averageScorePerRoll | number: "1.0-0" }}'>
+          </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- <mat-grid-tile colspan="1"></mat-grid-tile> -->
 
 </mat-grid-list>
