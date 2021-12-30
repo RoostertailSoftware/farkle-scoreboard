@@ -4,10 +4,6 @@ import * as _ from "lodash";
 
 export class StatisticsClass {
 
-    private _numberOfFarkles: number;
-    public set numberOfFarkels ( n: number ){ this._numberOfFarkles = n; };
-    public get numberOfFarkels ( ): number { return this._numberOfFarkles; };
-
     private _numberOfTurns: number;
     public set numberOfTurns ( n: number ){ this._numberOfTurns = n; };
     public get numberOfTurns ( ): number { return this._numberOfTurns; };
@@ -15,9 +11,10 @@ export class StatisticsClass {
     private _numberOfRolls: number;
     public set numberOfRolls ( n: number ){ this._numberOfRolls = n; };
     public get numberOfRolls ( ): number { return this._numberOfRolls; };
-    private _averageRolls: number;
-    public set averageRolls ( n: number ){ this._averageRolls = n; };
-    public get averageRolls ( ): number { return this._averageRolls; };
+
+    private _averageRollsPerTurn: number;
+    public set averageRollsPerTurn ( n: number ){ this._averageRollsPerTurn = n; };
+    public get averageRollsPerTurn ( ): number { return this._averageRollsPerTurn; };
 
     private _averageScorePerRoll: number;
     public set averageScorePerRoll ( n: number ){ this._averageScorePerRoll = n; };
@@ -27,6 +24,9 @@ export class StatisticsClass {
     public set lastTurnScore ( n: number ){ this._lastTurnScore = n; };
     public get lastTurnScore ( ): number { return this._lastTurnScore; };
 
+    private _numberOfFarkles: number;
+    public set numberOfFarkels ( n: number ){ this._numberOfFarkles = n; };
+    public get numberOfFarkels ( ): number { return this._numberOfFarkles; };
 
     private _game: GameClass;
     public set game ( g: GameClass ){ this._game = g; };
@@ -37,35 +37,64 @@ export class StatisticsClass {
         this.runStats();
     };
 
-    public runStats = ( ): void =>{
+    public runStats ( ): void {
         this.numberOfFarkels =  this.calculateFarkles();
         this.numberOfTurns =    this.calculateTurns();
 
         this.numberOfRolls =    this.calculateRolls();
-        this.averageRolls = this.calculateAverageRolls();
+        this.averageRollsPerTurn = this.calculateAverageRollsPerTurn();
 
         this.averageScorePerRoll =  this.calcuateAverageScorePerRoll();
 
         this.lastTurnScore =    this.calculateLastTurnScore();
     };
 
-    public calculateTurns = ( ): number =>{
+    private calculateTurns ( ): number {
         return this.game.turn.length;
     };
 
-    public calculateAverageRolls = ( ): number =>{
-        let num = _.eq( this.numberOfRolls, 0 ) ? 0 : this.numberOfRolls;
-        let den = _.eq( this.numberOfTurns, 0 ) ? 1 : this.numberOfTurns;
-        return num / den;
+    /**
+     * a valid turn is one that has a score, or one that is farkled and score of 0.
+     * This is because a times I have a turn in the array but it hasn't been filled in yet.
+     * @returns \{ number } valid turns
+     */
+    private calculateValidTurn ( ): number {
+        let count: number = 0;
+        _.forEach( this.game.turn, ( t: TurnClass ) => {
+            count += ( _.gt( t.score, 0 ) || ( _.eq( t.score, 0 ) && t.farkled ) ) ? 1 : 0;
+        });
+        return count;
     }
 
-    public calcuateAverageScorePerRoll = ( ): number => {
+    /**
+     * calcuate the average rolls per turn taking into account
+     * the number of farkled rolls.
+     * @returns \{ number } rolls/turn
+     */
+    private calculateAverageRollsPerTurn( ): number {
+        let num = _.eq( this.calculateRolls(), 0 ) ? 0 : this.calculateRolls();
+        let f   = this.calculateFarkles();
+        let den = _.eq( this.calculateValidTurn() , 0 ) ? 1 : this.calculateValidTurn();
+        return ( num + f ) / den;
+    }
+
+    /**
+     * Calculates the average score per roll NOT taking into account
+     * the farkled roll.
+     * @returns \{ number } score/roll
+     */
+    private calcuateAverageScorePerRoll ( ): number  {
         let score = this.calculateScore();
         let num = _.eq( score, 0 ) ? 0 : score;
         let den = _.eq( this.numberOfRolls, 0 ) ? 1 : this.numberOfRolls;
         return num / den;
     }
-    public calculateFarkles = (): number => {
+
+    /**
+     * Count of turns which resulted in a farkle
+     * @returns \{ number } farkles
+     */
+    private calculateFarkles (): number  {
         let totalFarkeles: number = 0;
         _.forEach( this.game.turn, ( t: TurnClass ) =>{
             totalFarkeles += t.farkled ? 1 : 0;
@@ -73,15 +102,27 @@ export class StatisticsClass {
         return totalFarkeles;
     };
 
-    public calculateRolls = ( ): number => {
+    /**
+     * Calculates the number of rolls that resulted in a score being
+     * recorded (ie !farkled)
+     * @returns \{ number } of rolls
+     */
+    private calculateRolls ( ): number  {
         let totalRolls: number = 0;
-        _.forEach( this.game.turn, ( t: TurnClass )=>{
-            totalRolls += t.roll.length
+        _.forEach( this.game.turn, ( t: TurnClass ) => {
+            _.forEach( t.roll, ( r: RollClass ) => {
+                totalRolls +=  _.gt( r.score, 0 )  ? 1 : 0;
+            })
         } );
         return totalRolls;
     };
 
-    public calculateScore = (): number =>{
+    /**
+     * calculate all the final score.  In this case I am using
+     * the sum of turns.
+     * @returns \{ number } score
+     */
+    private calculateScore (): number {
         let score: number = 0;
         _.forEach( this.game.turn, ( t: TurnClass ) => {
             score += t.score;
@@ -89,7 +130,11 @@ export class StatisticsClass {
         return score;
     };
 
-    public calculateLastTurnScore( ): number {
+    /**
+     * return the last score
+     * @returns \{ number } score
+     */
+    private calculateLastTurnScore( ): number {
         let score: number = 0;
         let index: number = this.game.turn.length;
         if( _.gt( index, 1 ) ) {
