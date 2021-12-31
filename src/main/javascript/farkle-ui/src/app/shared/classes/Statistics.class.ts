@@ -16,6 +16,11 @@ export class StatisticsClass {
     public set averageRollsPerTurn ( n: number ){ this._averageRollsPerTurn = n; };
     public get averageRollsPerTurn ( ): number { return this._averageRollsPerTurn; };
 
+    private _mostRollsInATurn: number;
+    public set mostRollsInATurn ( n: number ){ this._mostRollsInATurn = n; };
+    public get mostRollsInATurn ( ): number { return this._mostRollsInATurn; };
+
+
     private _averageScorePerRoll: number;
     public set averageScorePerRoll ( n: number ){ this._averageScorePerRoll = n; };
     public get averageScorePerRoll ( ): number { return this._averageScorePerRoll; };
@@ -43,6 +48,7 @@ export class StatisticsClass {
 
         this.numberOfRolls =    this.calculateRolls();
         this.averageRollsPerTurn = this.calculateAverageRollsPerTurn();
+        this.mostRollsInATurn =     this.calculateMostRollsInATurn();
 
         this.averageScorePerRoll =  this.calcuateAverageScorePerRoll();
 
@@ -117,6 +123,17 @@ export class StatisticsClass {
         return totalRolls;
     };
 
+    /**
+     * Calculate which turn has the most rolls.
+     * @returns \{ number } a number that represents most rolls in a turn
+     */ 
+    private calculateMostRollsInATurn ( ): number {
+        let mostRolls: number = 0;
+        _.forEach( this.game.turn, ( t: TurnClass ) => {
+            mostRolls = _.gt( mostRolls, t.roll.length ) ? mostRolls : t.roll.length;
+        } );
+        return mostRolls;
+    }
     /**
      * calculate all the final score.  In this case I am using
      * the sum of turns.

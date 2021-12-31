@@ -5,7 +5,7 @@
     </mat-grid-tile>
 
     <!-- Row 1 -->
-    <mat-grid-tile colspan="1">
+    <!-- <mat-grid-tile colspan="1">
         <mat-form-field class="example-full-width" floatLabel="always">
             <mat-label> Name</mat-label>
             <input matInput 
@@ -14,9 +14,9 @@
                 class="player-stats-data" 
                 value='{{ _.isNull( activePlayer) ? null: activePlayer.name }}'>
           </mat-form-field>
-    </mat-grid-tile>
+    </mat-grid-tile> -->
 
-    <mat-grid-tile >
+    <!-- <mat-grid-tile >
         <mat-form-field class="example-full-width" floatLabel="always">
             <mat-label>score </mat-label>
             <input matInput 
@@ -25,7 +25,8 @@
                 class="player-stats-data" 
                  value='{{ _.isNull( activePlayer) ? "": activePlayer.score | number: "1.0-0" }}'>
           </mat-form-field>
-    </mat-grid-tile>
+    </mat-grid-tile> -->
+    <mat-grid-tile></mat-grid-tile>
 
     <mat-grid-tile >
         <mat-form-field class="example-full-width" floatLabel="always">
@@ -37,9 +38,12 @@
                 value='{{ _.isNull( activePlayer) ? "": activePlayerStats.lastTurnScore | number: "1.0-0" }}'>
           </mat-form-field>
     </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
 
     <!-- Row 2  -->
-    <mat-grid-tile >
+    <mat-grid-tile></mat-grid-tile>
+
+    <!-- <mat-grid-tile >
         <mat-form-field class="example-full-width" floatLabel="always">
             <mat-label>number of turns </mat-label>
             <input matInput 
@@ -48,7 +52,7 @@
                 class="player-stats-data" 
                  value='{{ _.isNull( activePlayer) ? "": activePlayerStats.numberOfTurns | number: "1.0-0" }}'>
           </mat-form-field>
-    </mat-grid-tile>
+    </mat-grid-tile> -->
 
     <mat-grid-tile >
         <mat-form-field class="example-full-width" floatLabel="always">
@@ -96,6 +100,15 @@
           </mat-form-field>
     </mat-grid-tile>
 
-    <!-- <mat-grid-tile colspan="1"></mat-grid-tile> -->
+    <mat-grid-tile >
+        <mat-form-field class="example-full-width" floatLabel="always">
+            <mat-label>most rolls in a turn </mat-label>
+            <input matInput 
+                disabled 
+                type="text" 
+                class="player-stats-data"  
+                value='{{ _.isNull( activePlayer) ? "": activePlayerStats.mostRollsInATurn | number: "1.0-0" }}'>
+          </mat-form-field>
+    </mat-grid-tile>
 
 </mat-grid-list>
