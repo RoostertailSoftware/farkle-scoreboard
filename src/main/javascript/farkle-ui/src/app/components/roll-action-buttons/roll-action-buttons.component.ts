@@ -18,7 +18,6 @@ export class RollActionButtonsComponent {
   public rollActionButtonType: any;
 
   public playerRollScore: number;
-  public playerTurnScore: number;
 
   // keep current counts on current player
   public playerRollDieCount: number;
@@ -28,7 +27,6 @@ export class RollActionButtonsComponent {
     this.reset();
 
     this.playerRollScore =      0;
-    this.playerTurnScore =      0;
     this.disableObject =        new RollActionButtonLogicClass();
     this.rollActionButtonType = ROLL_ACTION_BUTTON_TYPES;
     this.rollDieSelection =     RollActionButtonLogicClass.resetRollSelection();
@@ -57,7 +55,6 @@ export class RollActionButtonsComponent {
   public finishRoll(){
     this.disableObject.selected( ROLL_ACTION_BUTTON_TYPES.FINISH_ROLL );
     this.playerRollScore = this.gameMaster.setRollDice( this.rollDieSelection );
-    this.playerTurnScore = this.playerRollScore;
     this.resetDieSelection();
   };
 
@@ -89,7 +86,6 @@ export class RollActionButtonsComponent {
   private reset(){
     this.playerRollDieCount = 6;
     this.playerRollScore =    0;
-    this.playerTurnScore =    0;
     this.resetDieSelection();
   };
 
