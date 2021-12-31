@@ -31,3 +31,11 @@ table {
 .inactive-player{
   background-color: $primary-background;
 }
+
+.right-align-data {
+  padding-right: 25px;
+  text-align: right;
+}
+.right-align-header {
+  text-align: center;
+}
