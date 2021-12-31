@@ -1,7 +1,6 @@
-import { BehaviorSubject, observeOn } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import * as _ from "lodash";
-import { PlayerClass } from '.';
 
 export abstract class BaseDataServiceClass< T > {
 
@@ -18,7 +17,7 @@ export abstract class BaseDataServiceClass< T > {
    * let x: any = this.svc.getObservableData();
    * x.subscribe( result => {} );
    */
-  getObservableData = (): any => {
+  public getObservableData = (): any => {
     return this.data;
   };
 
@@ -29,7 +28,7 @@ export abstract class BaseDataServiceClass< T > {
    * @example
    * this.svc.register( data: T );
    */
-  register( op: T, singular?: boolean ): void {
+   public register( op: T, singular?: boolean ): void {
     if( singular ){
       this.dataStore.data =   [ op ] ;
     } else {
@@ -38,7 +37,7 @@ export abstract class BaseDataServiceClass< T > {
     this._data.next( this.dataStore.data );
   };
 
-  update( op: T ): void {
+  public update( op: T ): void {
     this._data.next( this.dataStore.data );
   };
   

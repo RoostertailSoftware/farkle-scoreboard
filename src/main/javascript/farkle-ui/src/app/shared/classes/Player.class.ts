@@ -1,6 +1,4 @@
-import { GameClass, BasePlayerClass } from "@classes";
-import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
-
+import { BasePlayerClass, GameClass, DiceClass, RulesConfigurationClass } from "@classes";
 
 /**
  * PlayerClass is a player in the Farkle Scoreboard app.
@@ -12,16 +10,6 @@ import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
  * from its turns, rolls.
  */
 export class PlayerClass extends BasePlayerClass {
-
-    constructor( name?: string, order?: number ){
-        super();
-        this.name = name;
-        this.order = order;
-        this.active = false;
-
-        this.game = new GameClass( );
-        this.score = 0;
-     }
 
     private _name: string;
     public set name( s: string ){ this._name = s; }
@@ -43,35 +31,43 @@ export class PlayerClass extends BasePlayerClass {
     public set score( n: number){ this._score = n; }
     public get score(){ return this._score; }
 
+    constructor( name?: string, order?: number ){
+        super();
+        this.name = name;
+        this.order = order;
+        this.active = false;
+
+        this.game = new GameClass( );
+        this.score = 0;
+     };
 
     public getNextTurn = ( ): number =>{
         return this.game.addTurn( );
     }
 
-    public roll = ( turn_index: number, diceCount: number ): number => {
+    public roll ( turn_index: number, diceCount: number ): number {
         return this.game.newRoll( turn_index, diceCount );
     };
 
-    public diceSelection = ( turn_index: number, roll_index: number, die: ROLL_ACTION_BUTTON_TYPES ) => {
-        return this.game.diceSelected( turn_index, roll_index, die );
-    };
-
+    public setRollDice( turn_index: number, roll_index: number, dice: DiceClass ): void {
+        this.game.setRollDice( turn_index, roll_index, dice )
+    }
     // Player says they are done with turn, button this one up
     // set the score.
-    public finishTurn = ( turn_index: number, config: any ) =>{
+    public finishTurn ( config: RulesConfigurationClass ) {
         this.getScore( config );
-
     };
 
-    public farkle = ( turn_index: number, roll_index: number ) => {
+    public farkle ( turn_index: number, roll_index: number ) {
         return this.game.farkle( turn_index, roll_index );
     };
 
     // Score for all turns, all rolls
-    private  getScore = ( config: any ) => {
+    private  getScore ( config: RulesConfigurationClass ) {
         this.score = this.game.getScore( config );
     };
-    public turnScore = ( turn_index: number, config: any ):number =>{
+
+    public turnScore ( turn_index: number, config: RulesConfigurationClass ):number {
         return this.game.turnScore( turn_index, config );
     };
 

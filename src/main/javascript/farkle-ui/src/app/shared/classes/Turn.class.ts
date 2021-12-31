@@ -1,7 +1,7 @@
-import { BasePlayerClass, RollClass } from "@classes";
-import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
+import { BasePlayerClass, RollClass, RulesConfigurationClass } from "@classes";
 
 import * as _ from "lodash";
+import { DiceClass } from "./Dice.class";
 
 /**
  * A trun is part of a Player's game.  A Turn consists of
@@ -10,15 +10,6 @@ import * as _ from "lodash";
  * A Player's first turn must be a minimum of RulesConfigurationClass.minScoreToStart.
  */
 export class TurnClass extends BasePlayerClass {
-
-    constructor( ){
-        super();
-        
-        this.turn = 0;
-        this.score = 0;
-        this.farkled = false;
-        this.roll = Array< RollClass >( );
-    }
 
     private _turn: number;
     public set turn ( n: number ){ this._turn = n; }
@@ -36,17 +27,28 @@ export class TurnClass extends BasePlayerClass {
     public set farkled( b: boolean ){ this._farkled = b; };
     public get farkled() { return this._farkled; };
 
+    constructor( ){
+        super();
+        
+        this.turn = 0;
+        this.score = 0;
+        this.farkled = false;
+        this.roll = Array< RollClass >( );
+    };
+
     public newRoll = ( diceCount: number ): number => {
         let r = new RollClass( diceCount );
         this.roll.push( r );
         r.roll = _.findIndex( this.roll, { id: r.id });
         return r.roll;
     }
-    public diceSelected = (roll_index: number, die: ROLL_ACTION_BUTTON_TYPES ) => {
-        return this.roll[ roll_index ].selectDie( die );
+    // public diceSelected = (roll_index: number, die: ROLL_ACTION_BUTTON_TYPES ) => {
+    //     return this.roll[ roll_index ].selectDie( die );
+    // }
+    public setRollDice( roll_index: number, dice: DiceClass ){
+        this.roll[ roll_index ].setRollDice( dice );
     }
-
-    public getScore = ( config: any ): number => {
+    public getScore = ( config: RulesConfigurationClass ): number => {
         this.score = 0;
         if( !this.farkled ){
             _.forEach( this.roll, r =>{

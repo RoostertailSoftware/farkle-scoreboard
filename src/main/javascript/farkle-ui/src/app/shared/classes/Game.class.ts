@@ -1,6 +1,4 @@
-import { TurnClass, StatisticsClass } from "@classes";
-
-import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
+import { TurnClass, DiceClass, RulesConfigurationClass } from "@classes";
 
 import * as _ from "lodash";
 
@@ -13,46 +11,62 @@ import * as _ from "lodash";
  */
 export class GameClass  {
 
-    stats: StatisticsClass;
-    constructor(  ){
-        this.turn = Array< TurnClass >( );
-    }
-
     private _turn: Array< TurnClass >;
     public set turn ( t: Array< TurnClass > ){ this._turn = t; }
     public get turn( ): Array< TurnClass > { return this._turn; }
 
-    
+    constructor(  ){
+        this.turn = Array< TurnClass >( );
+    }
+
     // Create and add a new Turn, then set the Turn's .turn to
     // the index
-    public addTurn = ( ): number => {
+    public addTurn( ): number {
         let t: TurnClass = new TurnClass( );
         this.turn.push( t );
         return  _.findIndex( this.turn, { id: t.id } );
     };
 
-    public newRoll = ( turn_index: number, diceCount: number ): number => {
-            return this.turn[ turn_index ].newRoll( diceCount );
+    /**
+     * newRoll - create a new roll for this turn.
+     * @param turn_index \{ number } the turn number for the player
+     * @param diceCount \{ number } the number of dice this roll is allowed
+     * @returns \{ number } the roll index
+     */
+    public newRoll ( turn_index: number, diceCount: number ): number {
+        return this.turn[ turn_index ].newRoll( diceCount );
     };
 
-    public diceSelected = ( turn_index: number, roll_index: number, die: ROLL_ACTION_BUTTON_TYPES ) => {
-        return this.turn[ turn_index ].diceSelected( roll_index, die );
-    };
+    /**
+     * setRollDice - 
+     * Set the  Dice Object into the roll for this turn
+     * @param turn_index \{ number } the turn number for the player
+     * @param roll_index  \{ number } the roll number for the turn
+     * @param dice \{ DiceClass } the dice for the turn.
+     */
+    public setRollDice( turn_index: number, roll_index: number, dice: DiceClass ): void {
+        this.turn[ turn_index ].setRollDice( roll_index, dice );
+    }
 
-    public getScore = ( config: any ): number => {
+    /**
+     * getScore - go thru the turns and get the current score for the game.
+     * @param config \{ Config }
+     * @returns 
+     */
+    public getScore ( config: RulesConfigurationClass ): number {
         let score = 0;
         _.forEach( this.turn, ( t: TurnClass, i: number )=> {
             score += this.turnScore( i, config );
-        })
+        });
         return score;
     };
 
-    public turnScore = ( turn_index: number, config: any ): number => {
+    public turnScore ( turn_index: number, config: RulesConfigurationClass ): number  {
         return this.turn[ turn_index ].getScore( config );
     };
 
-    public farkle = ( turn_index: number, roll_index: number ) => {
+    public farkle ( turn_index: number, roll_index: number )  {
         this.turn[ turn_index ].farkle( roll_index );
-    }
+    };
 
 };

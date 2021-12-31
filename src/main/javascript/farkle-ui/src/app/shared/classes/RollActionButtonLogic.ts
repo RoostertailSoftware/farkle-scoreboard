@@ -1,7 +1,22 @@
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { DiceClass } from "@classes"
 import { ROLL_ACTION_BUTTON_TYPES } from "@enums";
 
 export class RollActionButtonLogicClass {
+
+    private _rollButtonDisabled: boolean;
+    public get rollButtonDisabled( ): boolean{ return this._rollButtonDisabled; }
+
+    private _diceButtonDisabled: boolean;
+    public get diceButtonDisabled( ): boolean{ return this._diceButtonDisabled; }
+
+    private _finishRollDisabled: boolean;
+    public get finishRollDisabled( ): boolean{ return this._finishRollDisabled; }
+
+    private _finishTurnDisabled: boolean;
+    public get finishTurnDisabled( ): boolean{ return this._finishTurnDisabled; }
+
+    private _farkleDisabled: boolean;
+    public get farkleDisabled( ): boolean{ return this._farkleDisabled; }
 
     constructor(){
         this.reset();
@@ -14,33 +29,6 @@ export class RollActionButtonLogicClass {
         this._finishTurnDisabled =  true;
         this._farkleDisabled =      true;
     };
-
-
-    private _rollButtonDisabled: boolean;
-    public get rollButtonDisabled(): boolean{
-        return this._rollButtonDisabled;
-    }
-
-    
-    private _diceButtonDisabled: boolean;
-    public get diceButtonDisabled(): boolean{
-        return this._diceButtonDisabled;
-    }
-
-    private _finishRollDisabled: boolean;
-    public get finishRollDisabled(): boolean{
-        return this._finishRollDisabled;
-    }
-
-    private _finishTurnDisabled: boolean;
-    public get finishTurnDisabled(): boolean{
-        return this._finishTurnDisabled;
-    }
-
-    private _farkleDisabled: boolean;
-    public get farkleDisabled(): boolean{
-        return this._farkleDisabled;
-    }
 
     public selected( selected: ROLL_ACTION_BUTTON_TYPES ){
       switch ( selected ){
@@ -79,9 +67,18 @@ export class RollActionButtonLogicClass {
         case ROLL_ACTION_BUTTON_TYPES.FARKLE:
             this.reset();
             break;
+      };
 
-    
-      }
-    }
+    };
+
+    static setRollSelection(  current:DiceClass, die: ROLL_ACTION_BUTTON_TYPES ): DiceClass {
+        current.select( die );
+        return current;
+    };
+
+    static resetRollSelection( ): DiceClass {
+        return new DiceClass( );
+    };
+
   };
   

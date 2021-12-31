@@ -14,13 +14,39 @@ import * as _ from "lodash";
  * 
  */
 export class DiceClass  {
+    private _die_1: number;
+    public set die_1 ( d: number ) { this._die_1 = d; }
+    public get die_1 ( ): number {  return this._die_1; }
+    
+    private _die_2: number;
+    public set die_2 ( d: number ) { this._die_2 = d; }
+    public get die_2 ( ): number { return this._die_2; }
 
-    constructor( dieArray:Array< number > = [ 0,0,0,0,0,0 ] ){
-        this.selectDieByArray( dieArray );
-    }
-    public incrementDice( d: string ){
-        this["die_"+d ] += 1;
-    }
+    private _die_3: number;
+    public set die_3 ( d: number ) { this._die_3 = d; }
+    public get die_3 ( ): number { return this._die_3; }
+
+    private _die_4: number;
+    public set die_4 ( d: number ) { this._die_4 = d; }
+    public get die_4 ( ): number { return this._die_4; }
+
+    private _die_5: number;
+    public set die_5 ( d: number ) { this._die_5 = d; }
+    public get die_5 ( ): number { return this._die_5; }
+
+    private _die_6: number;
+    public set die_6 ( d: number ) { this._die_6 = d; }
+    public get die_6 ( ): number { return this._die_6; }
+
+    constructor(  ){ 
+        this.die_1 = 0;
+        this.die_2 = 0;
+        this.die_3 = 0;
+        this.die_4 = 0;
+        this.die_5 = 0;
+        this.die_6 = 0;
+     };
+
     public select = ( die: ROLL_ACTION_BUTTON_TYPES ): void => {
         switch( die ){
             case ROLL_ACTION_BUTTON_TYPES.ONE:
@@ -41,43 +67,11 @@ export class DiceClass  {
             case ROLL_ACTION_BUTTON_TYPES.SIX:
                 this.incrementDice( "6" );
                 break;
-        }
+        };
     };
     
-    private getDieTotal = (d: string ): number => {
-        return this[ "dice_" + d ];
+    private incrementDice( d: string ){
+        this["die_"+d ] += 1;
     };
-    
-    public selectDieByArray = ( selection:Array< number > ) => {
-        this.die_1 = selection[ 0 ];
-        this.die_2 = selection[ 1 ];
-        this.die_3 = selection[ 2 ];
-        this.die_4 = selection[ 3 ];
-        this.die_5 = selection[ 4 ];
-        this.die_6 = selection[ 5 ];
-    }
-    private _die_1: number;
-    public set die_1 (d: number ){ this._die_1 = d; }
-    public get die_1 (): number{  return this._die_1; }
-    
-    private _die_2: number;
-    public set die_2 (d: number ){ this._die_2 = d; }
-    public get die_2 (): number{ return this._die_2; }
 
-    private _die_3: number;
-    public set die_3 (d: number ){ this._die_3 = d; }
-    public get die_3 (): number{ return this._die_3; }
-
-    private _die_4: number;
-    public set die_4 (d: number ){ this._die_4 = d; }
-    public get die_4 (): number{ return this._die_4; }
-
-    private _die_5: number;
-    public set die_5 (d: number ){ this._die_5 = d; }
-    public get die_5 (): number{ return this._die_5; }
-
-    private _die_6: number;
-    public set die_6 (d: number ){ this._die_6 = d; }
-    public get die_6 (): number{ return this._die_6; }
-
-}
+};

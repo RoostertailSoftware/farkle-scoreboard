@@ -1,10 +1,10 @@
 export class AppSettingsClass {
 
     // these are moment formats
-    public static DATE_FORMAT_MOMENT="dd MMM YY";
-    public static DATE_TIME_FORMAT_MOMENT="dd MMM YY HH:mm:ss";
+    public static DATE_FORMAT_MOMENT =      "dd MMM YY";
+    public static DATE_TIME_FORMAT_MOMENT = "dd MMM YY HH:mm:ss";
 
-    public static APP_NAME="Farkle Scorecard";
+    public static APP_NAME =                "Farkle Scorecard";
 
     
     public static WINNING_TOTAL = 10000;

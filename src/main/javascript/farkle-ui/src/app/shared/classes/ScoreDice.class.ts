@@ -13,7 +13,7 @@ export class ScoreDiceClass {
          * it will calcualate the value according to how many die had that number.
          * 
          * @example
-         * let dice = new DiceClass( user, turn, roll, [ 2,0,0,0,3,0])
+         * let dice = new DiceClass()
          * let score = ScoreDiceClass( dice, this.config );
          * // score == 700
          * 
