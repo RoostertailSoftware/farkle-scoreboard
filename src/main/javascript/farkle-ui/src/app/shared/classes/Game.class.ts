@@ -15,16 +15,22 @@ export class GameClass  {
     public set turn ( t: Array< TurnClass > ){ this._turn = t; }
     public get turn( ): Array< TurnClass > { return this._turn; }
 
+    private _nextTurnValue: number;
+    public set nextTurnValue( v: number ){ this._nextTurnValue = v; }
+    public get nextTurnValue( ): number { return this._nextTurnValue += 1; };
+
     constructor(  ){
         this.turn = Array< TurnClass >( );
+        this.nextTurnValue = 0;
     }
 
     // Create and add a new Turn, then set the Turn's .turn to
     // the index
     public addTurn( ): number {
         let t: TurnClass = new TurnClass( );
+            t.turn = this.nextTurnValue;
         this.turn.push( t );
-        return  _.findIndex( this.turn, { id: t.id } );
+        return _.findIndex( this.turn, { id: t.id } );
     };
 
     /**
@@ -69,4 +75,7 @@ export class GameClass  {
         this.turn[ turn_index ].farkle( roll_index );
     };
 
+    private getNextTurnValue(){
+
+    }
 };

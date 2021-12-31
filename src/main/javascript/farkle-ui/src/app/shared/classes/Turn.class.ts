@@ -27,6 +27,10 @@ export class TurnClass extends BasePlayerClass {
     public set farkled( b: boolean ){ this._farkled = b; };
     public get farkled() { return this._farkled; };
 
+    private _nextRollValue: number;
+    public set nextRollValue ( v: number ){ this._nextRollValue = v; }
+    public get nextRollValue ( ): number { return this._nextRollValue += 1;}
+
     constructor( ){
         super();
         
@@ -36,12 +40,14 @@ export class TurnClass extends BasePlayerClass {
         this.roll = Array< RollClass >( );
     };
 
+    // Add a new Roll, and return the index.
     public newRoll = ( diceCount: number ): number => {
         let r = new RollClass( diceCount );
+            r.roll = this.nextRollValue;
         this.roll.push( r );
-        r.roll = _.findIndex( this.roll, { id: r.id });
-        return r.roll;
+        return _.findIndex( this.roll, { id: r.id });
     }
+
     // public diceSelected = (roll_index: number, die: ROLL_ACTION_BUTTON_TYPES ) => {
     //     return this.roll[ roll_index ].selectDie( die );
     // }
