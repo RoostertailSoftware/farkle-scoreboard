@@ -42,7 +42,13 @@
     background-color: rgb(178, 233, 173); 
 }
 
-// mat-icon:hover {
-//     background-color: $light-grey-button-background;
-//     border-radius: 5px;
-// }
+.dice-count-button {
+    margin: 5px;
+}
+::ng-deep .mat-flat-button.mat-button-disabled.mat-button-disabled {
+    background-color: white;
+}
+.dice-reset-button {
+    margin: 5px;
+    color: $primary
+}

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ConfigurationService, PlayersService } from "@services";
-import { PlayerClass, RulesConfigurationClass, BaseDataServiceClass } from "@classes";
-import { ROLL_ACTION_BUTTON_TYPES } from '@enums';
+import { PlayerClass, RulesConfigurationClass, DiceClass, ScoreDiceClass } from "@classes";
 
 import * as _ from "lodash";
 
@@ -50,7 +49,7 @@ export class GameMasterService {
     // Start Game button selected.
     // Get the next player, setup for next turn
     // turn.
-    public startGame = ( ): boolean => {
+    public startGame ( ): boolean  {
         this.activePlayer = this.getNextPlayer( this.activePlayer );
         this.playerSvc.update( this.activePlayer );
 
@@ -60,25 +59,32 @@ export class GameMasterService {
 
     // Player has rolled the dice
     // setup the roll within the turn
-    public rollDice = ( diceCount?: number ): boolean => {
+    public rollDice ( diceCount?: number ): boolean  {
         this.roll = this.activePlayer.roll( this.turn, diceCount );
         this.playerSvc.update( this.activePlayer );
         return true;
     };
 
-    // Player selected a die
-    public diceSelection = ( d: ROLL_ACTION_BUTTON_TYPES ): number =>{
-        this.activePlayer.diceSelection( this.turn, this.roll, d );
+    /**
+     * 
+     * @param dice \{ DiceClass } a dice object with the selected ( 1..6 ) dice
+     * @returns \{ number } calculated score;
+     */
+    public setRollDice ( dice: DiceClass ): number {
+        this.activePlayer.setRollDice( this.turn, this.roll, dice );
         return this.activePlayer.turnScore( this.turn, this.configuration );
     };
 
+    public getRollScore ( dice: DiceClass ): number {
+        return ScoreDiceClass.getScore( dice, this.config );
+    }
     // Player is done rolling and is relenquishing the turn
     // 1 - there should be some die let over 1 .. 5
     //  - there should not be 6 die but I guess there could ... if the player is an idiot
     // 2 - there is a score 50 .. *
     //  - there should be some score of the lowest to ?k
-    public finishTurn = ( ): boolean => {
-        this.activePlayer.finishTurn( this.turn, this.configuration );
+    public finishTurn ( ): boolean  {
+        this.activePlayer.finishTurn( this.configuration );
         this.playerSvc.update( this.activePlayer );
 
         this.activePlayer = this.getNextPlayer( this.activePlayer );
@@ -91,7 +97,7 @@ export class GameMasterService {
 
     // player farkled. This is the same as finishTurn with
     // 6 die and 0 score.
-    public farkle = ( ): boolean => {
+    public farkle ( ): boolean  {
         this.activePlayer.farkle( this.turn, this.roll );
         this.playerSvc.update( this.activePlayer );
         this.finishTurn();
@@ -99,10 +105,12 @@ export class GameMasterService {
     };
 
     /**
+     * getNextPlayer - Uses the previous and player's list to select the next
+     * player and setup the turn.
      * 
      * @returns \{ PlayerClass } the next player is selected.
      */
-    private getNextPlayer = ( prev: PlayerClass ): PlayerClass => {
+    private getNextPlayer ( prev: PlayerClass ): PlayerClass  {
         let p: PlayerClass = null;
         let prevOrder: number = 0;
         let totalPlayers: number = this.playersList.length;

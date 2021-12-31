@@ -41,8 +41,33 @@
         <button mat-stroked-button (click)="die(rollActionButtonType.SIX)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
             <mat-icon>looks_6</mat-icon>
         </button>
+        <button mat-flat-button class="dice-count-button" disabled="true"> 
+        </button>
 
     </div>
+    <div class="dice-icon-buttons">
+        <button mat-flat-button  class="dice-count-button" disabled="true"> 
+            {{ rollDieSelection.die_1 }}
+        </button>
+        <button mat-flat-button class="dice-count-button" disabled="true"> 
+            {{ rollDieSelection.die_2 }}
+        </button>
+        <button mat-flat-button class="dice-count-button" disabled="true"> 
+            {{ rollDieSelection.die_3 }}
+        </button>
+        <button mat-flat-button class="dice-count-button" disabled="true"> 
+            {{ rollDieSelection.die_4 }}
+        </button>
+        <button mat-flat-button class="dice-count-button" disabled="true"> 
+            {{ rollDieSelection.die_5 }}
+        </button>
+        <button mat-flat-button class="dice-count-button" disabled="true"> 
+            {{ rollDieSelection.die_6 }}
+        </button>
+        <button mat-stroked-button (click)="resetDieSelection()" class="dice-reset-button"  [disabled]="disableObject.finishRollDisabled"> clear
+            <mat-icon>replay</mat-icon>
+        </button>
+        {{ playerRollScore }} : {{ playerTurnScore }}
+    </div>
 
-    {{ playerTurnScore }}
 </div>

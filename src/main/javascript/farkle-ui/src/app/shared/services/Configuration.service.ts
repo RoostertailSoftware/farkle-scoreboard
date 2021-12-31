@@ -15,5 +15,5 @@ export class ConfigurationService extends BaseDataServiceClass< RulesConfigurati
   constructor() { 
     super();
     this.register ( new RulesConfigurationClass(), true );
-  }
-}
+  };
+};
