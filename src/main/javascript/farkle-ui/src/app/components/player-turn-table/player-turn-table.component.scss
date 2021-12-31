@@ -1,0 +1,33 @@
+@import "src/variables";
+
+.player-table-container{
+    overflow: auto;
+    width: 100%;
+    max-height:99%;
+}
+
+table {
+    width: 100%;
+}
+
+.row-name {
+    font-weight: bold;
+}
+
+//    [ 'order', 'place', 'player', 'score'];
+.mat-column-turn{
+  width: 25% !important;
+}
+.mat-column-score{
+    width: 50% !important;
+}
+.mat-column-rolls{
+    width: 25% !important;
+}
+
+.active-player {
+  background-color: $primary-background-color;
+}
+.inactive-player{
+  background-color: $primary-background;
+}

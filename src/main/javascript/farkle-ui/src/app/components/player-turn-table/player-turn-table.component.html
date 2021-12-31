@@ -1,1 +1,27 @@
-<p>player-turn-table works!</p>
+<div class="player-table-container mat-elevation-z8">
+    <table
+        #table
+        mat-table 
+        [dataSource]="playerDataSource"
+        class="mat-elevation-z8">
+
+        <ng-container matColumnDef="turn">
+            <th mat-header-cell *matHeaderCellDef> turn </th>
+            <td mat-cell *matCellDef="let element"> {{ element.turn | number }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+            <th mat-header-cell *matHeaderCellDef> score </th>
+            <td mat-cell *matCellDef="let element"> {{ element.score | number }} </td>
+        </ng-container>
+        <ng-container matColumnDef="rolls">
+            <th mat-header-cell *matHeaderCellDef> rolls </th>
+            <td mat-cell *matCellDef="let element"> {{ element.roll.length | number }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"  >
+            
+        </tr>
+    </table>
+</div>

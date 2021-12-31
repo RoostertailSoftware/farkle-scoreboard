@@ -8,24 +8,24 @@
 table {
     width: 100%;
   }
-  .row-name {
-    font-weight: bold;
-  }
+.row-name {
+  font-weight: bold;
+}
 
-  //    [ 'order', 'place', 'player', 'score'];
-  .mat-column-order{
-    width: 15% !important;
-  }
-  .mat-column-place{
-    width: 5% !important;
-  }
-  .mat-column-score{
-    width: 20% !important;
-  }
+//    [ 'order', 'place', 'player', 'score'];
+.mat-column-order{
+  width: 15% !important;
+}
+.mat-column-place{
+  width: 5% !important;
+}
+.mat-column-score{
+  width: 20% !important;
+}
 
-  .active-player {
-    background-color: $primary-background-color;
-  }
-  .inactive-player{
-    background-color: $primary-background;
-  }
+.active-player {
+  background-color: $primary-background-color;
+}
+.inactive-player{
+  background-color: $primary-background;
+}
