@@ -28,8 +28,12 @@ export class TurnClass extends BasePlayerClass {
     public get farkled() { return this._farkled; };
 
     private _nextRollValue: number;
-    public set nextRollValue ( v: number ){ this._nextRollValue = v; }
-    public get nextRollValue ( ): number { return this._nextRollValue += 1;}
+    public set nextRollValue( v: number ){ this._nextRollValue = v; }
+    public get nextRollValue( ): number {
+        const thisRoll : number = this._nextRollValue;
+        this._nextRollValue++; 
+        return thisRoll 
+    };
 
     constructor( ){
         super();
@@ -38,6 +42,8 @@ export class TurnClass extends BasePlayerClass {
         this.score = 0;
         this.farkled = false;
         this.roll = Array< RollClass >( );
+
+        this.nextRollValue = 1;
     };
 
     // Add a new Roll, and return the index.

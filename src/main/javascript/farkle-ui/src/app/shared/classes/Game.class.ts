@@ -17,11 +17,15 @@ export class GameClass  {
 
     private _nextTurnValue: number;
     public set nextTurnValue( v: number ){ this._nextTurnValue = v; }
-    public get nextTurnValue( ): number { return this._nextTurnValue += 1; };
+    public get nextTurnValue( ): number {
+        const thisTurn : number = this._nextTurnValue;
+        this._nextTurnValue++; 
+        return thisTurn 
+    };
 
     constructor(  ){
         this.turn = Array< TurnClass >( );
-        this.nextTurnValue = 0;
+        this.nextTurnValue = 1;
     }
 
     // Create and add a new Turn, then set the Turn's .turn to
