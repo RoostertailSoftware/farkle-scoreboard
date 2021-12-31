@@ -6,9 +6,13 @@ export { AddPlayerDialogComponent } from "./add-player-dialog/add-player-dialog.
 
 export { HelpInfoButtonsComponent } from "./help-info-buttons/help-info-buttons.component";
 
+export { PlayerRollTableComponent } from  "./player-roll-table/player-roll-table.component";
+
 export { PlayerScoreboardComponent } from "./player-scoreboard/player-scoreboard.component";
 
 export { PlayerStatisticsComponent } from "./player-statistics/player-statistics.component";
+
+export { PlayerTurnTableComponent } from "./player-turn-table/player-turn-table.component";
 
 export { PregameActionButtonsComponent } from "./pregame-action-buttons/pregame-action-buttons.component";
 

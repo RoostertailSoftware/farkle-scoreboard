@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { PlayersService } from '@/app/shared/services';
+import { PlayerClass } from '@/app/shared/classes';
+
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-roll-scoreboard',
   templateUrl: './roll-scoreboard.component.html',
   styleUrls: ['./roll-scoreboard.component.scss']
 })
-export class RollScoreboardComponent implements OnInit {
+export class RollScoreboardComponent  {
 
-  constructor() { }
+  playerObserver: any;
+  activePlayer: PlayerClass;
 
-  ngOnInit(): void {
+  playerName: string;
+  
+  constructor( private playerSvc: PlayersService ) { 
+    this.activePlayer = null;
+    this.playerObserver = this.playerSvc.getObservableData();
+    this.playerObserver.subscribe( this.getPlayerList );
   }
+
+  private getPlayerList = ( result: Array< PlayerClass > ) => {
+    let i = _.findIndex( result, { active: true });
+    if( _.gte( i, 0 ) ) {
+      this.activePlayer = result[ i ];
+    };
+
+    if( !_.isNull( this.activePlayer ) ) {
+      this.playerName = this.activePlayer.name;
+    }
+  };
 
 }
