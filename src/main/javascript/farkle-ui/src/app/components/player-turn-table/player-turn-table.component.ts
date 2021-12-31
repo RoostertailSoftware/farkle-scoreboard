@@ -17,6 +17,8 @@ export class PlayerTurnTableComponent {
 
   @ViewChild( MatSort, { static: true } ) sort: MatSort;
 
+  public _: any = _;
+  
   playerDataSource: MatTableDataSource< TurnClass >;
   displayedColumns: Array< string >;
 
@@ -49,5 +51,9 @@ export class PlayerTurnTableComponent {
     };
     return result;
   };
+
+  public currentTurnRow ( row: any  ): boolean {
+    return _.eq( row.turn, this.playerDataSource.data.length )
+  }
 
 }

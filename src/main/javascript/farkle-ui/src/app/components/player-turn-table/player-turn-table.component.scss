@@ -39,3 +39,10 @@ table {
 .right-align-header {
   text-align: center;
 }
+.data-farkle {
+  color: $warn;
+}
+
+.current-turn-row {
+  background-color: $primary-background-color;
+}
