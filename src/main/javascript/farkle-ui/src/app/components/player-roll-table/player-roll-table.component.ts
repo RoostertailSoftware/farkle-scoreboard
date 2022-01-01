@@ -1,10 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 
 
 import { PlayersService } from '@/app/shared/services';
-import { PlayerClass, RollClass } from '@/app/shared/classes';
+import { DiceClass, PlayerClass, RollClass } from '@/app/shared/classes';
 
 import * as _ from 'lodash';
 
@@ -13,13 +13,15 @@ import * as _ from 'lodash';
   templateUrl: './player-roll-table.component.html',
   styleUrls: ['./player-roll-table.component.scss']
 })
-export class PlayerRollTableComponent  {
+export class PlayerRollTableComponent implements OnChanges {
 
   @ViewChild( MatSort, { static: true } ) sort: MatSort;
+  @Input() die: DiceClass;
 
   public _: any = _;
   
   playerDataSource: MatTableDataSource< RollClass >;
+  diceSelection: DiceClass;
   displayedColumns: Array< string >;
 
   playerSvcObserver: any;
@@ -28,7 +30,18 @@ export class PlayerRollTableComponent  {
 
     this.playerSvcObserver = this.playerSvc.getObservableData();
     this.playerSvcObserver.subscribe( this.changeData );
+  };
+
+  // This is the dice selection from <app-roll-action-buttons
+  // from an Output() emitter
+  ngOnChanges( changes: SimpleChanges ): void {
+    if( !changes['die'].firstChange ){
+      this.getDiceIconsReady( changes['die'].currentValue );
+    }
   }
+  public currentRollRow( row: any ): boolean {
+    return _.eq( row.roll, this.playerDataSource.data.length );
+  };
 
   private changeData = ( result: Array< PlayerClass > ): void => {
     this.playerDataSource = new MatTableDataSource < RollClass>( [] );
@@ -46,7 +59,10 @@ export class PlayerRollTableComponent  {
     }
   };
   
-  public currentRollRow( row: any ): boolean {
-    return _.eq( row.roll, this.playerDataSource.data.length );
+
+  private getDiceIconsReady( die: DiceClass ){
+    this.diceSelection = die;
+      console.log( this.diceSelection );
   }
-}
+
+};

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component  } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { CdkDragDrop, moveItemInArray, CdkDrag} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { PlayersService } from '@services';
 import { PlayerClass } from '@classes';

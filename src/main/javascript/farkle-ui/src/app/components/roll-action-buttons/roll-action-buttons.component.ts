@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { GameMasterService } from '@/app/shared/services';
 import { RollActionButtonLogicClass, DiceClass } from "@classes";
@@ -12,6 +12,14 @@ import * as _ from "lodash";
   styleUrls: ['./roll-action-buttons.component.scss']
 })
 export class RollActionButtonsComponent {
+
+  // This will emit a change of `this.rollDieSelection` DiceClass to
+  // the Parent (app.component).  That will then pass the change down a couple
+  // of levels to the <app-player-roll-table> to show the dice selected there.
+  // see `this.dieChange.emit()` in this file.
+  // also, see the app.component.html were (dieChange)="dieChanged($event)"
+  //
+  @Output() dieChange = new EventEmitter< DiceClass > ();
 
   // used by the view
   public disableObject: RollActionButtonLogicClass; 
@@ -46,8 +54,10 @@ export class RollActionButtonsComponent {
   public die( die: ROLL_ACTION_BUTTON_TYPES ){
     this.disableObject.selected( ROLL_ACTION_BUTTON_TYPES.DIE );
     this.rollDieSelection = RollActionButtonLogicClass.setRollSelection(  this.rollDieSelection, die );
+
+    this.dieChange.emit( this.rollDieSelection );
+    
     this.playerRollScore = this.gameMaster.getRollScore( this.rollDieSelection );
-    // this.gameMaster.diceSelection( die );
     this.decrement();
   };
 
@@ -93,6 +103,9 @@ export class RollActionButtonsComponent {
   public resetDieSelection(){
     this.rollDieSelection = RollActionButtonLogicClass.resetRollSelection();
     this.playerRollScore = this.gameMaster.getRollScore( this.rollDieSelection );
+
+    this.dieChange.emit( this.rollDieSelection );
+
   };
 
 };
