@@ -44,14 +44,6 @@ export class PlayerTurnTableComponent {
     }
   };
   
-  public getScore( playerTurn: TurnClass ):number|string {
-    let result: number|string = playerTurn.score;
-    if ( _.eq( result , 0 ) && !_.eq( this.playerDataSource.data.length, playerTurn.turn ) ){
-      result = "Farkle!";
-    };
-    return result;
-  };
-
   public currentTurnRow ( row: any  ): boolean {
     return _.eq( row.turn, this.playerDataSource.data.length )
   }

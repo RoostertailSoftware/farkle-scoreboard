@@ -16,7 +16,10 @@
 
         <ng-container matColumnDef="score">
             <th mat-header-cell *matHeaderCellDef class="right-align-header"> score </th>
-            <td mat-cell *matCellDef="let element" class="right-align-data" [ngClass]=" _.eq( getScore( element ) , 'Farkle!') ? 'data-farkle' : 'data-number'"> {{ getScore( element ) }} </td>
+            <td mat-cell *matCellDef="let element" class="right-align-data" 
+                [ngClass]=" element.farkled ? 'data-farkle' : 'data-number'"> 
+                {{ element.farkled ? ( "Farkled!" ): (element.score | number ) }}
+                </td> 
         </ng-container>
 
         <ng-container matColumnDef="rolls">

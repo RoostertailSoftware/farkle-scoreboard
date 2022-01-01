@@ -7,6 +7,7 @@ import { PlayersService } from '@/app/shared/services';
 import { DiceClass, PlayerClass, RollClass } from '@/app/shared/classes';
 
 import * as _ from 'lodash';
+const sortState: Sort = { active: "roll", direction: "desc" };
 
 @Component({
   selector: 'app-player-roll-table',
@@ -19,10 +20,10 @@ export class PlayerRollTableComponent  {
 
   playerDataSource: MatTableDataSource< RollClass >;
   displayedColumns: Array< string >;
-
   playerSvcObserver: any;
+
   constructor( private playerSvc: PlayersService ) { 
-    this.displayedColumns = [ 'roll', 'dice', 'score', 'button' ];
+    this.displayedColumns = [ 'roll', 'dice', 'score' ];
 
     this.playerSvcObserver = this.playerSvc.getObservableData();
     this.playerSvcObserver.subscribe( this.changeData );
@@ -35,22 +36,27 @@ export class PlayerRollTableComponent  {
   };
 
   // Data on the player has changed.
+  // Grab only the active player,
+  // the only the last turn in the array of turns
   private changeData = ( result: Array< PlayerClass > ): void => {
     this.playerDataSource = new MatTableDataSource < RollClass >( [] );
     
-    let i = _.findIndex( result, { active: true });
-    if( _.gte( i, 0 ) ) {
-      const len = result[ i ].game.turn.length;
+    let index = _.findIndex( result, { active: true });
+    if( _.gte( index, 0 ) ) {
+      const len = result[ index ].game.turn.length;
       if( _.gt( len, 0 ) ) {
-        this.playerDataSource = new MatTableDataSource< RollClass > ( result[ i ].game.turn[ len -1 ].roll );
+        this.playerDataSource = new MatTableDataSource< RollClass > ( result[ index ].game.turn[ len -1 ].roll );
       }
       this.playerDataSource.sort = this.sort;
-      const sortState: Sort = { active: "roll", direction: "desc" };
       this.sort.active = sortState.active;
       this.sort.direction = sortState.direction;
-    }
+    };
   };
   
+  // this is going into the table in the `dice` column.
+  // currently only showing a string of the dice selected.
+  // What I would like is svg of the dice(1..6) that are clickable
+  // to remove them from the selection (accidently selection in <roll-action-buttons>)
   public showSelectedDice( die: DiceClass ): string {
     let s: string = "";
     const keys = [ "die_1", "die_2", "die_3", "die_4", "die_5", "die_6" ];
@@ -59,7 +65,7 @@ export class PlayerRollTableComponent  {
       for( let i=0; i< n; i++ ){
         s += k+" "
       }
-    })  
+    });
     return s;
   };
 

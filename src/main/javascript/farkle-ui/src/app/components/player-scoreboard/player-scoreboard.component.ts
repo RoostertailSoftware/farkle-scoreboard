@@ -60,5 +60,6 @@ export class PlayerScoreboardComponent {
     } );
     let rowIndexed: number = _.findIndex( reverseScoreSort, { id: row.id } ) ;
     return ( this.playerDataSource.data.length - rowIndexed ) ;
-  }
+  };
+
 }
