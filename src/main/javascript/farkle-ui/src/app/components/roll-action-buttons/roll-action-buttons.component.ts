@@ -13,19 +13,9 @@ import * as _ from "lodash";
 })
 export class RollActionButtonsComponent {
 
-  // This will emit a change of `this.rollDieSelection` DiceClass to
-  // the Parent (app.component).  That will then pass the change down a couple
-  // of levels to the <app-player-roll-table> to show the dice selected there.
-  // see `this.dieChange.emit()` in this file.
-  // also, see the app.component.html were (dieChange)="dieChanged($event)"
-  //
-  @Output() dieChange = new EventEmitter< DiceClass > ();
-
   // used by the view
   public disableObject: RollActionButtonLogicClass; 
   public rollActionButtonType: any;
-
-  public playerRollScore: number;
 
   // keep current counts on current player
   public playerRollDieCount: number;
@@ -34,7 +24,6 @@ export class RollActionButtonsComponent {
   constructor( private gameMaster: GameMasterService ) { 
     this.reset();
 
-    this.playerRollScore =      0;
     this.disableObject =        new RollActionButtonLogicClass();
     this.rollActionButtonType = ROLL_ACTION_BUTTON_TYPES;
     this.rollDieSelection =     RollActionButtonLogicClass.resetRollSelection();
@@ -55,17 +44,17 @@ export class RollActionButtonsComponent {
     this.disableObject.selected( ROLL_ACTION_BUTTON_TYPES.DIE );
     this.rollDieSelection = RollActionButtonLogicClass.setRollSelection(  this.rollDieSelection, die );
 
-    this.dieChange.emit( this.rollDieSelection );
-    
-    this.playerRollScore = this.gameMaster.getRollScore( this.rollDieSelection );
+    this.gameMaster.setRollDice( this.rollDieSelection );
+
     this.decrement();
   };
 
   // Finish Roll button slected 
   public finishRoll(){
     this.disableObject.selected( ROLL_ACTION_BUTTON_TYPES.FINISH_ROLL );
-    this.playerRollScore = this.gameMaster.setRollDice( this.rollDieSelection );
-    this.resetDieSelection();
+    this.gameMaster.setRollDice( this.rollDieSelection );
+
+    this.rollDieSelection =     RollActionButtonLogicClass.resetRollSelection();
   };
 
   // Finished Turn button has been selected.
@@ -95,17 +84,7 @@ export class RollActionButtonsComponent {
   // Clear the counts for a new roll or continue with current roll.
   private reset(){
     this.playerRollDieCount = 6;
-    this.playerRollScore =    0;
-    this.resetDieSelection();
-  };
-
-  // Reset the roll dice and clear the score;
-  public resetDieSelection(){
-    this.rollDieSelection = RollActionButtonLogicClass.resetRollSelection();
-    this.playerRollScore = this.gameMaster.getRollScore( this.rollDieSelection );
-
-    this.dieChange.emit( this.rollDieSelection );
-
+    this.rollDieSelection =     RollActionButtonLogicClass.resetRollSelection();
   };
 
 };

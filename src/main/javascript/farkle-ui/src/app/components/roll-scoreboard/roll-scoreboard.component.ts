@@ -12,12 +12,6 @@ import * as _ from "lodash";
 })
 export class RollScoreboardComponent {
 
-  // this is the dice selection from the <roll-action-buttons>
-  // This is really just passed on to the Child component
-  // <app-player-roll-table [die]="die">
-  // that app will detect changes and do something.
-  @Input() die: DiceClass;
-
   playerObserver: any;
   activePlayer: PlayerClass;
 

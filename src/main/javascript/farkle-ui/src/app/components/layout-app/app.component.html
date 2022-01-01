@@ -16,7 +16,7 @@
             <app-pregame-action-buttons (playHasBegun)="beginGame( $event )"></app-pregame-action-buttons>
         </span>
         <span *ngIf="gameStart">
-            <app-roll-action-buttons (dieChange)="dieChanged($event)"  class="roll-action-buttons"></app-roll-action-buttons>
+            <app-roll-action-buttons class="roll-action-buttons"></app-roll-action-buttons>
         </span>
     </mat-grid-tile>
     
@@ -27,7 +27,7 @@
     
     <!-- Roll Scoreboard -->
     <mat-grid-tile colspan="4" rowspan="9" class="roll-scoreboard-tile">
-        <app-roll-scoreboard [die]="selectedDice" class="player-statistics"></app-roll-scoreboard>
+        <app-roll-scoreboard  class="player-statistics"></app-roll-scoreboard>
     </mat-grid-tile>
     
     <!-- Player / Game Statistics  -->

@@ -72,6 +72,7 @@ export class GameMasterService {
      */
     public setRollDice ( dice: DiceClass ): number {
         this.activePlayer.setRollDice( this.turn, this.roll, dice );
+        this.playerSvc.update( this.activePlayer );
         return this.activePlayer.turnScore( this.turn, this.configuration );
     };
 

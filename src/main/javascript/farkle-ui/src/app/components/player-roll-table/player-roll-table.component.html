@@ -16,7 +16,7 @@
 
         <ng-container matColumnDef="dice">
             <th mat-header-cell *matHeaderCellDef > chosen dice </th>
-            <td mat-cell *matCellDef="let element" class="dice">  </td>
+            <td mat-cell *matCellDef="let element" class="dice"> {{ showSelectedDice( element.diceSelection ) }} </td>
         </ng-container>
 
         <ng-container matColumnDef="score">
