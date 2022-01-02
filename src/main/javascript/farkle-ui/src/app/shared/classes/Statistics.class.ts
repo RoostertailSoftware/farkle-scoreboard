@@ -12,6 +12,10 @@ export class StatisticsClass {
     public set numberOfRolls ( n: number ){ this._numberOfRolls = n; };
     public get numberOfRolls ( ): number { return this._numberOfRolls; };
 
+    private _highestScoringRoll: number;
+    public set highestScoringRoll ( n: number ){ this._highestScoringRoll = n; };
+    public get highestScoringRoll ( ): number { return this._highestScoringRoll; };
+
     private _averageRollsPerTurn: number;
     public set averageRollsPerTurn ( n: number ){ this._averageRollsPerTurn = n; };
     public get averageRollsPerTurn ( ): number { return this._averageRollsPerTurn; };
@@ -20,26 +24,29 @@ export class StatisticsClass {
     public set mostRollsInATurn ( n: number ){ this._mostRollsInATurn = n; };
     public get mostRollsInATurn ( ): number { return this._mostRollsInATurn; };
 
-
     private _averageScorePerRoll: number;
     public set averageScorePerRoll ( n: number ){ this._averageScorePerRoll = n; };
     public get averageScorePerRoll ( ): number { return this._averageScorePerRoll; };
-
-    private _lastTurnScore: number;
-    public set lastTurnScore ( n: number ){ this._lastTurnScore = n; };
-    public get lastTurnScore ( ): number { return this._lastTurnScore; };
 
     private _numberOfFarkles: number;
     public set numberOfFarkels ( n: number ){ this._numberOfFarkles = n; };
     public get numberOfFarkels ( ): number { return this._numberOfFarkles; };
 
+    private _highestScoringTurn: number;
+    public set highestScoringTurn ( n: number ){ this._highestScoringTurn = n; };
+    public get highestScoringTurn ( ): number { return this._highestScoringTurn; };
+
+    private _lastTurnScore: number;
+    public set lastTurnScore ( n: number ){ this._lastTurnScore = n; };
+    public get lastTurnScore ( ): number { return this._lastTurnScore; };
+
     private _game: GameClass;
-    public set game ( g: GameClass ){ this._game = g; };
-    public get game ( ): GameClass { return this._game; };
+    private set game ( g: GameClass ){ this._game = g; };
+    private get game ( ): GameClass { return this._game; };
 
     constructor( g: GameClass ){
         this.game = g;
-        this.runStats();
+        // this.runStats();
     };
 
     public runStats ( ): void {
@@ -47,10 +54,12 @@ export class StatisticsClass {
         this.numberOfTurns =    this.calculateTurns();
 
         this.numberOfRolls =    this.calculateRolls();
+        this.highestScoringRoll =   this.calculateHighestScoringRoll();
         this.averageRollsPerTurn = this.calculateAverageRollsPerTurn();
         this.mostRollsInATurn =     this.calculateMostRollsInATurn();
 
-        this.averageScorePerRoll =  this.calcuateAverageScorePerRoll();
+        this.averageScorePerRoll =  this.calculateAverageScorePerRoll();
+        this.highestScoringTurn =     this.calculateHighestScoringTurn();
 
         this.lastTurnScore =    this.calculateLastTurnScore();
     };
@@ -73,7 +82,7 @@ export class StatisticsClass {
     }
 
     /**
-     * calcuate the average rolls per turn taking into account
+     * calculate the average rolls per turn taking into account
      * the number of farkled rolls.
      * @returns \{ number } rolls/turn
      */
@@ -89,13 +98,22 @@ export class StatisticsClass {
      * the farkled roll.
      * @returns \{ number } score/roll
      */
-    private calcuateAverageScorePerRoll ( ): number  {
+    private calculateAverageScorePerRoll ( ): number  {
         let score = this.calculateScore();
         let num = _.eq( score, 0 ) ? 0 : score;
         let den = _.eq( this.numberOfRolls, 0 ) ? 1 : this.numberOfRolls;
         return num / den;
     }
 
+    private calculateHighestScoringTurn ( ): number {
+        let highScore: number = 0;
+        _.forEach( this.game.turn, ( t: TurnClass ) => {
+            if( _.gt( t.score, highScore  ) ){
+                highScore = t.score;
+            };
+        });
+        return highScore;
+    }
     /**
      * Count of turns which resulted in a farkle
      * @returns \{ number } farkles
@@ -123,6 +141,17 @@ export class StatisticsClass {
         return totalRolls;
     };
 
+    private calculateHighestScoringRoll ( ): number {
+        let highScore: number = 0;
+        _.forEach( this.game.turn, ( t: TurnClass ) => {
+            _.forEach( t.roll, ( r: RollClass ) => {
+                if( _.gt( r.score, highScore ) ){
+                    highScore = r.score;
+                };
+            });
+        });
+        return highScore;
+    }
     /**
      * Calculate which turn has the most rolls.
      * @returns \{ number } a number that represents most rolls in a turn
@@ -153,9 +182,9 @@ export class StatisticsClass {
      */
     private calculateLastTurnScore( ): number {
         let score: number = 0;
-        let index: number = this.game.turn.length;
-        if( _.gt( index, 1 ) ) {
-            score = this.game.turn[ index -2 ].score;
+        if( _.gt( this.game.turn.length, 1 ) ) {
+            let index = _.gt( _.nth( this.game.turn, -1 ).roll.length, 0 ) ? -2: -1;
+            score =  _.nth( this.game.turn, index ).score;
         }
         return score;
     }

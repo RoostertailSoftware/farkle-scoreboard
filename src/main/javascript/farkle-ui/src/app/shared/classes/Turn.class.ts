@@ -15,6 +15,10 @@ export class TurnClass extends BasePlayerClass {
     public set turn ( n: number ){ this._turn = n; }
     public get turn ( ): number {  return this._turn ; }
 
+    private _active: boolean;
+    public set active ( n: boolean ){ this._active = n; }
+    public get active ( ): boolean {  return this._active ; }
+
     private _score: number;
     public set score( n: number ){ this._score = n; }
     public get score ( ): number {  return this._score ; }
@@ -39,6 +43,7 @@ export class TurnClass extends BasePlayerClass {
         super();
         
         this.turn = 0;
+        this.active = false;
         this.score = 0;
         this.farkled = false;
         this.roll = Array< RollClass >( );

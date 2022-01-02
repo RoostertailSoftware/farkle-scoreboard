@@ -1,5 +1,6 @@
 import { BasePlayerClass, GameClass, DiceClass, RulesConfigurationClass } from "@classes";
 
+import * as _ from "lodash";
 /**
  * PlayerClass is a player in the Farkle Scoreboard app.
  * THe payer has a name and has an order (which can be changed up to gameplay)
@@ -55,6 +56,10 @@ export class PlayerClass extends BasePlayerClass {
     // Player says they are done with turn, button this one up
     // set the score.
     public finishTurn ( config: RulesConfigurationClass ) {
+        let index = _.findIndex( this.game.turn, { active: true } );
+        if( _.gt( index, -1 ) ) {
+            this.game.turn[ index ].active = false;
+        }
         this.getScore( config );
     };
 

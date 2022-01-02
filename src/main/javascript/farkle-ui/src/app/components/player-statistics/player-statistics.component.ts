@@ -21,9 +21,10 @@ export class PlayerStatisticsComponent  {
   constructor( private playerSvc: PlayersService ) { 
     this._ = _;
     this.activePlayer = null;
+    this.activePlayerStats = null;
+
     this.playerObserver = this.playerSvc.getObservableData();
     this.playerObserverResult = this.playerObserver.subscribe( this.getData );
-    this.activePlayerStats = null;
   };
 
   getData = ( result: Array< PlayerClass > ) => {

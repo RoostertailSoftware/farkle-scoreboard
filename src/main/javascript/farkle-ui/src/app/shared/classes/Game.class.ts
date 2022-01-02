@@ -33,6 +33,7 @@ export class GameClass  {
     public addTurn( ): number {
         let t: TurnClass = new TurnClass( );
             t.turn = this.nextTurnValue;
+            t.active = true;
         this.turn.push( t );
         return _.findIndex( this.turn, { id: t.id } );
     };
@@ -79,7 +80,4 @@ export class GameClass  {
         this.turn[ turn_index ].farkle( roll_index );
     };
 
-    private getNextTurnValue(){
-
-    }
 };
