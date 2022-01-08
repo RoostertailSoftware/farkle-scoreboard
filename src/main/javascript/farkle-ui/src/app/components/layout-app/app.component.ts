@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AppSettingsClass, DiceClass } from '@classes';
+import { AppSettingsClass, DiceClass, TurnClass } from '@classes';
 
 import * as _ from "lodash";
 @Component({
@@ -14,6 +14,7 @@ export class AppComponent {
   gameStart: boolean = false;
 
   selectedDice: DiceClass;
+
   constructor( ){
   }
   beginGame( event ){
@@ -26,5 +27,6 @@ export class AppComponent {
   // see the app.component.html in `<app-roll-scoreboard [die]="selectedDice">`
   dieChanged( event: DiceClass ){
     this.selectedDice = _.cloneDeep( event );
-  }
+  };
+
 }
