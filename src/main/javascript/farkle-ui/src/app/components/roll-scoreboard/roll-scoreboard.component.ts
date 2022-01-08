@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { PlayersService } from '@/app/shared/services';
-import { DiceClass, PlayerClass } from '@/app/shared/classes';
+import { PlayerClass, TurnClass } from '@/app/shared/classes';
 
 import * as _ from "lodash";
 
@@ -12,8 +12,10 @@ import * as _ from "lodash";
 })
 export class RollScoreboardComponent {
 
+  
   playerObserver: any;
   activePlayer: PlayerClass;
+  selectedTurn: TurnClass;
 
   playerName: string;
   
@@ -32,7 +34,15 @@ export class RollScoreboardComponent {
 
     if( !_.isNull( this.activePlayer ) ) {
       this.playerName = this.activePlayer.name;
-    }
+    };
+    
   };
+
+  // a Turn is selected or created (active) from the
+  // <app-player-turn-table>. this changes the [selectedTurn] on
+  // <app-player-roll-table>
+  turnSelected( event: TurnClass ){
+    this.selectedTurn = event;
+  }
 
 }
