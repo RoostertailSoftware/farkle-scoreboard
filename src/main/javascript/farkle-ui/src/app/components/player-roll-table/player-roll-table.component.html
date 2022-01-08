@@ -16,10 +16,9 @@
 
         <ng-container matColumnDef="dice">
             <th mat-header-cell *matHeaderCellDef > chosen dice </th>
-            <td mat-cell *matCellDef="let element" class="dice"> 
-                <!-- {{ showSelectedDice( element.diceSelection ) }}  -->
+            <td mat-cell *matCellDef="let element" class="dice" 
+                [ngClass]=" element.farkled ? 'data-farkle' : 'data-number'"> 
                 {{ element.farkled ? "Farkled!" : showSelectedDice( element.diceSelection ) }}
-
             </td>
         </ng-container>
 
@@ -31,7 +30,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true" ></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"  [ngClass]="currentRollRow( row ) ? 'current-turn-row': 'not-current-turn-row' ">
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"  [ngClass]="row.active ? 'current-turn-row': 'not-current-turn-row' ">
             
         </tr>
     </table>
