@@ -19,6 +19,7 @@ export class PregameActionButtonsComponent implements OnInit {
   playerObservable:any;
   playerData: Array< PlayerClass >;
   tooltip: any;
+  
   constructor( private playerSvc: PlayersService, private addPersonDialog: MatDialog ) { 
     this.playerObservable =  this.playerSvc.getObservableData();
     this.playerObservable.subscribe( result => {
@@ -35,25 +36,31 @@ export class PregameActionButtonsComponent implements OnInit {
 
   // The use has chosen to start the game with the player(s)
   // keep from modifying the db.
-  beginPlay =():void => {
+  beginPlay():void {
     this.playHasBegun.emit( true );
   }
 
   // Method to open the dialog for creating a player, then
   // taking the result and adding it to the player service.
-  addPlayer = ( keepGoing?: boolean ):void => {
-    let addAnother:boolean = _.isUndefined( keepGoing ) ? false : keepGoing;
-    let dialogRef: MatDialogRef< AddPlayerDialogComponent > = this.openDialog( addAnother );
+  addPlayer( keepGoing?: boolean ):void {
+    let x:any = {};
+    x.addAnother = _.isUndefined( keepGoing ) ? false : keepGoing;
+    x.allowSinglePlayer = _.gt( this.playerData.length, 0 ) ? false : true; 
+    let dialogRef: MatDialogRef< AddPlayerDialogComponent > = this.openDialog( x );
     // this is how to subscribe the the Dialog's @Output()
     // squeeee!
-    dialogRef.componentInstance.player.subscribe( result =>{
+    dialogRef.componentInstance.player.subscribe( result => {
         let player: PlayerClass = new PlayerClass( result.name, this.playerData.length+1 );
         this.playerSvc.register( player );
+        if ( result.singlePlayer ){
+          this.beginPlay();
+        }
     });
   };
 
   // Helper method to create a MatDialogRef for the dialog.
-  openDialog = ( inData: any  ): MatDialogRef< AddPlayerDialogComponent  >  => {
+  openDialog( inData: any  ): MatDialogRef< AddPlayerDialogComponent  > {
+
     return this.addPersonDialog.open( AddPlayerDialogComponent, {
       autoFocus: true,
       closeOnNavigation: true,
