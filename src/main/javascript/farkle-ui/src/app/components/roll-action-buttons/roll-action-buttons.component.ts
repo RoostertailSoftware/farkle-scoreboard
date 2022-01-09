@@ -78,7 +78,12 @@ export class RollActionButtonsComponent {
   //
   private decrement(){
     this.playerRollDieCount -= 1;
-    this.playerRollDieCount = _.eq( this.playerRollDieCount, 0 ) ? 6 : this.playerRollDieCount;
+    // if we have counted down to 0, that means all 6 die
+    // have been exhausted -- :: end turn
+    if( _.eq( this.playerRollDieCount, 0 ) ){
+      this.finishRoll();
+      this.playerRollDieCount = 6;
+    }
   };
 
   // Clear the counts for a new roll or continue with current roll.
