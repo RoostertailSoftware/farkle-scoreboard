@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, ViewChild, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 
@@ -14,7 +14,7 @@ const sortState: Sort = { active: "roll", direction: "desc" };
   templateUrl: './player-roll-table.component.html',
   styleUrls: ['./player-roll-table.component.scss']
 })
-export class PlayerRollTableComponent implements OnChanges {
+export class PlayerRollTableComponent implements OnChanges, DoCheck {
 
   @ViewChild( MatSort, { static: true } ) sort: MatSort;
   @Input() selectedTurn: TurnClass;
@@ -25,13 +25,22 @@ export class PlayerRollTableComponent implements OnChanges {
   constructor(  ) { 
     this.displayedColumns = [ 'roll', 'dice', 'score' ];
   }
+  ngDoCheck(): void {
+    if( !_.isUndefined( this.selectedTurn ) ){
+      this.showThisOne( this.selectedTurn );
+    }
+    // throw new Error('Method not implemented.');
+  }
 
   // accept a change in active Turn or selected Turn from
   // player-turn-table.component
-  ngOnChanges( changes: SimpleChanges ): void {
-    if( !_.isUndefined( changes['selectedTurn'].currentValue ) ){
-      this.showThisOne ( changes['selectedTurn'].currentValue );
-    };
+  ngOnChanges(  ): void {
+    // if( !_.isUndefined( changes['selectedTurn'].currentValue ) ){
+    //   this.showThisOne ( changes['selectedTurn'].currentValue );
+    // };
+    if( !_.isUndefined( this.selectedTurn ) ){
+      this.showThisOne( this.selectedTurn );
+    }
   };
 
   // set the datasource to the active/selected Turn

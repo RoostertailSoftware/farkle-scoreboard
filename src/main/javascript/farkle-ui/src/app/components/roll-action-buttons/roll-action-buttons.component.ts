@@ -34,6 +34,9 @@ export class RollActionButtonsComponent {
   // Roll button pushed starting a new Roll for the player;
   //
   public roll( ){
+    if( this.rollDieSelection.isNewRoll( ) ){
+      this.finishRoll();
+    } 
     this.disableObject.selected( ROLL_ACTION_BUTTON_TYPES.ROLL );
     this.gameMaster.rollDice( this.playerRollDieCount );
   };

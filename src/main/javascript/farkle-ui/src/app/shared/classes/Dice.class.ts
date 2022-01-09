@@ -74,4 +74,11 @@ export class DiceClass  {
         this["die_"+d ] += 1;
     };
 
+    public isNewRoll(): boolean {
+        let dieCount:number = 0
+        for( let i=1; i<7; i++ ){
+            dieCount += this["die_"+i ];
+        }
+        return _.gt( dieCount, 0 );
+    }
 };
