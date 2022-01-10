@@ -14,6 +14,10 @@ export class RollClass extends BasePlayerClass {
     public set roll ( n: number ){ this._roll = n; }
     public get roll ( ): number {  return this._roll ; }
 
+    private _active: boolean;
+    public set active ( n: boolean ){ this._active = n; }
+    public get active ( ): boolean {  return this._active ; }
+
     private _score: number;
     public set score ( n: number ){ this._score = n; }
     public get score ( ): number {  return this._score ; }
@@ -38,7 +42,8 @@ export class RollClass extends BasePlayerClass {
     constructor( rolledDiceCount: number ){
         super();
 
-        this.roll =             0;          
+        this.roll =             0;
+        this.active =           false;          
         this.score =            0;
         this.farkled =          false;
         this.rolledDiceCount =  rolledDiceCount;

@@ -54,9 +54,14 @@ export class TurnClass extends BasePlayerClass {
     // Add a new Roll, and return the index.
     public newRoll = ( diceCount: number ): number => {
         let r = new RollClass( diceCount );
+            r.active = true;
             r.roll = this.nextRollValue;
         this.roll.push( r );
-        return _.findIndex( this.roll, { id: r.id });
+        const index: number = _.findIndex( this.roll, { id: r.id });
+        if( _.gt( index, 0 ) ){
+            this.roll[ index -1 ].active = false;
+        };
+        return index;
     }
 
     // public diceSelected = (roll_index: number, die: ROLL_ACTION_BUTTON_TYPES ) => {

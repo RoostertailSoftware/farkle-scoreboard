@@ -1,4 +1,4 @@
-import { BasePlayerClass, GameClass, DiceClass, RulesConfigurationClass } from "@classes";
+import { BasePlayerClass, GameClass, RollClass, DiceClass, RulesConfigurationClass } from "@classes";
 
 import * as _ from "lodash";
 /**
@@ -59,6 +59,9 @@ export class PlayerClass extends BasePlayerClass {
         let index = _.findIndex( this.game.turn, { active: true } );
         if( _.gt( index, -1 ) ) {
             this.game.turn[ index ].active = false;
+            _.forEach( this.game.turn[ index ].roll, ( roll: RollClass ) => {
+                roll.active = false;
+            } )
         }
         this.getScore( config );
     };
