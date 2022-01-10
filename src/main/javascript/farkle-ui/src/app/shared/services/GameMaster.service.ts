@@ -86,13 +86,12 @@ export class GameMasterService {
     //  - there should be some score of the lowest to ?k
     public finishTurn ( ): boolean  {
         this.activePlayer.finishTurn( this.configuration );
-        // this.playerSvc.update( this.activePlayer );
+        console.log( JSON.stringify( this.activePlayer ) )
 
         this.activePlayer = this.getNextPlayer( this.activePlayer );
         this.playerSvc.update( this.activePlayer );
 
         this.turn = this.activePlayer.getNextTurn();
-        console.log( JSON.stringify( this.activePlayer ) )
         return true;
     };
 
