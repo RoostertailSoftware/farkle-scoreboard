@@ -17,8 +17,8 @@
         <ng-container matColumnDef="dice">
             <th mat-header-cell *matHeaderCellDef > chosen dice </th>
             <td mat-cell *matCellDef="let element" class="dice" 
-                [ngClass]=" element.farkled ? 'data-farkle' : 'data-number'"> 
-                {{ element.farkled ? "Farkled!" : showSelectedDice( element.diceSelection ) }}
+                [ngClass]=" element.farkled ? 'data-farkle' : 'data-number'"
+                [innerHtml]="element.farkled ? 'Farkled!' : showSelectedDice( element.diceSelection ) | safeHtml "> 
             </td>
         </ng-container>
 

@@ -49,3 +49,11 @@ table {
 .current-turn-row {
   background-color: $primary-background-color;
 }
+::ng-deep button.die-type {
+  border: none; 
+  padding: 0;
+  margin: 0;
+  background: border-box;
+  width: 30px;
+  height: 30px;
+}
