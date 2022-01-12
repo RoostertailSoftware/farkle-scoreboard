@@ -5,9 +5,11 @@
 }
 .actions-buttons{
     width: 100%;
+    margin-bottom: 5px;
 }
 .all-buttons{
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .roll-button{
     color: $primary;
@@ -18,14 +20,12 @@
 .farkel-button{
     color: $warn;
     position: absolute;
-    left: 10px;
-
 }
 
 .finished-button{
     color: $accent;
     position: absolute;
-    left: 10px;
+    width: 100%;
 }
 
 .dice-buttons{
@@ -39,14 +39,18 @@
 
 .dice-button {
     margin: 5px;
-    background-color: rgb(178, 233, 173); 
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    background: border-box;
+
 }
 
 .dice-count-button {
     margin: 5px;
 }
 ::ng-deep .mat-flat-button.mat-button-disabled.mat-button-disabled {
-    background-color: white;
+    fill: grey;
 }
 .dice-reset-button {
     margin: 5px;

@@ -1,7 +1,7 @@
 <div class="roll-action-button-container">
 
     <div class="actions-buttons">
-        <mat-grid-list cols="2" rowHeight="4:1">
+        <mat-grid-list cols="2" rowHeight="3:1">
             <mat-grid-tile>
                 <button mat-stroked-button (click)="roll()" class="all-buttons roll-button" [disabled]="disableObject.rollButtonDisabled">roll {{playerRollDieCount }}
                     <mat-icon>refresh</mat-icon>
@@ -9,9 +9,6 @@
             </mat-grid-tile>
             
             <mat-grid-tile>
-                <!-- <button mat-stroked-button (click)="finishRoll()" class="all-buttons finished-button" *ngIf="!disableObject.finishRollDisabled">finish roll
-                    <mat-icon>done</mat-icon>
-                </button> -->
                 <button mat-stroked-button (click)="finishTurn()" class="all-buttons finished-button" *ngIf="!disableObject.finishTurnDisabled">finish turn
                     <mat-icon>done_all</mat-icon>
                 </button>
@@ -23,27 +20,24 @@
     </div>
 
     <div class="dice-icon-buttons">
-        <button mat-stroked-button (click)="die(rollActionButtonType.ONE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
-            <mat-icon>looks_one</mat-icon>
+        <button mat-icon-button (click)="die(rollActionButtonType.ONE)"     class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <img src="assets/icons/svg/dice_1.svg" />
         </button>
-        <button mat-stroked-button (click)="die(rollActionButtonType.TWO)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
-            <mat-icon>looks_two</mat-icon>
+        <button mat-icon-button (click)="die(rollActionButtonType.TWO)"     class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <img src="assets/icons/svg/dice_2.svg" />
         </button>
-        <button mat-stroked-button (click)="die(rollActionButtonType.THREE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
-            <mat-icon>looks_3</mat-icon>
+        <button mat-icon-button (click)="die(rollActionButtonType.THREE)"   class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <img src="assets/icons/svg/dice_3.svg" />
         </button>
-        <button mat-stroked-button (click)="die(rollActionButtonType.FOUR)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
-            <mat-icon>looks_4</mat-icon>
+        <button mat-icon-button (click)="die(rollActionButtonType.FOUR)"    class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <img src="assets/icons/svg/dice_4.svg" />
         </button>
-        <button mat-stroked-button (click)="die(rollActionButtonType.FIVE)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
-            <mat-icon>looks_5</mat-icon>
+        <button mat-icon-button (click)="die(rollActionButtonType.FIVE)"    class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <img src="assets/icons/svg/dice_5.svg" />
         </button>
-        <button mat-stroked-button (click)="die(rollActionButtonType.SIX)" class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
-            <mat-icon>looks_6</mat-icon>
+        <button mat-icon-button (click)="die(rollActionButtonType.SIX)"     class="dice-button"  [disabled]="disableObject.diceButtonDisabled"> 
+            <img src="assets/icons/svg/dice_6.svg" />
         </button>
-        <button mat-flat-button class="dice-count-button" disabled="true"> 
-        </button>
-
     </div>
 
 </div>

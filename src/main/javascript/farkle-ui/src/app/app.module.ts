@@ -6,12 +6,14 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 import { AngularMaterialModule } from "./angular-material.module";
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 
 let _imports: any[] = [
   CommonModule,
   AngularMaterialModule,
+  HttpClientModule,
   BrowserModule,
   BrowserAnimationsModule,
   FormsModule,
