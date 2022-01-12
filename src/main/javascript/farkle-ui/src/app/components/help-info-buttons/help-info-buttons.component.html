@@ -1,9 +1,13 @@
 <div class="help-info-button-container">
     
-    <mat-icon (click)="config()" [matTooltip]="tooltip.config.tip" class="all-buttons config-button">settings</mat-icon>
+    <span class="left-side-buttons">
+        <mat-icon (click)="rules()" [matTooltip]="tooltip.rules.tip" class="all-buttons ">rule</mat-icon>
+    </span>
 
-    <mat-icon (click)="about()" [matTooltip]="tooltip.about.tip" class="all-buttons about-button">error_outline</mat-icon>
-
-    <mat-icon (click)="rules()" [matTooltip]="tooltip.rules.tip" class="all-buttons ">rule</mat-icon>
+    <span class="righ-side-buttons" >
+        <mat-icon (click)="restart()"   [matTooltip]="tooltip.restart.tip"  class="all-buttons ">restart_alt</mat-icon>
+        <mat-icon (click)="about()"     [matTooltip]="tooltip.about.tip"    class="all-buttons about-button">error_outline</mat-icon>
+        <mat-icon (click)="config()"    [matTooltip]="tooltip.config.tip"   class="all-buttons ">settings</mat-icon>
+    </span>
 
 </div>

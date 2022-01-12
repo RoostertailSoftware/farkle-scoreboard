@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
+
 import { RulesConfigurationClass } from "@classes";
 import { RulesConfigurationDialogComponent, RulesDialogComponent, AboutDialogComponent } from '@components';
 import { ConfigurationService } from "@services";
@@ -18,25 +19,27 @@ export class HelpInfoButtonsComponent {
   constructor( private configSvc: ConfigurationService, 
       private configDialog: MatDialog, 
       private rulesDialog: MatDialog, 
-      private aboutDialog: MatDialog ) {
+      private aboutDialog: MatDialog )  {
 
     this.tooltip = {
       rules: { tip: "basic Farkel rules" },
       about: { tip: "about Farkle scoreboard" },
-      config: { tip: "configure Farkel game rules" }
+      config: { tip: "configure Farkel game rules" },
+      restart: { tip: "restart the game" }
     };
 
     let x = this.configSvc.getObservableData();
     x.subscribe( result => {
       this.configData = result[0];
-    })
+    });
+
    }
 
-  about = () =>{
+  about(): void {
     this.aboutDialog.open( AboutDialogComponent );
    }
 
-  config = () =>{ 
+  config(): void { 
     let data = {
       data: this.configData
     }
@@ -48,8 +51,11 @@ export class HelpInfoButtonsComponent {
     })
   }
 
-  rules = () => {
+  rules(): void {
     let x = this.rulesDialog.open( RulesDialogComponent );
   }
 
+  restart(): void {
+    window.location.reload()
+  }
 }
