@@ -9,3 +9,5 @@ cd -
 rm -R ./build
 rm -R ./bin
 ./gradlew build
+
+cp ./build/libs/farkle-scorecard-*.jar ~/Downloads/
