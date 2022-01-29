@@ -1,26 +1,27 @@
 @import "../../../variables";
 
-.help-info-buttons-container{
+.help-info-button-container{
     width: 100%;
+    margin-top: 10px;
 }
 
-.help-button {
-    margin-left: 5px;
-}
-
-.rule-button{
-    color: $primary;
+.all-buttons {
+    color: $secondary-buttons-color;
     background-color: $primary-background;
+
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+mat-icon:hover {
+    background-color: $light-grey-button-background;
+    border-radius: 5px;
+}
+
+
+.righ-side-buttons {
+    float: right;
 }
 .about-button{
-    // margin-right: 30px;
-    color: $primary;
-    background-color: $primary-background;
-}
-.config-button{
-    color: $primary;
-    background-color: $primary-background;
-}
-.flip-icon-180 {
     transform: rotate(180deg)
 }

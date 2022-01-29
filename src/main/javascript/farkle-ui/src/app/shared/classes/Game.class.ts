@@ -1,48 +1,83 @@
-import { TurnClass, BasePlayerClass } from "@classes";
+import { TurnClass, DiceClass, RulesConfigurationClass } from "@classes";
 
-export class GameClass extends BasePlayerClass {
+import * as _ from "lodash";
 
-    constructor( player_id: string ){
-        super();
-        this.player_id = player_id;
-        
-        this.turn = Array< TurnClass >( );
-        this.nextTurnNumber = 0;
-    }
-
-    private _player_id: string;
-    public set player_id ( id: string ){
-        this._player_id = id;
-    }
-    public get player_id ( ): string {
-        return this._player_id ;
-    }
+/**
+ * The gameclass is the game for this player only.
+ * the game has an id, and has a player_id.
+ * It consists of an array of turns - which are numbered
+ * from 0 .. n.
+ * 
+ */
+export class GameClass  {
 
     private _turn: Array< TurnClass >;
-    public set turn ( t: Array< TurnClass > ){
-        this._turn = t;
-    }
-    public get turn( ): Array< TurnClass > {
-        return this._turn;
-    }
-    private addTurn( t: TurnClass ): void {
-        this._turn.push( t );
+    public set turn ( t: Array< TurnClass > ){ this._turn = t; }
+    public get turn( ): Array< TurnClass > { return this._turn; }
+
+    private _nextTurnValue: number;
+    public set nextTurnValue( v: number ){ this._nextTurnValue = v; }
+    public get nextTurnValue( ): number {
+        const thisTurn : number = this._nextTurnValue;
+        this._nextTurnValue++; 
+        return thisTurn 
     };
 
-    private _nextTurnNumber: number;
-    public get nextTurnNumber(): number {
-        return ++this._nextTurnNumber;
-    }
-    private set nextTurnNumber( n: number){
-        this._nextTurnNumber = n;
+    constructor(  ){
+        this.turn = Array< TurnClass >( );
+        this.nextTurnValue = 1;
     }
 
-    
+    // Create and add a new Turn, then set the Turn's .turn to
+    // the index
+    public addTurn( ): number {
+        let t: TurnClass = new TurnClass( );
+            t.turn = this.nextTurnValue;
+            t.active = true;
+        this.turn.push( t );
+        return _.findIndex( this.turn, { id: t.id } );
+    };
 
-    public getNextTurn = (): TurnClass => {
-        // First, find out what the largest turn number
-        let x = new TurnClass( this.player_id, this.nextTurnNumber );
-        this.addTurn( x );
-        return x;
-;    }
-}
+    /**
+     * newRoll - create a new roll for this turn.
+     * @param turn_index \{ number } the turn number for the player
+     * @param diceCount \{ number } the number of dice this roll is allowed
+     * @returns \{ number } the roll index
+     */
+    public newRoll ( turn_index: number, diceCount: number ): number {
+        return this.turn[ turn_index ].newRoll( diceCount );
+    };
+
+    /**
+     * setRollDice - 
+     * Set the  Dice Object into the roll for this turn
+     * @param turn_index \{ number } the turn number for the player
+     * @param roll_index  \{ number } the roll number for the turn
+     * @param dice \{ DiceClass } the dice for the turn.
+     */
+    public setRollDice( turn_index: number, roll_index: number, dice: DiceClass ): void {
+        this.turn[ turn_index ].setRollDice( roll_index, dice );
+    }
+
+    /**
+     * getScore - go thru the turns and get the current score for the game.
+     * @param config \{ Config }
+     * @returns 
+     */
+    public getScore ( config: RulesConfigurationClass ): number {
+        let score = 0;
+        _.forEach( this.turn, ( t: TurnClass, i: number )=> {
+            score += this.turnScore( i, config );
+        });
+        return score;
+    };
+
+    public turnScore ( turn_index: number, config: RulesConfigurationClass ): number  {
+        return this.turn[ turn_index ].getScore( config );
+    };
+
+    public farkle ( turn_index: number, roll_index: number )  {
+        this.turn[ turn_index ].farkle( roll_index );
+    };
+
+};

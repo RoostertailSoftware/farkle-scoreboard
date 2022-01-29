@@ -1,4 +1,5 @@
 import { AppSettingsClass } from "@classes";
+import { SCORING_TYPE  } from "@enums";
 
 import * as _ from "lodash";
 
@@ -9,29 +10,7 @@ import * as _ from "lodash";
  */
 export class RulesConfigurationClass {
 
-    /**
-     * @constructor
-     * set the default values for the Game Play configuration
-     * @default
-     * 
-     */
-         constructor( data?: any ){
-            // default values
-            this.winScore =         data && !_.isUndefined( data.winScore ) ? data.winScore : AppSettingsClass.WINNING_TOTAL;
-            this.minScoreToStart =  data && !_.isUndefined( data.minScoreToStart ) ? data.minScoreToStart : AppSettingsClass.MIN_START_ROLL;
-    
-            this.nextPlayerContinuesPreviousRoll = data && !_.isUndefined( data.nextPlayerContinuesPreviousRoll ) ? data.nextPlayerContinuesPreviousRoll : true;
-    
-            this.maxFarkleCount =       data && !_.isUndefined( data.maxFarkleCount ) ? data.maxFarkleCount : AppSettingsClass.MAX_FARKLE_ROLLS;
-            this.maxFarklePenality =    data && !_.isUndefined( data.maxFarklePenality ) ? data.maxFarklePenality : AppSettingsClass.MAX_FARKLE_PENALTY;
-    
-            this.doublingScoresOnTripples = data && !_.isUndefined( data.doublingScoresOnTripples ) ? data.doublingScoresOnTripples : false;
-            this.trippleDoublePoints =      data && !_.isUndefined( data.trippleDoublePoints ) ? data.trippleDoublePoints : AppSettingsClass.FIVE_HUNDRED;
-            this.straightPoints =           data && !_.isUndefined( data.straightPoints ) ? data.straightPoints : AppSettingsClass.STRAIGHT_POINTS;
 
-            this.maxFarklesApplies = _.gt( this.maxFarkleCount, 0 );
-        }
-    
     /**
      *  This is a bit to make it easy for the system to see if it cares about
      * how many Farkles a player gets in a row.
@@ -105,51 +84,149 @@ export class RulesConfigurationClass {
     }
 
     /**
-     * There is a scoring rule that instead of multiplying on
-     * greater than 3 triples, they double.
-     * 
-     * @example
-     * PlayerA rolls 5 2-die
-     * doublingScoreOnTripples: false
-     * score=600 ( 200 * 3 ) 
-     * doublingScoresOnTripples: true
-     * score = 800 (200 * 2 * 2 )
-     */
-    private _doublingScoresOnTripples: boolean;
-    public set doublingScoresOnTripples( b: boolean ){
-        this._doublingScoresOnTripples = b;
-    }
-    public get doublingScoresOnTripples(): boolean {
-        return this._doublingScoresOnTripples;
-    }
-
-    /**
      * set the points for a Triple-double
      * 3 pairs (3-3-4-4-6-6 etc)
      * By themselves 3, 4,6 don't add up to squat. And
      * double of them is less squat. However, if there are
      * a triple set of doubles, then ... they add up to `trippleDoublePoints`.
      */
-    private _trippleDoublePoints: number;
-    public set trippleDoublePoints( n: number ){
-        this._trippleDoublePoints = n;
+     private _trippleDoublePoints: number;
+     public set trippleDoublePoints( n: number ){
+         this._trippleDoublePoints = n;
+     }
+     public get trippleDoublePoints(): number {
+         return this._trippleDoublePoints;
+     }
+ 
+     /**
+      * set the point value for a straight on one roll
+      * 1-2-3-4-5-6 die
+      *  
+      */
+     private _straightPoints: number;
+     public set straightPoints( n: number ){
+         this._straightPoints = n;
+     }
+     public get straightPoints(): number {
+         return this._straightPoints;
+     }
+ 
+    /**
+     * Scoring type is one of three
+     * SCORING_TYPE.MULTIPLIER -  Default
+     * SCORING_TYPE.DOUBLING
+     * SCORING_TYPE.SET_VALUE
+     * if SET_VALUE is selected then fourOfAKind, fiveOfAKind, sixOfAKind values
+     * can be changed by the configuration Dialog.
+     * 
+     * @example
+     * PlayerA rolls 5 2-die
+     * SCORING_TYPE.MULTIPLIER
+     * score=600 ( 200 * 3 ) 
+     * SCORING_TYPE.DOUBLING
+     * score = 800 (200 * 2 * 2 )
+     * SCORING_TYPE.SET_VALUE
+     * score = this.fiveOfAKind // no matter the die value
+     */
+    private _scoring_type: SCORING_TYPE;
+    public set scoring_type( s: SCORING_TYPE ){
+        this._scoring_type = s;
     }
-    public get trippleDoublePoints(): number {
-        return this._trippleDoublePoints;
+    public get scoring_type(): SCORING_TYPE {
+        return this._scoring_type;
+    }
+
+    private _fourOfAKind: number;
+    public set fourOfAKind( n: number ){
+        this._fourOfAKind = n;
+    }
+    public get fourOfAKind(): number {
+        return this._fourOfAKind;
+    }
+
+    private _fiveOfAKind: number;
+    public set fiveOfAKind( n: number ){
+        this._fiveOfAKind = n;
+    }
+    public get fiveOfAKind(): number {
+        return this._fiveOfAKind;
+    }
+
+    private _sixOfAKind: number;
+    public set sixOfAKind( n: number ){
+        this._sixOfAKind = n;
+    }
+    public get sixOfAKind(): number {
+        return this._sixOfAKind;
     }
 
     /**
-     * set the point value for a straight on one roll
-     * 1-2-3-4-5-6 die
-     *  
+     * @constructor
+     * set the default values for the Game Play configuration
+     * @default
+     * 
      */
-    private _straightPoints: number;
-    public set straightPoints( n: number ){
-        this._straightPoints = n;
-    }
-    public get straightPoints(): number {
-        return this._straightPoints;
-    }
+     constructor( data?: any ){
+        // default values
+        this.nextPlayerContinuesPreviousRoll = data && !_.isUndefined( data.nextPlayerContinuesPreviousRoll ) ? data.nextPlayerContinuesPreviousRoll : true;
+
+        this.winScore =         data && !_.isUndefined( data.winScore ) ? +data.winScore : AppSettingsClass.WINNING_TOTAL;
+        this.minScoreToStart =  data && !_.isUndefined( data.minScoreToStart )  ? +data.minScoreToStart : AppSettingsClass.MIN_START_ROLL;
 
 
+        this.maxFarkleCount =       data && !_.isUndefined( data.maxFarkleCount )   ? +data.maxFarkleCount : AppSettingsClass.MAX_FARKLE_ROLLS;
+        this.maxFarklePenality =    data && !_.isUndefined( data.maxFarklePenality )    ? +data.maxFarklePenality : AppSettingsClass.MAX_FARKLE_PENALTY;
+
+        this.trippleDoublePoints =      data && !_.isUndefined( data.trippleDoublePoints )  ? +data.trippleDoublePoints : AppSettingsClass.FIVE_HUNDRED;
+        this.straightPoints =           data && !_.isUndefined( data.straightPoints )   ? +data.straightPoints : AppSettingsClass.STRAIGHT_POINTS;
+
+        this.scoring_type = data && !_.isUndefined( data.scoring_type ) ? +data.scoring_type :   SCORING_TYPE.MULTIPLIER;
+
+        this.fourOfAKind =  data && !_.isUndefined( data.fourOfAKind )  ? +data.fourOfAKind :    AppSettingsClass.ONE_THOUSAND;
+        this.fiveOfAKind =  data && !_.isUndefined( data.fiveOfAKind )  ? +data.fiveOfAKind :    AppSettingsClass.TWO_THOUSAND;
+        this.sixOfAKind =   data && !_.isUndefined( data.sixOfAKind )   ? +data.sixOfAKind :     AppSettingsClass.THREE_THOUSAND;
+
+
+
+        this.maxFarklesApplies = _.gt( this.maxFarkleCount, 0 );
+    }
+
+    /*
+     * given a die, and the number of them (total) as well as the configuration.scoring_type, return
+     * the value.
+    */
+    public  getScoreValue ( die: number, total: number ): number  {
+        let x: number = this.getInitialValue( die, total );
+        switch ( +this.scoring_type ){
+            case SCORING_TYPE.MULTIPLIER:
+                let multiplier = _.eq( total, 4 ) ? 2 :  _.eq( total, 5 ) ? 3 : _.eq( total, 6 ) ? 4 : 1;
+                x =  x * multiplier;
+                break;
+            case SCORING_TYPE.DOUBLING:
+                let doubler = _.eq( total, 4 ) ? Math.pow( 2, 1 ) : _.eq( total, 5 ) ?  Math.pow( 2, 2 ) : _.eq( total, 6 ) ?  Math.pow( 2, 3) : 1;
+                x = x * doubler;
+                break;
+            case SCORING_TYPE.SET_VALUE:
+                x = _.eq( total, 4 ) ? this.fourOfAKind : _.eq( total, 5 ) ?  this.fiveOfAKind : _.eq( total, 6 ) ?  this.sixOfAKind : x;
+                break;
+        }
+        return x;
+    };
+
+    private  getInitialValue ( die: number, total:number ): number {
+        let x: number = 0;
+        switch( die ){
+            case 1: 
+                x = _.gte( total, 3 ) ? 1000 : 100;
+                break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                x = _.gte( total, 3 ) ? die * 100 : 0;
+                break;
+        }
+        return x;
+    }
 }

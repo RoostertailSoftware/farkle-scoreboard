@@ -2,6 +2,7 @@
 
 .rules-config-dialog-card {
     margin: 5px;
+    max-width: 600px;
 
 }
 .rules-config-card{
@@ -12,8 +13,10 @@
 
 }
 .rules-config-content{
-
+    max-height: 600px;
+    overflow: auto;
 }
+
 .rules-config-field {
     width: 100%;
 }
@@ -22,18 +25,34 @@
 }
 .rules-config-actions{
     text-align: center;
-    margin: 5px;
+    margin: 5px !important;
 }
 .toggle-wrapper{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+.toggle-wrapper-group{
+    // margin-left: 15px;
+}
+.mat-radio-button ~ .mat-radio-button{
+    margin-left: 16px;
 }
 
-
+.set_type{
+    margin-top: 10px;
+}
 .rules-config-field-inset{
     width:75%;
     margin-left: 25px;
     margin-top: 10px;
 }
 .rules-config-data-inset{
+    color: $primary;
+}
+fieldset{
+    border: 1px solid black;
+    padding: 5px;
+    width: 95%;
+}
+fieldset legend {
     color: $primary;
 }

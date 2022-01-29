@@ -1,0 +1,14 @@
+@import "../../../variables";
+
+.all-buttons {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.add-player-button {
+    color: $primary;
+}
+
+.begin-play-button{
+    color: $accent;
+}

@@ -6,12 +6,14 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 import { AngularMaterialModule } from "./angular-material.module";
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 
 let _imports: any[] = [
   CommonModule,
   AngularMaterialModule,
+  HttpClientModule,
   BrowserModule,
   BrowserAnimationsModule,
   FormsModule,
@@ -24,41 +26,51 @@ let _schemas: any[] =[ ]
 
 import { AppComponent,
   AboutDialogComponent,
+  AddPlayerDialogComponent,
   HelpInfoButtonsComponent,
+  PlayerRollTableComponent,
   PlayerScoreboardComponent,
   PlayerStatisticsComponent,
+  PlayerTurnTableComponent,
+  PregameActionButtonsComponent,
   RollActionButtonsComponent,
   RollScoreboardComponent,
   RulesConfigurationDialogComponent,
   RulesDialogComponent,
-  StartSetupButtonsComponent,
   TitleComponent } from './components' ;
 
-  import { safeHtml } from "@pipes";
+  import { englishOrdinalPipe, 
+    safeHtml } from "@pipes";
 
 let _declarations: any[] = [
   AppComponent,
   AboutDialogComponent,
+  AddPlayerDialogComponent,
   HelpInfoButtonsComponent,
+  PlayerRollTableComponent,
   PlayerScoreboardComponent,
   PlayerStatisticsComponent,
+  PlayerTurnTableComponent,
+  PregameActionButtonsComponent,
   RollActionButtonsComponent,
   RollScoreboardComponent,
   RulesConfigurationDialogComponent,
   RulesDialogComponent,
-  StartSetupButtonsComponent,
   TitleComponent,
+  englishOrdinalPipe,
   safeHtml
 ]
 
 /* -- Services -- */
 import {   ConfigurationService,
-      PlayersService } from "@services";
+    GameMasterService,
+    PlayersService } from "@services";
 
 let _providers: any[ ] = [
   ConfigurationService,
+  GameMasterService,
   PlayersService,
-  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "fill", floatLabel: "always" } }
+  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "fill", floatLabel: "auto" } }
 ]
 
 let _bootstrap: any[] = [

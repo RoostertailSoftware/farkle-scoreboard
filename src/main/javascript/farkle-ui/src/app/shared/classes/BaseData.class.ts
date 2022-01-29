@@ -1,9 +1,11 @@
 import { BehaviorSubject } from 'rxjs';
 
+import * as _ from "lodash";
+
 export abstract class BaseDataServiceClass< T > {
 
-  protected dataStore: { data: T } = { data: null };
-  protected _data = new BehaviorSubject< T >( null );
+  protected dataStore: { data: Array< T > } = { data: [] };
+  protected _data = new BehaviorSubject< Array< T > >( [] );
   readonly data = this._data.asObservable();
 
   constructor() { }
@@ -15,9 +17,10 @@ export abstract class BaseDataServiceClass< T > {
    * let x: any = this.svc.getObservableData();
    * x.subscribe( result => {} );
    */
-  getObservableData = (): any => {
+  public getObservableData = (): any => {
     return this.data;
   };
+
   /**
    * This will register new data into the observable
    * and send out that to all subscribers.
@@ -25,8 +28,18 @@ export abstract class BaseDataServiceClass< T > {
    * @example
    * this.svc.register( data: T );
    */
-  register = ( op: T ): void => {
-    this.dataStore.data = op;
+   public register( op: T, singular?: boolean ): void {
+    if( singular ){
+      this.dataStore.data =   [ op ] ;
+    } else {
+      this.dataStore.data.push(  op )
+    }
     this._data.next( this.dataStore.data );
-  }
+  };
+
+  public update( op: T ): void {
+    this._data.next( this.dataStore.data );
+  };
+  
+
 }
