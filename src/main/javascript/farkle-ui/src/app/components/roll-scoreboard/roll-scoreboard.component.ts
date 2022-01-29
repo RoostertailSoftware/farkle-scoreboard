@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { PlayersService } from '@/app/shared/services';
 import { PlayerClass, TurnClass } from '@/app/shared/classes';
@@ -12,6 +12,7 @@ import * as _ from "lodash";
 })
 export class RollScoreboardComponent {
 
+  @Output() dieRemoved = new EventEmitter< boolean >();
   
   playerObserver: any;
   activePlayer: PlayerClass;
@@ -19,6 +20,7 @@ export class RollScoreboardComponent {
 
   playerName: string;
   
+
   constructor( private playerSvc: PlayersService ) { 
     this.activePlayer = null;
     this.playerObserver = this.playerSvc.getObservableData();
@@ -45,4 +47,7 @@ export class RollScoreboardComponent {
     this.selectedTurn = event;
   }
 
+  incrementDieCount(b: any ): void {
+    this.dieRemoved.emit( b );
+  }
 }

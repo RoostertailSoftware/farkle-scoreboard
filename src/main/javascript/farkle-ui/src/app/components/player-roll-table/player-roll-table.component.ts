@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild, OnChanges, SimpleChanges, DoCheck, AfterViewChecked } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, OnChanges, SimpleChanges, DoCheck, AfterViewChecked, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 
@@ -18,6 +18,7 @@ export class PlayerRollTableComponent implements OnChanges, DoCheck, AfterViewCh
 
   @ViewChild( MatSort, { static: true } ) sort: MatSort;
   @Input() selectedTurn: TurnClass;
+  @Output() dieRemoved = new EventEmitter< boolean >();
 
   playerDataSource: MatTableDataSource< RollClass >;
   displayedColumns: Array< string >;
@@ -81,9 +82,21 @@ export class PlayerRollTableComponent implements OnChanges, DoCheck, AfterViewCh
       let x: any = this.elementRef.nativeElement.querySelector( "#"+dieSelector.currentTarget.id );
       x.removeEventListener( "click", this.unsetDie)
       x.remove();
+      this.incrementDieCount();
     }
   }
 
+  // What I am doing here.  Sending out an emit all the way to
+  // app.component and then down to app-roll-action-buttons that a die
+  // was de-selected and removed. Therefore, increment the die count back
+  // on the `roll x ` button. But, I have to reset the value of the emit or
+  // it will not register again. So, I wait 1 second and send the reset.
+  private incrementDieCount(){
+    this.dieRemoved.emit( true );
+    setTimeout( ()=> {
+      this.dieRemoved.emit( false );
+    }, 1000)
+  }
   /**
    *  Build a unique deterministic ID for a specific roll, die and die count.
    * @param rollIndex \{ number } - the roll's index in a TurnClass.roll[ 0..n ]
@@ -116,8 +129,10 @@ export class PlayerRollTableComponent implements OnChanges, DoCheck, AfterViewCh
         // index == roll index
         // die_k is the dice
         // i is the number, should be 1 ..6
-        let id = this.buildDiceId( index, "die_"+k, i );
-        s += "<button mat-icon-button id="+id+" (click)='unsetDie( "+id+" )' class='die-type'><img src='assets/icons/svg/dice_"+k+".svg' /></button>"; 
+        if( _.gte( index, 0 ) ){
+          let id = this.buildDiceId( index, "die_"+k, i );
+          s += "<button mat-icon-button id="+id+" (click)='unsetDie( "+id+" )' class='die-type'><img src='assets/icons/svg/dice_"+k+".svg' /></button>"; 
+        }
       }
     });
     return s;

@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "date-fns": "^2.28.0",
     "git-describe": "^4.1.0",
     "material-design-icons-iconfont": "^6.1.1",
     "rxjs": "~7.4.0",

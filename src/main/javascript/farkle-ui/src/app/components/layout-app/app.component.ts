@@ -14,6 +14,7 @@ export class AppComponent {
   gameStart: boolean = false;
 
   selectedDice: DiceClass;
+  dieRemoved: boolean;
 
   constructor( ){
   }
@@ -29,4 +30,7 @@ export class AppComponent {
     this.selectedDice = _.cloneDeep( event );
   };
 
+  incrementDieCount( b: any ): void{
+    this.dieRemoved = b;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { GameMasterService } from '@/app/shared/services';
 import { RollActionButtonLogicClass, DiceClass } from "@classes";
@@ -11,7 +11,8 @@ import * as _ from "lodash";
   templateUrl: './roll-action-buttons.component.html',
   styleUrls: ['./roll-action-buttons.component.scss']
 })
-export class RollActionButtonsComponent {
+export class RollActionButtonsComponent implements OnChanges {
+  @Input() dieRemoved: boolean;
 
   // used by the view
   public disableObject: RollActionButtonLogicClass; 
@@ -29,7 +30,15 @@ export class RollActionButtonsComponent {
     this.rollDieSelection =     RollActionButtonLogicClass.resetRollSelection();
 
     this.gameMaster.startGame();
-  };
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if( !_.isUndefined( changes['dieRemoved'].currentValue ) ){
+      if( changes['dieRemoved'].currentValue ){
+        this.increment();
+      } 
+    }
+  }
+;
 
   // Roll button pushed starting a new Roll for the player;
   //
@@ -88,6 +97,9 @@ export class RollActionButtonsComponent {
       this.playerRollDieCount = 6;
     }
   };
+  private increment(){
+    this.playerRollDieCount += 1;
+  }
 
   // Clear the counts for a new roll or continue with current roll.
   private reset(){

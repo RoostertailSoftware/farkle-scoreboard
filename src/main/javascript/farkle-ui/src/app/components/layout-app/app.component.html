@@ -16,18 +16,18 @@
             <app-pregame-action-buttons (playHasBegun)="beginGame( $event )"></app-pregame-action-buttons>
         </span>
         <span *ngIf="gameStart">
-            <app-roll-action-buttons class="roll-action-buttons"></app-roll-action-buttons>
+            <app-roll-action-buttons [dieRemoved]="dieRemoved" class="roll-action-buttons"></app-roll-action-buttons>
         </span>
     </mat-grid-tile>
     
     <!-- Player's scoreboard -->
     <mat-grid-tile colspan="4" rowspan="6" class="players-scoreboard-tile">
-        <app-player-scoreboard  class="player-scoreboard"></app-player-scoreboard>
+        <app-player-scoreboard   class="player-scoreboard"></app-player-scoreboard>
     </mat-grid-tile>
     
     <!-- Roll Scoreboard -->
     <mat-grid-tile colspan="4" rowspan="9" class="roll-scoreboard-tile">
-        <app-roll-scoreboard  class="player-statistics"></app-roll-scoreboard>
+        <app-roll-scoreboard  (dieRemoved)="incrementDieCount($event)"  class="player-statistics"></app-roll-scoreboard>
     </mat-grid-tile>
     
     <!-- Player / Game Statistics  -->
