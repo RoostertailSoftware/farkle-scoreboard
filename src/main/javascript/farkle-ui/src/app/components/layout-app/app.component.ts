@@ -16,21 +16,21 @@ export class AppComponent {
   selectedDice: DiceClass;
   dieRemoved: boolean;
 
-  constructor( ){
+  constructor() {
   }
-  beginGame( event ){
-    this.gameStart = event; 
+  beginGame(event) {
+    this.gameStart = event;
   };
 
   // this is where the dice was selected in <app-roll-action-buttons>
   // Set the `selectedDice` to change new data.  It is
   // then passed on to a child component
   // see the app.component.html in `<app-roll-scoreboard [die]="selectedDice">`
-  dieChanged( event: DiceClass ){
-    this.selectedDice = _.cloneDeep( event );
+  dieChanged(event: DiceClass) {
+    this.selectedDice = _.cloneDeep(event);
   };
 
-  incrementDieCount( b: any ): void{
+  incrementDieCount(b: any): void {
     this.dieRemoved = b;
   }
 }
