@@ -1,0 +1,8 @@
+<mat-grid-list cols="3" rowHeight="50px">
+    <mat-grid-tile colspan='2' rowspan='8'>
+        <app-player-roll-table [selectedTurn]="selectedTurn" (dieRemoved)="incrementDieCount($event)"  class="app-player-turn-table-area"></app-player-roll-table>
+    </mat-grid-tile>
+    <mat-grid-tile colspan='1' rowspan='8'>
+        <app-player-turn-table (selectedTurn)="turnSelected( $event )" class="app-player-turn-table-area"></app-player-turn-table>
+    </mat-grid-tile>
+</mat-grid-list>
