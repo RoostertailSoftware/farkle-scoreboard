@@ -1,5 +1,0 @@
-export enum SCORING_TYPE {
-    MULTIPLIER,
-    DOUBLING,
-    SET_VALUE
-}
